@@ -3,8 +3,6 @@
  
 Reliqui is free open source project, it's a smart outpatient booking appointment system, it's a healthcare platform with First Come First Served queuing discipline.
 
-## Features
-
 * Appointment management
 * Staff management(Qwner, Admin and Nurse)
 * Medical records
@@ -47,8 +45,4 @@ If you discover any security related issues, please email reliqui.id.gmail.com i
 - [David H. Sianturi](https://twitter.com/davidhsianturi)
 - [Taufan Maulana](https://twitter.com/enzotaufan)
 - [Soleman](https://www.instagram.com/ssoleman48)
-
-## License
-
-Reliqui is released under the [GPLv3 license](LICENSE.txt).
 
