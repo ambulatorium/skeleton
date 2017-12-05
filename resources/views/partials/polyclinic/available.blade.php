@@ -13,7 +13,7 @@
 @endforeach
 
 @can('add-polyclinics')
-    <div class="col-12 mb-2 mt-2">
+    <div class="col-12 mb-2 mt-4">
         <a href="/polyclinics/create" class="btn btn-outline-danger btn-sm">Create New</a>
     </div>
 @endcan
