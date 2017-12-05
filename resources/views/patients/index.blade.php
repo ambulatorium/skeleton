@@ -10,7 +10,7 @@
         
             <main class="col-md-12">
 
-                <div class="card">
+                <div class="card mb-3">
                     <div class="card-header">
                         <a href="/patients/create" class="btn btn-outline-danger btn-sm float-right">Add Patient</a>
                         <h4 class="card-text">Patient's Data</h4>
@@ -46,9 +46,9 @@
                             </tbody>
                         </table>
                     </div>
-
-                    {{ $patients->links('vendor.pagination.bootstrap-4') }}
                 </div>
+
+                {{ $patients->links('vendor.pagination.bootstrap-4') }}
 
             </main>
         </div>
