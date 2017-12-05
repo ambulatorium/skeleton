@@ -34,7 +34,7 @@ class CounterController extends Controller
 
         Counter::create($request->all());
 
-        flash('Successful! The new counter created')->important();
+        flash('Successful! The new counter created')->success();
 
         return redirect('/counters');
     }
@@ -54,7 +54,7 @@ class CounterController extends Controller
         $counter->fill($request->all());
         $counter->save();
 
-        flash('Successful! Counter updated')->important();
+        flash('Successful! Counter updated')->success();
 
         return redirect('/counters');
     }

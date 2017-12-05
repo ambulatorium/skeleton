@@ -10,7 +10,9 @@
 
         @include('partials.master.header')
 
-        @include('flash::message')
+        <div id="flash-msg">
+            @include('flash::message')
+        </div>
 
         <div class="mt-5">
             @yield('content')
@@ -21,5 +23,13 @@
     </div>
 
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <script>
+        $(function () {
+            // flash auto hide
+            $('#flash-msg .alert').not('.alert-danger, .alert-important').delay(3000).slideUp(500);
+        })
+    </script>
+
 </body>
 </html>

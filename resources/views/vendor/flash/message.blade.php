@@ -7,7 +7,7 @@
         ])
     @else
         <div class="alert
-                    alert-{{ $message['level'] }} alert-dismissible fade show text-center
+                    alert-{{ $message['level'] }} alert-dismissible text-center
                     {{ $message['important'] ? 'alert-important' : '' }}"
                     role="alert"
         >
