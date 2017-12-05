@@ -27,7 +27,7 @@
                     <div class="form-group form-check form-check-inline">
                         @foreach($roles as $role)
                             <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="roles[]" value="{{ $role->id }}" {{ $user->roles()->pluck('name')->first() == $role->name ? 'checked' : '' }} > {{ ucfirst($role->name) }}
+                                <input class="form-check-input" type="radio" name="roles[]" value="{{ $role->id }}" {{ $user->roles->implode('name', ' ') == $role->name ? 'checked' : '' }} > {{ ucfirst($role->name) }}
                             </label>
                         @endforeach
                     </div>

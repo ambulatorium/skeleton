@@ -36,7 +36,7 @@
                                         <tr>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
-                                            <td>{{ $user->roles()->pluck('name')->implode(' ') }}</td>
+                                            <td>{{ $user->roles->implode('name', ' ') }}</td>
                                             <td>{{ $user->created_at->format('d F Y, h:ia') }}</td>
                                             <td>
                                                 <form action="/settings/staffs/{{ $user->id }}" method="POST">

@@ -24,7 +24,7 @@ class StaffController extends Controller
 
     public function create()
     {
-        $roles = Role::get();
+        $roles = Role::whereNotIn('name', ['patient'])->get();
         
         return view('settings.staffs.create', ['roles' => $roles]);
     }
@@ -69,9 +69,12 @@ class StaffController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        $roles = Role::get();
+        $roles = Role::whereNotIn('name', ['patient'])->get();
 
-        return view('settings.staffs.edit', compact('user', 'roles'));
+        return view('settings.staffs.edit', [
+            'user' => $user,
+            'roles' => $roles
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -90,7 +93,7 @@ class StaffController extends Controller
         }
         
         $user->save();
-        $roles = $request['roles'];
+        $roles = $request->get('roles');
 
         if (isset($roles)) {
             $user->roles()->sync($roles);
