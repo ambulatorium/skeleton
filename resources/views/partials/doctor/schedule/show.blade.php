@@ -1,9 +1,9 @@
-<h4>Schedules</h4>
+<h4 class="mt-3">Schedules</h4>
 <hr>    
 
 <div class="row">
     @forelse ($schedules as $schedule)
-        <div class="col-md-2">
+        <div class="col-md-3">
             <h5>{{ $schedule->day }}</h5>
             <h6 class="text-muted">{{ \Carbon\Carbon::parse($schedule->from_time)->format('h:ia') }} - {{ \Carbon\Carbon::parse($schedule->to_time)->format('h:ia') }}</h6>
         </div>

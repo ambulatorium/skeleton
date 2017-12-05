@@ -32,22 +32,24 @@ class ScheduleController extends Controller
             'to_time' => 'required' 
          ]);
  
-         $checkData = Schedule::where([
-             ['doctor_id', $request->get('doctor_id')],
-             ['day', $request->get('day')]
-         ]);
+        $checkSchedules = Schedule::where([
+            ['doctor_id', $request->get('doctor_id')],
+            ['day', $request->get('day')]
+        ]);
  
-         // dd($checkData->first());
+        // dd($checkSchedules->first());
  
-         if($checkData->first()) {
-
+        if($checkSchedules->first()) {
             flash('Warning! Schedule you selected is already exist')->warning();
-             return redirect('/doctors/'.$request->get('doctor_id'));
-         }
+
+            return redirect('/doctors/'.$request->get('doctor_id'));
+        }
  
-         Schedule::create($request->all());
+        Schedule::create($request->all());
+
+        flash('Successful! New schedule created')->success();
  
-         return redirect('/doctors/'.$request->get('doctor_id'))->with('flash_success', 'New schedule created.');
+        return redirect('/doctors/'.$request->get('doctor_id'));
     }
 
     public function show($id)

@@ -20,8 +20,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <select name="polyclinic_id" id="polyclinic_id" class="form-control" required>
-                            <option value="">Select Polyclinic...</option>
+                    <select name="polyclinic_id" id="polyclinic_id" class="form-control" required>   
+                        <option value="">Select Polyclinic...</option>
                         @forelse($polyclinics as $polyclinic)
                             <option value="{{ $polyclinic->id }}">{{ $polyclinic->name }}</option>
                         @empty
@@ -39,6 +39,7 @@
 
                 <div class="form-group">
                     <button class="btn btn-block btn-danger" type="submit">ADD</button>
+                    <a href="/doctors" class="btn btn-block btn-secondary">CANCEL</a>
                 </div>
             </form>
         </div>

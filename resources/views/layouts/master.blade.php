@@ -10,6 +10,8 @@
 
         @include('partials.master.header')
 
+        @include('partials.master.errors')
+
         <div id="flash-msg">
             @include('flash::message')
         </div>

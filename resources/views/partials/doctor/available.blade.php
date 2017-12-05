@@ -10,8 +10,10 @@
     </div>
 @endforeach
 
-@can('add-doctors')
-    <div class="col-12 mb-2 mt-2">
+<div class="col-12 mt-4">
+    {{ $doctors->links('vendor.pagination.bootstrap-4') }}
+
+    @can('add-doctors')
         <a href="/doctors/create" class="btn btn-outline-danger btn-sm">Create New</a>
-    </div>
-@endcan
+    @endcan
+</div>

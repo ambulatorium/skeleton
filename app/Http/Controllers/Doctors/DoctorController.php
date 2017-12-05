@@ -18,7 +18,7 @@ class DoctorController extends Controller
 
     public function index()
     {
-        $doctors = Doctor::with('polyclinic')->get();
+        $doctors = Doctor::with('polyclinic')->paginate(12);
         
         return view('doctors.index', compact('doctors'));
     }
@@ -34,7 +34,7 @@ class DoctorController extends Controller
     {
         Doctor::create($request->formDoctor());
 
-        flash('Successful! New doctor created')->important();
+        flash('Successful! New doctor created')->success();
 
         return redirect('/doctors');
     }
@@ -42,7 +42,7 @@ class DoctorController extends Controller
     public function show(Doctor $doctor)
     {
         return view('doctors.show', [
-            'doctor' => $doctor->load('polyclinic'),
+            'doctor' => $doctor,
             'schedules' => $doctor->schedule()->get(),
         ]);
     }
@@ -70,13 +70,26 @@ class DoctorController extends Controller
         $doctor->fill($request->formDoctor());
         $doctor->save();
 
-        flash('Successful! Doctor updated')->important();
+        flash('Successful! Doctor updated.')->success();
 
         return redirect('/doctors/'.$doctor->id);
     }
     
     public function destroy(Doctor $doctor)
     {
-        //
+        $relationships = $this->checkRelationships($doctor, [
+            'schedule' => 'schedule',
+            'appointment' => 'appointment'
+        ]);
+
+        if (empty($relationships)) {
+            $doctor->delete();
+
+            flash('Successful! Doctor deleted.')->success();
+        } else {
+            flash('Warning! Deletion '.$doctor->name.' not allowed.')->warning();
+        }
+
+        return redirect('/doctors');
     }
 }

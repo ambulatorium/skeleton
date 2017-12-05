@@ -8,19 +8,11 @@
     <div class="container mb-5">
         <div class="row">
 
-            <div class="col-md-8 offset-2">
+            <div class="col-md-8 offset-md-2">
                 <div class="card">
                     <div class="card-header">
-                        <div class="float-right">
-                            <form action="#" method="#" class="form-inline">
-                                {{ csrf_field() }}
-                                
-                                <div class="form-group mr-2">
-                                    <input type="text" name="search" class="form-control" placeholder="search coming soon..." required>
-                                </div>
-                            </form>
-                        </div>
                         <h4 class="card-text">Appointments</h4>
+                        <hr>
                     </div>
 
                     <div class="list-group list-group-flush">
@@ -39,12 +31,13 @@
                                 </div>
                             </a>
                         @empty
-                            <a href="#" class="list-group-item text-center">
+                            <div class="list-group-item text-center">
                                 <h4 class="text-muted"><strong>No appointments yet</strong></h4>
                                 <h6 class="text-muted">when appointment available, it'll show up here.</h6>
-                            </a>
+                            </div>
                         @endforelse
                     </div>
+
                 </div>
             </div>
         
