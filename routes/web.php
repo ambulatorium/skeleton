@@ -9,10 +9,11 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('doctors', 'Doctors\DoctorController');
-    Route::resource('counters', 'Counters\CounterController');
     Route::resource('polyclinics', 'Polyclinics\PolyclinicController');
     Route::resource('schedules', 'Doctors\ScheduleController');
     Route::resource('patients', 'Patients\PatientController');
+    // pending, useless feature.
+    // Route::resource('counters', 'Counters\CounterController');
 
     Route::get('/doctors/appointments/{doctor}', 'Doctors\DoctorController@appointments');
 

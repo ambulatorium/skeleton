@@ -21,11 +21,12 @@
                 <a href="/polyclinics" class="nav-link @yield('polyclinics')">Polyclinics</a>
             </li>
         @endcan
-        @can('view-counters')
+        {{--  pending, useless feature  --}}
+        {{--  @can('view-counters')
             <li class="nav-item">
                 <a href="/counters" class="nav-link @yield('counters')">Counters</a>
             </li>
-        @endcan
+        @endcan  --}}
         @can('view-settings')
             <li class="nav-item">
                 <a href="/settings" class="nav-link @yield('settings')">Settings</a>
