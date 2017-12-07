@@ -12,7 +12,7 @@ body {
 }
 
 .rq-navbar {
-    background-color: #fff;
+    background-color: #f9f9f9;
     // box-shadow: 0 .5rem 0.5rem rgba(0,0,0,.01),inset 0 -1px 0 rgba(0,0,0,.1)
 }
 
@@ -25,9 +25,9 @@ body {
 
 .dropdown-item.active,
 .dropdown-item:active {
-  color: #fff;
+  color: #424c55;
   text-decoration: none;
-  background-color: #EBEBEB;
+  background-color: #f9f9f9;
 }
 
 .card {
@@ -44,7 +44,7 @@ body {
 }
 
 .card-body {
-  background-color: #FAFAFA;
+  background-color: #f9f9f9;
 }
 
 
@@ -66,19 +66,6 @@ a:hover {
 .tbr-0 {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
-}
-
-.radius-0 {
-  border-radius: 0;
-}
-
-.alert-disabled {
-  border: 0px solid transparent;
-  border-radius: 0rem;
-}
-
-.alert-secondary {
-  background-color: #f5f8fa;
 }
 
 .page-link:focus,
@@ -106,9 +93,35 @@ a:hover {
   border: 1px solid #f5f8fa;
 }
 
+.list-group-item {
+  border: 1px solid #f2f2f2;
+}
+
 .list-group-item.active {
   z-index: 2;
-  color: #212529;
-  background-color: #f8f9fa;
-  border-color: rgba(0, 0, 0, 0.125);
+  color: #d71149;
+  font-weight: bold;
+  background-color: #fff;
+  border-color: #f2f2f2;
+}
+
+.table-rq,
+.table-rq > th,
+.table-rq > td {
+  background-color: #fdfdfe;
+}
+
+.table-hover .table-rq:hover {
+  background-color: #fff; 
+}
+
+.table-hover .table-rq:hover > td,
+.table-hover .table-rq:hover > th {
+  background-color: #fff;
+}
+
+.table .thead-rq th {
+  color: #495057;
+  background-color: #f2f2f2;
+  border-color: #f2f2f2;
 }
