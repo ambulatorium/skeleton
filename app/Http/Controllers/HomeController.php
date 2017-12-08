@@ -8,26 +8,26 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function show()
+    public function home()
     {
         return view('home', ['polyclinics' => Polyclinic::all()]);
     }
 
-    public function searchDoctor()
+    public function searchSchedule()
     {
 
-        $schedules = $this->getSearch();
+        $schedules = $this->getSchedules();
 
-        return view('search.doctor', [
+        return view('search.schedule', [
             'schedules' => $schedules,
             'polyclinics' => Polyclinic::all(),
-            'polyclinic' => $polyclinic = request('polyclinic'),
-            'date' => $date = request('date')
+            'polyclinic' => request('polyclinic'),
+            'date' => request('date')
         ]);
 
     }
 
-    protected function getSearch()
+    protected function getSchedules()
     {
         return Schedule::whereHas('doctor.polyclinic', function ($q) {
             $q->where('name', request('polyclinic'));

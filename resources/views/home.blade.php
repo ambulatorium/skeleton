@@ -16,7 +16,7 @@
                         </p>
                     </div>
                     <div class="card-body">
-                        <form action="/doctors/search" method="get" class="form-horizontal">
+                        <form action="/physician" method="get" class="form-horizontal">
 
                             <div class="form-group">
                                 <select name="polyclinic" class="form-control" required>

@@ -1,8 +1,8 @@
 <?php
 
 // home
-Route::get('/', 'HomeController@show');
-Route::get('/doctors/search', 'HomeController@searchDoctor');
+Route::get('/', 'HomeController@home');
+Route::get('/physician', 'HomeController@searchSchedule');
 
 // Authentication default
 Auth::routes();
