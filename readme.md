@@ -1,4 +1,4 @@
-<p align="center"><img src="https://goo.gl/DZhhni"></p>
+<p align="center"><img src="https://i.imgur.com/CP6TJvCl.png"></p
 
  
 Reliqui is free open source project, it's a smart outpatient booking appointment system, it's a healthcare platform with First Come First Served queuing discipline.
