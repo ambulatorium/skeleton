@@ -1,19 +1,37 @@
-@foreach($doctors as $doctor)
-    <div class="col-md-3 mb-1">
-        <div class="card text-center">
-            <div class="card-body">
-                <h5 class="card-title"><a href="/doctors/{{ $doctor->id }}">{{ $doctor->name }}</a></h5>
-                <p class="card-text"><span class="badge badge-info">{{ $doctor->polyclinic->name }}</span></p>
-                {{--  <p class="card-text">{{ $doctor->bio }}</p>  --}}
-            </div>
+<main class="col-md-12">
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <a href="/doctors/create" class="btn btn-outline-danger btn-sm float-right">Add Doctor</a>
+            <h4 class="card-text">Doctor List</h4>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover table-rq">
+                <thead class="thead-rq">
+                    <tr>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Polyclinic/Speciality</th>
+                        <th>Price of Service</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($doctors as $doctor)
+                        <tr>
+                            <td><a href="/doctors/{{ $doctor->id }}">{{ $doctor->name }}</a></td>
+                            <td>{{ $doctor->gender }}</td>
+                            <td>{{ $doctor->polyclinic->name }}</td>
+                            <td>{{ $doctor->price_of_service }}</td>
+                        </tr>
+                    @empty
+                        <tr><td class="text-muted">No doctor yet...</td></tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
     </div>
-@endforeach
 
-<div class="col-12 mt-4">
     {{ $doctors->links('vendor.pagination.bootstrap-4') }}
 
-    @can('add-doctors')
-        <a href="/doctors/create" class="btn btn-outline-danger btn-sm">Create New</a>
-    @endcan
-</div>
+</main>

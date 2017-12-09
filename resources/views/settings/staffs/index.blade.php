@@ -20,8 +20,8 @@
                     </div>
                 
                     <div class="table-responsive">
-                        <table class="table table-hover table-light">
-                            <thead class="thead-light">
+                        <table class="table table-hover table-rq">
+                            <thead class="thead-rq">
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>

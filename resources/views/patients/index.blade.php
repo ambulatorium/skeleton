@@ -13,7 +13,7 @@
                 <div class="card mb-3">
                     <div class="card-header">
                         <a href="/patients/create" class="btn btn-outline-danger btn-sm float-right">Add Patient</a>
-                        <h4 class="card-text">Patient's Data</h4>
+                        <h4 class="card-text">Patient Data</h4>
                     </div>
 
                     <div class="table-responsive">
