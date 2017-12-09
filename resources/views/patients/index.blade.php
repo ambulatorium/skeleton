@@ -51,6 +51,7 @@
                 {{ $patients->links('vendor.pagination.bootstrap-4') }}
 
             </main>
+            
         </div>
     </div>
 

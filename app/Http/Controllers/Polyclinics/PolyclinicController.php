@@ -15,9 +15,9 @@ class PolyclinicController extends Controller
 
     public function index()
     {
-        $polyclinics = Polyclinic::get();
-        
-        return view('polyclinics.index')->with('polyclinics', $polyclinics);
+        return view('polyclinics.index', [
+            'polyclinics' => Polyclinic::paginate(10)
+        ]);
     }
 
     public function create()
