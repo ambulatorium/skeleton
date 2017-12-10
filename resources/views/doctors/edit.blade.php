@@ -17,6 +17,16 @@
                     {{ method_field('PATCH') }}
 
                     <div class="form-group">
+                        <select name="group_id" id="group_id" class="form-control" required>   
+                            <option value="{{ $doctor->group->id }}">{{ $doctor->group->health_care_name }} - {{ $doctor->group->city }}</option>
+                            @forelse($groups as $group)
+                                <option value="{{ $group->id }}">{{ $group->health_care_name }} - {{ $group->city }}</option>
+                            @empty
+                                <option value="">::Empty::</option>
+                            @endforelse
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <input type="text" class="form-control" name="name"  value="{{ old('name', $doctor->name) }}" autofocus required>
                     </div>
                     <div class="form-group">

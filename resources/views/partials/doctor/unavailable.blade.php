@@ -9,6 +9,16 @@
                 {{ csrf_field() }}
 
                 <div class="form-group">
+                    <select name="group_id" id="group_id" class="form-control" required>   
+                        <option value="">Health Care Provider...</option>
+                        @forelse($groups as $group)
+                            <option value="{{ $group->id }}">{{ $group->health_care_name }} - {{ $group->city }}</option>
+                        @empty
+                            <option value="">::Empty::</option>
+                        @endforelse
+                    </select>
+                </div>
+                <div class="form-group">
                     <input type="text" class="form-control" name="name"  value="{{ old('name') }}" placeholder="Doctor's Name" autofocus required>
                 </div>
                 <div class="form-group">

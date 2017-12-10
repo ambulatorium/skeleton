@@ -7,6 +7,7 @@ use App\Http\Requests\DoctorRequest;
 use App\Models\Appointment\Appointment;
 use App\Models\Doctor\Doctor;
 use App\Models\Polyclinic\Polyclinic;
+use App\Models\Setting\Group\Group;
 
 class DoctorController extends Controller
 {
@@ -25,8 +26,12 @@ class DoctorController extends Controller
     public function create()
     {
         $polyclinics = Polyclinic::all();
+        $groups = Group::all();
 
-        return view('doctors.create', compact('polyclinics'));
+        return view('doctors.create', [
+            'polyclinics' => $polyclinics,
+            'groups'      => $groups, 
+        ]);
     }
 
     public function store(DoctorRequest $request)
@@ -61,6 +66,7 @@ class DoctorController extends Controller
         return view('doctors.edit', [
             'doctor'      => $doctor,
             'polyclinics' => Polyclinic::latest()->get(),
+            'groups'      => Group::latest()->get(),
         ]);
     }
 

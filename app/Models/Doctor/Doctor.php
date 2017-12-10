@@ -8,11 +8,16 @@ class Doctor extends Model
 {
     protected $table = 'doctors';
 
-    protected $fillable = ['polyclinic_id', 'name', 'gender', 'bio', 'price_of_service'];
+    protected $fillable = ['polyclinic_id', 'group_id', 'name', 'gender', 'bio', 'price_of_service'];
 
     public function polyclinic()
     {
         return $this->belongsTo('App\Models\Polyclinic\Polyclinic');
+    }
+
+    public function group()
+    {
+        return $this->belongsTo('App\Models\Setting\Group\Group');
     }
 
     public function schedule()
