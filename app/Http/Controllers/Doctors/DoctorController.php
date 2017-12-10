@@ -30,7 +30,7 @@ class DoctorController extends Controller
 
         return view('doctors.create', [
             'polyclinics' => $polyclinics,
-            'groups'      => $groups, 
+            'groups'      => $groups,
         ]);
     }
 

@@ -15,7 +15,7 @@ class DoctorRequest extends FormRequest
     {
         return [
             'polyclinic_id'    => 'required',
-            'group_id'    => 'required',
+            'group_id'         => 'required',
             'name'             => 'required|min:5',
             'gender'           => 'required',
             'bio'              => 'nullable|max:160',
