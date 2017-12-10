@@ -13,6 +13,7 @@
                         <th>Name</th>
                         <th>Gender</th>
                         <th>Polyclinic/Speciality</th>
+                        <th>Health Care Provider</th>
                         <th>Price of Service</th>
                     </tr>
                 </thead>
@@ -22,6 +23,7 @@
                             <td><a href="/doctors/{{ $doctor->id }}">{{ $doctor->name }}</a></td>
                             <td>{{ $doctor->gender }}</td>
                             <td>{{ $doctor->polyclinic->name }}</td>
+                            <td>{{ $doctor->group->health_care_name }}</td>
                             <td>{{ $doctor->price_of_service }}</td>
                         </tr>
                     @empty
