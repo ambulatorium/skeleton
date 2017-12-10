@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateProfileRequest;
 use App\Models\Appointment\Appointment;
 use App\Models\MedicalRecord\MedicalRecord;
 use App\User;
-use App\Http\Requests\UpdateProfileRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 
 class PeopleController extends Controller
 {
-
     public function profile()
     {
         return view('people.profile');
@@ -22,7 +20,7 @@ class PeopleController extends Controller
         $user->patient()->update($request->formProfile());
 
         flash('Successful! Your profile updated')->important();
-        
+
         return redirect()->back();
     }
 
@@ -31,9 +29,9 @@ class PeopleController extends Controller
         $appointments = Appointment::with('doctor.polyclinic')
             ->where([
                 ['user_id', Auth::user()->id],
-                ['status', 'active']
+                ['status', 'active'],
             ])->get();
-        
+
         return view('people.appointment', compact('appointments'));
     }
 
@@ -48,5 +46,4 @@ class PeopleController extends Controller
     {
         return view('people.account');
     }
-
 }

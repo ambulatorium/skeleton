@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Doctor\Doctor;
 use App\Models\Appointment\Appointment;
+use App\Models\Doctor\Doctor;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -12,7 +12,7 @@ class BookingController extends Controller
     {
         $this->middleware(['permission:view-bookings|add-bookings']);
     }
-    
+
     public function appointment(Request $request)
     {
         $doctor = Doctor::findOrFail($request->get('doctor_id'));
@@ -26,6 +26,6 @@ class BookingController extends Controller
 
         $queue_number = $max_queue + 1;
 
-        return view('bookings', compact('doctor','queue_number','date_of_visit','appointment_number'));
+        return view('bookings', compact('doctor', 'queue_number', 'date_of_visit', 'appointment_number'));
     }
 }

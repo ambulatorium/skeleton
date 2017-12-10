@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Patients;
 
-use App\Models\Patient\Patient;
 use App\Http\Controllers\Controller;
+use App\Models\Patient\Patient;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -16,7 +16,7 @@ class PatientController extends Controller
     public function index()
     {
         return view('patients.index', [
-            'patients' => Patient::with('user')->paginate(10)
+            'patients' => Patient::with('user')->paginate(10),
         ]);
     }
 

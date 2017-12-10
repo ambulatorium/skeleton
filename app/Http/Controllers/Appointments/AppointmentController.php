@@ -4,12 +4,11 @@ namespace App\Http\Controllers\Appointments;
 
 use App\Http\Controllers\Controller;
 use App\Models\Appointment\Appointment;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AppointmentController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware(['permission:view-appointments|add-appointments|edit-appointments|delete-appointments']);
@@ -28,9 +27,9 @@ class AppointmentController extends Controller
 
         $appointments = Appointment::with('doctor.schedule', 'user')->where([
             ['date_of_visit', '=', $today],
-            ['status', '=', 'active']
+            ['status', '=', 'active'],
         ])->oldest()->get();
-        
+
         return view('appointments.today', compact('appointments'));
     }
 
@@ -61,13 +60,13 @@ class AppointmentController extends Controller
         $appointment_number = time();
 
         $appointment = Appointment::create([
-            'user_id' => Auth::user()->id,
-            'doctor_id' => $request->get('doctor_id'),
+            'user_id'            => Auth::user()->id,
+            'doctor_id'          => $request->get('doctor_id'),
             'appointment_number' => $appointment_number,
-            'date_of_visit' => $request->get('date_of_visit'),
-            'queue_number' => $request->get('queue_number'),
-            'patient_condition' => $request->get('patient_condition'),
-            'status' => 'active',
+            'date_of_visit'      => $request->get('date_of_visit'),
+            'queue_number'       => $request->get('queue_number'),
+            'patient_condition'  => $request->get('patient_condition'),
+            'status'             => 'active',
         ]);
 
         flash('Successful! Your appointment was created')->important();
@@ -90,7 +89,7 @@ class AppointmentController extends Controller
     public function update(Appointment $appointment)
     {
         $appointment->fill(['status' => 'confirmed']);
-        
+
         // dd($appointment);
         $appointment->save();
 

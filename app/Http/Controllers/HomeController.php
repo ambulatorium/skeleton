@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Polyclinic\Polyclinic;
 use App\Models\Doctor\Schedule;
+use App\Models\Polyclinic\Polyclinic;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,16 +15,14 @@ class HomeController extends Controller
 
     public function searchSchedule()
     {
-
         $schedules = $this->getSchedules();
 
         return view('search.schedule', [
-            'schedules' => $schedules,
+            'schedules'   => $schedules,
             'polyclinics' => Polyclinic::all(),
-            'polyclinic' => request('polyclinic'),
-            'date' => request('date')
+            'polyclinic'  => request('polyclinic'),
+            'date'        => request('date'),
         ]);
-
     }
 
     protected function getSchedules()

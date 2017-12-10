@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Doctors;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DoctorRequest;
+use App\Models\Appointment\Appointment;
 use App\Models\Doctor\Doctor;
 use App\Models\Polyclinic\Polyclinic;
-use App\Models\Appointment\Appointment;
-use App\Http\Requests\DoctorRequest;
-use Illuminate\Http\Request;
 
 class DoctorController extends Controller
 {
@@ -19,14 +18,14 @@ class DoctorController extends Controller
     public function index()
     {
         return view('doctors.index', [
-            'doctors' => Doctor::with('polyclinic')->paginate(10)
+            'doctors' => Doctor::with('polyclinic')->paginate(10),
         ]);
     }
 
     public function create()
     {
         $polyclinics = Polyclinic::all();
-        
+
         return view('doctors.create', compact('polyclinics'));
     }
 
@@ -42,7 +41,7 @@ class DoctorController extends Controller
     public function show(Doctor $doctor)
     {
         return view('doctors.show', [
-            'doctor' => $doctor,
+            'doctor'    => $doctor,
             'schedules' => $doctor->schedule()->get(),
         ]);
     }
@@ -51,7 +50,7 @@ class DoctorController extends Controller
     {
         $appointments = Appointment::where([
             ['doctor_id', '=', $doctor->id],
-            ['status', '=', 'confirmed']
+            ['status', '=', 'confirmed'],
         ])->get();
 
         return view('doctors.appointments.index', compact('appointments'));
@@ -60,8 +59,8 @@ class DoctorController extends Controller
     public function edit(Doctor $doctor)
     {
         return view('doctors.edit', [
-            'doctor' => $doctor,
-            'polyclinics' => Polyclinic::latest()->get()
+            'doctor'      => $doctor,
+            'polyclinics' => Polyclinic::latest()->get(),
         ]);
     }
 
@@ -74,12 +73,12 @@ class DoctorController extends Controller
 
         return redirect('/doctors/'.$doctor->id);
     }
-    
+
     public function destroy(Doctor $doctor)
     {
         $relationships = $this->checkRelationships($doctor, [
-            'schedule' => 'schedule',
-            'appointment' => 'appointment'
+            'schedule'    => 'schedule',
+            'appointment' => 'appointment',
         ]);
 
         if (empty($relationships)) {

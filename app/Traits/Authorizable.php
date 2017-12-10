@@ -5,50 +5,55 @@
 
 namespace App\Traits;
 
-trait Authorizable 
+trait Authorizable
 {
     /**
-     * Abilities
+     * Abilities.
      *
      * @var array
      */
     private $abilities = [
-        'index' => 'view',
-        'edit' => 'edit',
-        'show' => 'view',
-        'update' => 'edit',
-        'create' => 'add',
-        'store' => 'add',
-        'destroy' => 'delete'
+        'index'   => 'view',
+        'edit'    => 'edit',
+        'show'    => 'view',
+        'update'  => 'edit',
+        'create'  => 'add',
+        'store'   => 'add',
+        'destroy' => 'delete',
     ];
 
     /**
-     * Override of callAction to perform the authorization before it calls the action
+     * Override of callAction to perform the authorization before it calls the action.
      *
      * @param $method
      * @param $parameters
+     *
      * @return mixed
      */
     public function callAction($method, $parameters)
     {
-        if( $ability = $this->getAbility($method) ) {
+        if ($ability = $this->getAbility($method)) {
             $this->authorize($ability);
         }
+
         return parent::callAction($method, $parameters);
     }
 
-     /**
-     * Get ability
+    /**
+     * Get ability.
      *
      * @param $method
+     *
      * @return null|string
      */
     public function getAbility($method)
     {
         $routeName = explode('.', \Request::route()->getName());
         $action = array_get($this->getAbilities(), $method);
-        return $action ? $action . '-' . $routeName[0] : null;
+
+        return $action ? $action.'-'.$routeName[0] : null;
     }
+
     /**
      * @return array
      */
@@ -56,6 +61,7 @@ trait Authorizable
     {
         return $this->abilities;
     }
+
     /**
      * @param array $abilities
      */

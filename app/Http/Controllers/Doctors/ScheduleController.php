@@ -26,29 +26,29 @@ class ScheduleController extends Controller
     public function store(Request $request)
     {
         $this->validate(request(), [
-            'doctor_id' => 'required', 
-            'day' => 'required',
+            'doctor_id' => 'required',
+            'day'       => 'required',
             'from_time' => 'required',
-            'to_time' => 'required' 
+            'to_time'   => 'required',
          ]);
- 
+
         $checkSchedules = Schedule::where([
             ['doctor_id', $request->get('doctor_id')],
-            ['day', $request->get('day')]
+            ['day', $request->get('day')],
         ]);
- 
+
         // dd($checkSchedules->first());
- 
-        if($checkSchedules->first()) {
+
+        if ($checkSchedules->first()) {
             flash('Warning! Schedule you selected is already exist')->warning();
 
             return redirect('/doctors/'.$request->get('doctor_id'));
         }
- 
+
         Schedule::create($request->all());
 
         flash('Successful! New schedule created')->success();
- 
+
         return redirect('/doctors/'.$request->get('doctor_id'));
     }
 

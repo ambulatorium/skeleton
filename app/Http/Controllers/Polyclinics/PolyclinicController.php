@@ -16,7 +16,7 @@ class PolyclinicController extends Controller
     public function index()
     {
         return view('polyclinics.index', [
-            'polyclinics' => Polyclinic::paginate(10)
+            'polyclinics' => Polyclinic::paginate(10),
         ]);
     }
 
@@ -28,9 +28,9 @@ class PolyclinicController extends Controller
     public function store(Request $request)
     {
         $this->validate(request(), [
-            'name' => 'required|min:10',
-            'location' => 'required|min:5',
-            'service_description' => 'required|min:20'
+            'name'                => 'required|min:10',
+            'location'            => 'required|min:5',
+            'service_description' => 'required|min:20',
         ]);
 
         Polyclinic::create($request->all());
@@ -43,7 +43,7 @@ class PolyclinicController extends Controller
     public function show(Polyclinic $polyclinic)
     {
         return view('polyclinics.show', [
-            'polyclinic' => $polyclinic
+            'polyclinic' => $polyclinic,
         ]);
     }
 
@@ -55,9 +55,9 @@ class PolyclinicController extends Controller
     public function update(Request $request, Polyclinic $polyclinic)
     {
         $this->validate(request(), [
-            'name' => 'required|min:10',
-            'location' => 'required|min:5',
-            'service_description' => 'required|min:20'
+            'name'                => 'required|min:10',
+            'location'            => 'required|min:5',
+            'service_description' => 'required|min:20',
         ]);
 
         $polyclinic->fill($request->all());
@@ -66,13 +66,12 @@ class PolyclinicController extends Controller
         flash('Successful! The polyclinic updated')->success();
 
         return redirect('/polyclinics/'.$polyclinic->id);
-
     }
 
     public function destroy(Polyclinic $polyclinic)
     {
         $relationships = $this->checkRelationships($polyclinic, [
-            'doctor' => 'doctor'
+            'doctor' => 'doctor',
         ]);
 
         if (empty($relationships)) {

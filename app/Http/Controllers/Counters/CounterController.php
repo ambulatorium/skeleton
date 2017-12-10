@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Counter\Counter;
 use Illuminate\Http\Request;
 
-
 class CounterController extends Controller
 {
     public function __construct()
@@ -17,7 +16,7 @@ class CounterController extends Controller
     public function index()
     {
         $counters = Counter::all();
-        
+
         return view('counters.index', compact('counters'));
     }
 

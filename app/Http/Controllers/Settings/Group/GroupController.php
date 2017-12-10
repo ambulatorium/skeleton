@@ -3,14 +3,11 @@
 namespace App\Http\Controllers\Settings\Group;
 
 use App\Http\Controllers\Controller;
-use App\Models\Setting\Group\Group;
-use Illuminate\Http\Request;
 use App\Http\Requests\GroupRequest;
-
+use App\Models\Setting\Group\Group;
 
 class GroupController extends Controller
 {
-
     public function index()
     {
         $groups = Group::paginate(5);
