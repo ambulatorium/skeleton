@@ -29,7 +29,7 @@
         @endcan  --}}
         @can('view-settings')
             <li class="nav-item">
-                <a href="/settings" class="nav-link @yield('settings')">Settings</a>
+                <a href="/settings/groups" class="nav-link @yield('settings')">Settings</a>
             </li>
         @endcan
     </ul>

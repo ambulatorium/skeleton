@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // settings
     Route::group(['prefix' => 'settings'], function () {
-        Route::get('/', 'Settings\SettingController@website');
+        Route::resource('groups', 'Settings\Group\GroupController');
         Route::resource('staffs', 'Settings\Staffs\StaffController');
     });
 
