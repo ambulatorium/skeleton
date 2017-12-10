@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 
 abstract class Filters
 {
-
-    protected $request, $builder;
+    protected $request;
+    protected $builder;
 
     protected $filters = [];
-    
+
     public function __construct(Request $request)
     {
         $this->request = $request;

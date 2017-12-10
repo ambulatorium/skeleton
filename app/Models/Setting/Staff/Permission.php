@@ -43,7 +43,7 @@ class Permission extends \Spatie\Permission\Models\Permission
 
             'view-bookings',
             'add-bookings',
-            
+
             'view-staffs',
             'add-staffs',
             'edit-staffs',

@@ -18,7 +18,7 @@ class MedicalRecordController extends Controller
     {
         $this->validate(request(), [
             'doctor_diagnosis' => 'required|max:160',
-            'doctor_actions' => 'required|max:160'
+            'doctor_actions'   => 'required|max:160',
         ]);
 
         $appointment = Appointment::findOrFail($request->get('appointment_id'));
@@ -26,16 +26,15 @@ class MedicalRecordController extends Controller
         $appointment->save();
 
         MedicalRecord::create([
-            'user_id' => $request->get('user_id'),
-            'patient_id' => $request->get('patient_id'),
-            'appointment_id' => $request->get('appointment_id'),
+            'user_id'          => $request->get('user_id'),
+            'patient_id'       => $request->get('patient_id'),
+            'appointment_id'   => $request->get('appointment_id'),
             'doctor_diagnosis' => $request->get('doctor_diagnosis'),
-            'doctor_actions' => $request->get('doctor_actions')
+            'doctor_actions'   => $request->get('doctor_actions'),
         ]);
 
         flash('Successful! Medical Record Saved')->important();
 
         return redirect('/doctors/'.$request->get('doctor_id'));
     }
-
 }

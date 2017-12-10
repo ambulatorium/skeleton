@@ -8,11 +8,11 @@ use Spatie\Permission\Traits\HasRoles;
 class Patient extends Model
 {
     use HasRoles;
-    
+
     protected $table = 'patients';
 
     protected $fillable = [
-        'user_id', 'dob', 'gender', 'address', 'city', 'state', 'zip_code', 'home_phone', 'cell_phone', 'marital_status', 'register_from'
+        'user_id', 'dob', 'gender', 'address', 'city', 'state', 'zip_code', 'home_phone', 'cell_phone', 'marital_status', 'register_from',
     ];
 
     public function user()
@@ -24,5 +24,4 @@ class Patient extends Model
     {
         $this->hasMany('App\Models\MedicalRecord\MedicalRecord');
     }
-
 }

@@ -24,7 +24,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('appointments', 'Appointments\AppointmentController');
 
     Route::get('bookings', 'BookingController@appointment');
-    
+
     Route::post('/medical-record', 'MedicalRecords\MedicalRecordController@save');
 
     // people, patient-owner-admin-nurse
@@ -41,5 +41,4 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('groups', 'Settings\Group\GroupController');
         Route::resource('staffs', 'Settings\Staffs\StaffController');
     });
-
 });

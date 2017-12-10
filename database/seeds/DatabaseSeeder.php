@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use App\User;
 use App\Models\Patient\Patient;
-use App\Models\Setting\Staff\Role;
 use App\Models\Setting\Staff\Permission;
+use App\Models\Setting\Staff\Role;
+use App\User;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,10 +17,10 @@ class DatabaseSeeder extends Seeder
     {
         // Reset cached roles and permissions
         app()['cache']->forget('spatie.permission.cache');
-        
+
         // Call the php artisan migrate:refresh
         $this->command->call('migrate:refresh');
-        $this->command->warn("Data cleared, starting from blank database.");
+        $this->command->warn('Data cleared, starting from blank database.');
 
         $permissions = Permission::defaultPermissions();
 
@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
                     'view-appointments', 'add-appointments', 'edit-appointments', 'delete-appointments',
                     'view-schedules', 'add-schedules', 'edit-schedules', 'delete-schedules',
                     'view-patients', 'add-patients', 'edit-patients', 'delete-patients',
-                    'view-doctors', 'add-doctors','edit-doctors', 'delete-doctors',
+                    'view-doctors', 'add-doctors', 'edit-doctors', 'delete-doctors',
                     'view-polyclinics', 'add-polyclinics', 'edit-polyclinics', 'delete-polyclinics',
                     'view-counters', 'add-counters', 'edit-counters', 'delete-counters',
                     'view-bookings', 'add-bookings',
@@ -78,6 +78,5 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Here is your owner details to login:');
         $this->command->warn($user->email);
         $this->command->warn('Password is "secret"');
-
     }
 }

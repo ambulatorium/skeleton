@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class DoctorRequest extends FormRequest
 {
-
     public function authorize()
     {
         return true;
@@ -15,10 +14,10 @@ class DoctorRequest extends FormRequest
     public function rules()
     {
         return [
-            'polyclinic_id' => 'required',
-            'name' => 'required|min:5',
-            'gender' => 'required',
-            'bio' => 'nullable|max:160',
+            'polyclinic_id'    => 'required',
+            'name'             => 'required|min:5',
+            'gender'           => 'required',
+            'bio'              => 'nullable|max:160',
             'price_of_service' => 'required',
         ];
     }
@@ -26,10 +25,10 @@ class DoctorRequest extends FormRequest
     public function formDoctor()
     {
         return [
-            'polyclinic_id' => $this->polyclinic_id,
-            'name' => $this->name,
-            'gender' => $this->gender,
-            'bio' => $this->bio,
+            'polyclinic_id'    => $this->polyclinic_id,
+            'name'             => $this->name,
+            'gender'           => $this->gender,
+            'bio'              => $this->bio,
             'price_of_service' => $this->price_of_service,
         ];
     }
