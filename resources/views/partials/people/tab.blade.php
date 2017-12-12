@@ -1,4 +1,4 @@
-<div class="col-md-8 offset-md-2 col-sm-12">
+<div class="col-md-8 offset-md-2 col-sm-12 mt-5">
     <h4><strong>{{ Auth::user()->name }}</strong></h4>
     <h6>{{ Auth::user()->email }}</h6>
 </div>

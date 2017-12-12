@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/settings/profile', 'PeopleController@settingProfile');
         Route::patch('/settings/profile/{user}', 'PeopleController@updateProfile');
         Route::get('/settings/account', 'PeopleController@settingAccount');
+        Route::patch('/settings/account/{user}', 'PeopleController@updateAccount');
     });
 
     // settings

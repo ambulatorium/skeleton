@@ -25,7 +25,7 @@
             </form>
             <hr>
         @empty
-            <h4 class="text-muted text-center"><strong>You don't have any appointment yet</strong></h4>
+            <h5 class="text-muted text-center"><strong>You don't have any appointment yet</strong></h5>
             <h6 class="text-muted text-center">when you make an appointment, it'll show up here.</h6>
         @endforelse
     </div>

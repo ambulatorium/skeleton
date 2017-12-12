@@ -16,7 +16,7 @@
             </div>
 
             <div class="list-group-item">
-                <form action="#" method="POST">
+                <form action="/people/settings/account/{{ Auth::user()->id }}" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
                     

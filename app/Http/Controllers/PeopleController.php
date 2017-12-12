@@ -7,6 +7,7 @@ use App\Models\Appointment\Appointment;
 use App\Models\MedicalRecord\MedicalRecord;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class PeopleController extends Controller
 {
@@ -39,5 +40,20 @@ class PeopleController extends Controller
     public function settingAccount()
     {
         return view('people.settings.account');
+    }
+
+    public function updateAccount(Request $request, User $user)
+    {
+        $this->validate(request(), [
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $user->fill($request->only('password'));
+        $user->password = bcrypt($request->get('password'));
+        $user->save();
+
+        flash('Successful! Your password updated.')->success();
+
+        return redirect('/people');
     }
 }
