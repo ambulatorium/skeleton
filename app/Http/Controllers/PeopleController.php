@@ -28,8 +28,10 @@ class PeopleController extends Controller
     public function updateProfile(UpdateProfileRequest $request, User $user)
     {
         $user->patient()->update($request->formProfile());
+        $user->fill(['name' => request('name')]);
+        $user->save();
 
-        flash('Successful! Your profile updated')->important();
+        flash('Successful! Your profile updated')->success();
 
         return redirect()->back();
     }
