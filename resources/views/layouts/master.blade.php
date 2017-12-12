@@ -16,7 +16,7 @@
             @include('flash::message')
         </div>
 
-        <div class="mt-5">
+        <div class="mt-4">
             @yield('content')
         </div>
 

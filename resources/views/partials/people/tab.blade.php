@@ -1,22 +1,24 @@
-<div class="col-md-4">
-    <div class="list-group">
-        <div class="list-group-item text-center">
-            <h5 class="mt-3">
-                <strong>{{ Auth::user()->name }}</strong>
-                <p class="text-muted"><small>{{ Auth::user()->email }}</small></p>
-            </h5>
-        </div>
-        <a href="/people/profile" class="list-group-item list-group-item-action @yield('tab-profile')">
-            Profile
-        </a>
-        <a href="/people/appointments" class="list-group-item list-group-item-action @yield('tab-appointments')">
-            Appointments
-        </a>
-        <a href="/people/medical-record" class="list-group-item list-group-item-action @yield('tab-medical-record')">
-            Medical Record
-        </a>
-        <a href="/people/account" class="list-group-item list-group-item-action @yield('tab-account')">
-            Account Setting
-        </a>
-    </div>
+<div class="col-md-8 offset-md-2 col-sm-12">
+    <h4><strong>{{ Auth::user()->name }}</strong></h4>
+    <h6>{{ Auth::user()->email }}</h6>
+</div>
+
+<div class="col-md-8 offset-md-2 col-sm-12 mt-5">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link @yield('tab-people')" href="/people">Appointments</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @yield('tab-health-history')" href="#">Health History</a>
+        </li>
+        @can('view-settings')
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Manage</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/settings/groups">Health Care Provider</a>
+                    <a class="dropdown-item" href="/polyclinics">Polyclinics/Speciality</a>
+                </div>
+            </li>
+        @endcan
+    </ul>
 </div>

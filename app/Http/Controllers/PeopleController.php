@@ -12,7 +12,17 @@ class PeopleController extends Controller
 {
     public function profile()
     {
-        return view('people.profile');
+        $appointments = Appointment::with('doctor.polyclinic', 'doctor.group')
+            ->where([
+                ['user_id', Auth::user()->id],
+            ])->get();
+
+        return view('people.profile', compact('appointments'));
+    }
+
+    public function settingProfile()
+    {
+        return view('people.settings.profile');
     }
 
     public function updateProfile(UpdateProfileRequest $request, User $user)
@@ -24,25 +34,8 @@ class PeopleController extends Controller
         return redirect()->back();
     }
 
-    public function appointment()
+    public function settingAccount()
     {
-        $appointments = Appointment::with('doctor.polyclinic')
-            ->where([
-                ['user_id', Auth::user()->id],
-            ])->get();
-
-        return view('people.appointment', compact('appointments'));
-    }
-
-    public function medicalRecord()
-    {
-        $medicalRecords = MedicalRecord::with('user', 'appointment')->where('patient_id', Auth::user()->id)->get();
-
-        return view('people.medical-record', compact('medicalRecords'));
-    }
-
-    public function account()
-    {
-        return view('people.account');
+        return view('people.settings.account');
     }
 }

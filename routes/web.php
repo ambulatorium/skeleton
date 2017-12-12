@@ -28,13 +28,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/medical-record', 'MedicalRecords\MedicalRecordController@save');
 
-    // people, patient-owner-admin-nurse
+    // people. patient,owner,admin,nurse
     Route::group(['prefix' => 'people'], function () {
-        Route::get('/profile', 'PeopleController@profile');
-        Route::patch('/profile/{user}', 'PeopleController@updateProfile');
-        Route::get('/appointments', 'PeopleController@appointment');
-        Route::get('/medical-record', 'PeopleController@medicalRecord');
-        Route::get('/account', 'PeopleController@account');
+        Route::get('/', 'PeopleController@profile');
+        Route::get('/settings/profile', 'PeopleController@settingProfile');
+        Route::patch('/settings/profile/{user}', 'PeopleController@updateProfile');
+        Route::get('/settings/account', 'PeopleController@settingAccount');
     });
 
     // settings

@@ -23,6 +23,23 @@ body {
   // margin-bottom: 35px;
 }
 
+.nav-pills {
+  border-bottom: 1px solid #ececec;
+}
+
+.nav-pills .nav-link {
+  color: #424C55;
+  border-radius: 0rem;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #424C55;
+  font-weight: bold;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #d71149;
+}
+
 .dropdown-item.active,
 .dropdown-item:active {
   color: #424c55;

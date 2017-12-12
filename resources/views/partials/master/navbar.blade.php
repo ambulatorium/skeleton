@@ -45,8 +45,8 @@
                     {{ Auth::user()->name }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarMenu">
-                    <a href="/people/profile" class="dropdown-item">My Profile</a>
-                    <a href="/people/account" class="dropdown-item">My Account Settings</a>
+                    <a href="/people" class="dropdown-item">My Profile</a>
+                    <a href="/people/settings/account" class="dropdown-item">My Account Settings</a>
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         Log Out
