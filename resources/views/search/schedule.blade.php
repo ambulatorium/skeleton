@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Physician')
+@section('title', 'Physical Appointment')
 
 @section('content')
 <div class="container">    
@@ -10,10 +10,18 @@
             <div class="list-group">
                 <div class="list-group-item">
                     <a class="float-right btn btn-sm btn-outline-danger" data-toggle="collapse" href="#change-search" aria-expanded="false" aria-controls="change-search">Change Search</a>
-                    <strong>{{ $polyclinic }} - {{ \Carbon\Carbon::parse($date)->format('l, d F Y') }}</strong>
+                    <strong>{{ $location }} - {{ $polyclinic }} - {{ \Carbon\Carbon::parse($date)->format('l, d F Y') }}</strong>
 
                     <div class="collapse mt-3" id="change-search">
                         <form action="/physician" method="GET" class="form-inline">
+                            <div class="form-group mr-1">
+                                <select name="location" class="form-control form-control-sm" required>
+                                    <option value="{{ $location }}">{{ $location }}</option>
+                                    @foreach($locations as $location)
+                                        <option value="{{ $location->health_care_name }}"> {{ $location->health_care_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="form-group mr-1">
                                 <select name="polyclinic" class="form-control form-control-sm" required>
                                     <option value="{{ $polyclinic }}">{{ $polyclinic }}</option>
@@ -39,7 +47,7 @@
         @forelse($schedules as $schedule)
             <div class="col-md-6 mt-4">
                 <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <a href="/physical-appointment/{{ $schedule->doctor->name }}/{{ $date }}" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">
                                 {{ $schedule->doctor->name }} -
@@ -54,12 +62,12 @@
                         <div class="d-flex w-100 justify-content-between">
                             <p class="mb-1">
                                 Working Hours
-                                {{ \Carbon\Carbon::parse($schedule->from_time)->format('h:ia') }} 
+                                {{ \Carbon\Carbon::parse($schedule->from_time)->format('H:i') }} 
                                         -
-                                {{ \Carbon\Carbon::parse($schedule->to_time)->format('h:ia') }}
+                                {{ \Carbon\Carbon::parse($schedule->to_time)->format('H:i') }}
                             </p>
                         </div>
-                        <small>You can pay the service charge at the counter.</small>
+                        <small>{{ $schedule->doctor->group->health_care_name }} - {{ $schedule->doctor->group->city }}</small>
                     </a>
                 </div>
             </div>
@@ -67,7 +75,7 @@
             <div class="col-md-12 mt-4">
                 <ul class="list-group">
                     <li class="list-group-item text-center">
-                        <strong class="text-muted">Sorry, Doctor's schedule is not yet available.</strong>
+                        <strong class="text-muted">Sorry, The schedule you selected is not yet available.</strong>
                     </li>
                 </ul>
             </div>

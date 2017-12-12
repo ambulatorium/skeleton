@@ -29,7 +29,6 @@ class PeopleController extends Controller
         $appointments = Appointment::with('doctor.polyclinic')
             ->where([
                 ['user_id', Auth::user()->id],
-                ['status', 'active'],
             ])->get();
 
         return view('people.appointment', compact('appointments'));

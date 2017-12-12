@@ -16,8 +16,16 @@
                         </p>
                     </div>
                     <div class="card-body">
-                        <form action="/physician" method="get" class="form-horizontal">
+                        <form action="/physical-appointment" method="get" class="form-horizontal">
 
+                            <div class="form-group">
+                                <select name="location" class="form-control" required>
+                                    <option value="">Select location...</option>
+                                    @foreach($locations as $location)
+                                        <option value="{{ $location->health_care_name }}"> {{ $location->health_care_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <select name="polyclinic" class="form-control" required>
                                     <option value="">Select Polyclinic...</option>

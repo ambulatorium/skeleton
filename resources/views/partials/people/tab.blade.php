@@ -10,7 +10,7 @@
             Profile
         </a>
         <a href="/people/appointments" class="list-group-item list-group-item-action @yield('tab-appointments')">
-            Appointment
+            Appointments
         </a>
         <a href="/people/medical-record" class="list-group-item list-group-item-action @yield('tab-medical-record')">
             Medical Record

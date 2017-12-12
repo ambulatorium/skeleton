@@ -2,7 +2,8 @@
 
 // home
 Route::get('/', 'HomeController@home');
-Route::get('/physician', 'HomeController@searchSchedule');
+Route::get('/physical-appointment', 'HomeController@searchSchedule');
+Route::get('/physical-appointment/{doctor}/{schedule}', 'HomeController@searchDoctor')->where('schedule', '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))');
 
 // Authentication default
 Auth::routes();
@@ -15,6 +16,8 @@ Route::group(['middleware' => 'auth'], function () {
     // pending, useless feature.
     // Route::resource('counters', 'Counters\CounterController');
 
+    Route::get('/physical-appointment/scheduling/{doctor}', 'BookingController@schedulingAppointment');
+
     Route::get('/doctors/appointments/{doctor}', 'Doctors\DoctorController@appointments');
 
     // appointments
@@ -22,8 +25,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch('/appointments/cancel/{appointment}', 'Appointments\AppointmentController@cancelAppointment');
     Route::get('/appointments/cancel', 'Appointments\AppointmentController@cancel');
     Route::resource('appointments', 'Appointments\AppointmentController');
-
-    Route::get('bookings', 'BookingController@appointment');
 
     Route::post('/medical-record', 'MedicalRecords\MedicalRecordController@save');
 

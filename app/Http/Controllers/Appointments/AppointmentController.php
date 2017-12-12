@@ -64,12 +64,12 @@ class AppointmentController extends Controller
             'doctor_id'          => $request->get('doctor_id'),
             'appointment_number' => $appointment_number,
             'date_of_visit'      => $request->get('date_of_visit'),
-            'queue_number'       => $request->get('queue_number'),
+            'preferred_time'     => $request->get('preferred_time'),
             'patient_condition'  => $request->get('patient_condition'),
-            'status'             => 'active',
+            'status'             => 'scheduling',
         ]);
 
-        flash('Successful! Your appointment was created')->important();
+        flash('Successful! Your appointment was created')->success();
 
         return redirect('/people/appointments');
     }

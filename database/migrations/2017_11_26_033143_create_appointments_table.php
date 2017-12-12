@@ -19,8 +19,9 @@ class CreateAppointmentsTable extends Migration
             $table->unsignedInteger('doctor_id');
             $table->string('appointment_number');
             $table->date('date_of_visit');
-            $table->string('queue_number');
-            $table->string('patient_condition')->nullable();
+            $table->string('queue_number')->nullable();
+            $table->time('preferred_time');
+            $table->string('patient_condition');
             $table->string('status');
             $table->timestamps();
         });

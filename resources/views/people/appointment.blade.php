@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'People - Appointment')
+@section('title', 'People - Appointments')
 @section('tab-appointments', 'active')
 
 @section('content')
@@ -12,14 +12,14 @@
         <div class="list-group col-md-8">
 
             <div class="list-group-item">
-                <strong>Available Appointments</strong>
+                <strong>Appointments</strong>
             </div>
 
             @forelse($appointments as $appointment)
-                <div href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{ \Carbon\Carbon::parse($appointment->date_of_visit)->format('l, d F Y') }}</h5>
-                        <p class="text-muted"><strong>Rp{{ $appointment->doctor->price_of_service }}</strong></p>
+                        <h5 class="mb-1">{{ \Carbon\Carbon::parse($appointment->date_of_visit)->format('l, d F Y') }} - <small>{{ $appointment->preferred_time }}</small></h5>
+                        <p class="text-muted"><em>{{ $appointment->status }}</em></p>
                     </div>
                     <div class="d-flex w-100 justify-content-between">
                         <p class="mb-1 text-muted">

@@ -4,7 +4,7 @@
             Manage
         </button>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="manageDoctor">
-            <a href="/doctors/appointments/{{ $doctor->id }}" class="dropdown-item">Appointments</a>
+            <a href="/doctors/appointments/{{ $doctor->name }}" class="dropdown-item">Appointments</a>
             <a data-toggle="modal" data-target="#createSchedule" class="dropdown-item">Schedule</a>
             <a href="/doctors/{{ $doctor->id }}/edit" class="dropdown-item">Edit</a>
             <a href="/doctors/{{ $doctor->id }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('delete-doctors').submit();">
