@@ -49,15 +49,12 @@ class DatabaseSeeder extends Seeder
                     'view-patients', 'add-patients', 'edit-patients', 'delete-patients',
                     'view-doctors', 'add-doctors', 'edit-doctors', 'delete-doctors',
                     'view-polyclinics', 'add-polyclinics', 'edit-polyclinics', 'delete-polyclinics',
-                    'view-counters', 'add-counters', 'edit-counters', 'delete-counters',
-                    'view-bookings', 'add-bookings',
-                    'view-settings', 'add-medicalrecords',
                 ]);
             }
 
             if ($role->name == 'nurse') {
                 $role->givePermissionTo([
-                    'view-polyclinics', 'add-medicalrecords', 'view-doctors',
+                    'view-doctors',
                 ]);
             }
 

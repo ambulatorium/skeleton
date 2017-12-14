@@ -10,7 +10,6 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('doctors', 'Doctors\DoctorController');
-    Route::resource('polyclinics', 'Polyclinics\PolyclinicController');
     Route::resource('schedules', 'Doctors\ScheduleController');
     Route::resource('patients', 'Patients\PatientController');
     // pending, useless feature.
@@ -40,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
     // settings
     Route::group(['prefix' => 'settings'], function () {
         Route::resource('groups', 'Settings\Group\GroupController');
+        Route::resource('specialities', 'Settings\Speciality\SpecialityController');
         Route::resource('staffs', 'Settings\Staffs\StaffController');
     });
 });
