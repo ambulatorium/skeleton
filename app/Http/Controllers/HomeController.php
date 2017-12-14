@@ -8,11 +8,16 @@ use App\Models\Doctor\Doctor;
 use App\Models\Setting\Group\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function home()
     {
+        if (Auth::check()) {
+            return redirect('/people');
+        }
+        
         return view('home', [
             'polyclinics' => Polyclinic::all(),
             'locations'   => Group::all(),
