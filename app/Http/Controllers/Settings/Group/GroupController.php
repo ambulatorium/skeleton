@@ -10,7 +10,7 @@ class GroupController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:owner']);
+        $this->middleware(['role:owner|admin']);
     }
     
     public function index()

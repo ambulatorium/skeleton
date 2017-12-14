@@ -15,9 +15,9 @@ class Doctor extends Model
       return 'name';   
     }
 
-    public function polyclinic()
+    public function speciality()
     {
-        return $this->belongsTo('App\Models\Polyclinic\Polyclinic');
+        return $this->belongsTo('App\Models\Setting\Speciality\Speciality');
     }
 
     public function group()

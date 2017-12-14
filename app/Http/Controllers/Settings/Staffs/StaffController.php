@@ -11,10 +11,15 @@ use Illuminate\Support\Facades\Auth;
 
 class StaffController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:owner']);
+    }
+
     public function index()
     {
         $users = User::whereHas('roles', function ($q) {
-            $q->whereNotIn('name', ['patient']);
+            $q->whereNotIn('name', ['patient', 'nurse']);
         })->get();
 
         return view('settings.staffs.index', compact('users'));
@@ -22,7 +27,7 @@ class StaffController extends Controller
 
     public function create()
     {
-        $roles = Role::whereNotIn('name', ['patient'])->get();
+        $roles = Role::whereNotIn('name', ['patient', 'nurse'])->get();
 
         return view('settings.staffs.create', ['roles' => $roles]);
     }
@@ -47,7 +52,7 @@ class StaffController extends Controller
                 'register_from' => 'online',
             ]);
 
-            flash('Successful! Staff added')->important();
+            flash('Successful! Staff added')->success();
 
             return redirect()->route('staffs.index');
         }
@@ -65,7 +70,7 @@ class StaffController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        $roles = Role::whereNotIn('name', ['patient'])->get();
+        $roles = Role::whereNotIn('name', ['patient', 'nurse'])->get();
 
         return view('settings.staffs.edit', [
             'user'  => $user,
@@ -97,7 +102,7 @@ class StaffController extends Controller
             $user->roles()->detach();
         }
 
-        flash('Successful! Staff updated')->important();
+        flash('Successful! Staff updated')->success();
 
         return redirect()->route('staffs.index');
     }
@@ -111,7 +116,7 @@ class StaffController extends Controller
         }
 
         if (User::findOrFail($id)->delete()) {
-            flash('Successful! Staff successfully delete')->important();
+            flash('Successful! Staff successfully delete')->success();
 
             return redirect()->back();
         }

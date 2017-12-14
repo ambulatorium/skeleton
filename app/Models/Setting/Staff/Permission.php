@@ -7,11 +7,6 @@ class Permission extends \Spatie\Permission\Models\Permission
     public static function defaultPermissions()
     {
         return [
-            'view-counters',
-            'add-counters',
-            'edit-counters',
-            'delete-counters',
-
             'view-polyclinics',
             'add-polyclinics',
             'edit-polyclinics',
@@ -36,18 +31,9 @@ class Permission extends \Spatie\Permission\Models\Permission
             'add-appointments',
             'edit-appointments',
             'delete-appointments',
-
-            'view-settings',
-
-            'add-medicalrecords',
-
+            
             'view-bookings',
             'add-bookings',
-
-            'view-staffs',
-            'add-staffs',
-            'edit-staffs',
-            'delete-staffs',
 
         ];
     }

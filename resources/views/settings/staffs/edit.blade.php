@@ -42,6 +42,7 @@
 
                     <div class="form-group">
                         <button class="btn btn-block btn-danger" type="submit">UPDATE</button>
+                        <a href="/settings/staffs" class="btn btn-block btn-secondary">CANCEL</a>
                     </div>
 
                 </form>

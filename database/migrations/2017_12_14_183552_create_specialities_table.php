@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreatePolyclinicsTable extends Migration
+class CreateSpecialitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreatePolyclinicsTable extends Migration
      */
     public function up()
     {
-        Schema::create('polyclinics', function (Blueprint $table) {
+        Schema::create('specialities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('location');
-            $table->string('service_description');
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreatePolyclinicsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('polyclinics');
+        Schema::dropIfExists('specialities');
     }
 }

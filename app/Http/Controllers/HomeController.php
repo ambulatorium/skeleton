@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctor\Schedule;
-use App\Models\Polyclinic\Polyclinic;
+use App\Models\Setting\Speciality\Speciality;
 use App\Models\Doctor\Doctor;
 use App\Models\Setting\Group\Group;
 use Illuminate\Http\Request;
@@ -19,7 +19,7 @@ class HomeController extends Controller
         }
         
         return view('home', [
-            'polyclinics' => Polyclinic::all(),
+            'specialities' => Speciality::all(),
             'locations'   => Group::all(),
         ]);
     }

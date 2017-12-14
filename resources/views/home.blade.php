@@ -29,8 +29,8 @@
                             <div class="form-group">
                                 <select name="polyclinic" class="form-control" required>
                                     <option value="">Select Polyclinic...</option>
-                                    @foreach($polyclinics as $polyclinic)
-                                        <option value="{{ $polyclinic->name }}"> {{ $polyclinic->name }}</option>
+                                    @foreach($specialities as $speciality)
+                                        <option value="{{ $speciality->name }}"> {{ $speciality->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
