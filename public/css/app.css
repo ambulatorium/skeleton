@@ -9727,6 +9727,7 @@ body {
 
 .navbar {
   border-top: 3px solid #d71149;
+  min-height: 68px;
 }
 
 .nav-pills {
