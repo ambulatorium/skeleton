@@ -8,6 +8,11 @@ use App\Models\Setting\Group\Group;
 
 class GroupController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:owner']);
+    }
+    
     public function index()
     {
         $groups = Group::paginate(5);

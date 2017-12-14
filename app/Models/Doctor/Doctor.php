@@ -10,6 +10,11 @@ class Doctor extends Model
 
     protected $fillable = ['polyclinic_id', 'group_id', 'name', 'gender', 'bio', 'price_of_service'];
 
+    public function getRouteKeyName()
+    {
+      return 'name';   
+    }
+
     public function polyclinic()
     {
         return $this->belongsTo('App\Models\Polyclinic\Polyclinic');

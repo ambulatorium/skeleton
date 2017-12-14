@@ -2,7 +2,8 @@
 
 // home
 Route::get('/', 'HomeController@home');
-Route::get('/physician', 'HomeController@searchSchedule');
+Route::get('/physical-appointment', 'HomeController@searchSchedule');
+Route::get('/physical-appointment/{doctor}/{schedule}', 'HomeController@searchDoctor')->where('schedule', '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))');
 
 // Authentication default
 Auth::routes();
@@ -15,6 +16,8 @@ Route::group(['middleware' => 'auth'], function () {
     // pending, useless feature.
     // Route::resource('counters', 'Counters\CounterController');
 
+    Route::get('/physical-appointment/scheduling/{doctor}', 'BookingController@schedulingAppointment');
+
     Route::get('/doctors/appointments/{doctor}', 'Doctors\DoctorController@appointments');
 
     // appointments
@@ -23,17 +26,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/appointments/cancel', 'Appointments\AppointmentController@cancel');
     Route::resource('appointments', 'Appointments\AppointmentController');
 
-    Route::get('bookings', 'BookingController@appointment');
-
     Route::post('/medical-record', 'MedicalRecords\MedicalRecordController@save');
 
-    // people, patient-owner-admin-nurse
+    // people. patient,owner,admin,nurse
     Route::group(['prefix' => 'people'], function () {
-        Route::get('/profile', 'PeopleController@profile');
-        Route::patch('/profile/{user}', 'PeopleController@updateProfile');
-        Route::get('/appointments', 'PeopleController@appointment');
-        Route::get('/medical-record', 'PeopleController@medicalRecord');
-        Route::get('/account', 'PeopleController@account');
+        Route::get('/', 'PeopleController@profile');
+        Route::get('/settings/profile', 'PeopleController@settingProfile');
+        Route::patch('/settings/profile/{user}', 'PeopleController@updateProfile');
+        Route::get('/settings/account', 'PeopleController@settingAccount');
+        Route::patch('/settings/account/{user}', 'PeopleController@updateAccount');
     });
 
     // settings

@@ -19,7 +19,7 @@ class DoctorController extends Controller
     public function index()
     {
         return view('doctors.index', [
-            'doctors' => Doctor::with('polyclinic')->paginate(10),
+            'doctors' => Doctor::with('polyclinic', 'group')->paginate(10),
         ]);
     }
 
@@ -53,10 +53,12 @@ class DoctorController extends Controller
 
     public function appointments(Doctor $doctor)
     {
-        $appointments = Appointment::where([
-            ['doctor_id', '=', $doctor->id],
-            ['status', '=', 'confirmed'],
-        ])->get();
+        // $appointments = Appointment::where([
+        //     ['doctor_id', '=', $doctor->id],
+        //     ['status', '=', 'confirmed'],
+        // ])->get();
+
+        $appointments = $doctor->appointment()->where('status', 'confirmed')->get();
 
         return view('doctors.appointments.index', compact('appointments'));
     }

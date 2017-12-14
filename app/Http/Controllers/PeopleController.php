@@ -7,43 +7,53 @@ use App\Models\Appointment\Appointment;
 use App\Models\MedicalRecord\MedicalRecord;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class PeopleController extends Controller
 {
     public function profile()
     {
-        return view('people.profile');
+        $appointments = Appointment::with('doctor.polyclinic', 'doctor.group')
+            ->where([
+                ['user_id', Auth::user()->id],
+            ])->get();
+
+        return view('people.profile', compact('appointments'));
+    }
+
+    public function settingProfile()
+    {
+        return view('people.settings.profile');
     }
 
     public function updateProfile(UpdateProfileRequest $request, User $user)
     {
         $user->patient()->update($request->formProfile());
+        $user->fill(['name' => request('name')]);
+        $user->save();
 
-        flash('Successful! Your profile updated')->important();
+        flash('Successful! Your profile updated')->success();
 
         return redirect()->back();
     }
 
-    public function appointment()
+    public function settingAccount()
     {
-        $appointments = Appointment::with('doctor.polyclinic')
-            ->where([
-                ['user_id', Auth::user()->id],
-                ['status', 'active'],
-            ])->get();
-
-        return view('people.appointment', compact('appointments'));
+        return view('people.settings.account');
     }
 
-    public function medicalRecord()
+    public function updateAccount(Request $request, User $user)
     {
-        $medicalRecords = MedicalRecord::with('user', 'appointment')->where('patient_id', Auth::user()->id)->get();
+        $this->validate(request(), [
+            'password' => 'required|string|min:6|confirmed',
+        ]);
 
-        return view('people.medical-record', compact('medicalRecords'));
-    }
+        $user->fill($request->only('password'));
+        $user->password = bcrypt($request->get('password'));
+        $user->save();
 
-    public function account()
-    {
-        return view('people.account');
+        flash('Successful! Your password updated.')->success();
+
+        return redirect('/people');
     }
 }

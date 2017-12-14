@@ -20,7 +20,7 @@
                 <tbody>
                     @forelse($doctors as $doctor)
                         <tr>
-                            <td><a href="/doctors/{{ $doctor->id }}">{{ $doctor->name }}</a></td>
+                            <td><a href="/doctors/{{ $doctor->name }}">{{ $doctor->name }}</a></td>
                             <td>{{ $doctor->gender }}</td>
                             <td>{{ $doctor->polyclinic->name }}</td>
                             <td>{{ $doctor->group->health_care_name }}</td>
