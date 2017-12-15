@@ -36,9 +36,18 @@ Route::group(['middleware' => 'auth'], function () {
         Route::patch('/settings/account/{user}', 'PeopleController@updateAccount');
     });
 
+    Route::group(['prefix' => '{group}'], function () {
+        Route::get('/', 'Settings\Group\GroupController@show');
+    });
+
     // site settings
     Route::group(['prefix' => 'settings'], function () {
-        Route::resource('groups', 'Settings\Group\GroupController');
+        Route::get('groups', 'Settings\Group\GroupController@index');
+        Route::get('groups/create', 'Settings\Group\GroupController@create');
+        Route::post('groups', 'Settings\Group\GroupController@store');
+        Route::patch('groups/{group}', 'Settings\Group\GroupController@update');
+        Route::get('groups/{group}/edit', 'Settings\Group\GroupController@edit');
+        Route::delete('groups/{group}', 'Settings\Group\GroupController@destroy');
         Route::resource('specialities', 'Settings\Speciality\SpecialityController');
         Route::resource('staffs', 'Settings\Staffs\StaffController');
     });

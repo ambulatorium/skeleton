@@ -34,7 +34,7 @@
                             <tbody>
                                 @forelse($groups as $group)
                                     <tr>
-                                        <td>{{ $group->health_care_name }}</td>
+                                        <td><a href="/{{ $group->slug }}">{{ $group->health_care_name }}</a></td>
                                         <td>{{ $group->address }}</td>
                                         <td>{{ $group->min_day_appointment }} day</td>
                                         <td>{{ $group->max_day_appointment }} days</td>

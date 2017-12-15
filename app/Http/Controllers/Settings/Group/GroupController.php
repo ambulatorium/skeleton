@@ -34,9 +34,9 @@ class GroupController extends Controller
         return redirect('/settings/groups');
     }
 
-    public function show($id)
+    public function show(Group $group)
     {
-        //
+        return view('groups.show', compact('group'));
     }
 
     public function edit(Group $group)
