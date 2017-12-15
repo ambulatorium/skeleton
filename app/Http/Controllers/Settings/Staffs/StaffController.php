@@ -18,7 +18,7 @@ class StaffController extends Controller
 
     public function index()
     {
-        $users = User::whereHas('roles', function ($q) {
+        $users = User::with('roles')->whereHas('roles', function ($q) {
             $q->whereNotIn('name', ['patient', 'nurse']);
         })->get();
 

@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::patch('/settings/account/{user}', 'PeopleController@updateAccount');
     });
 
-    // settings
+    // site settings
     Route::group(['prefix' => 'settings'], function () {
         Route::resource('groups', 'Settings\Group\GroupController');
         Route::resource('specialities', 'Settings\Speciality\SpecialityController');

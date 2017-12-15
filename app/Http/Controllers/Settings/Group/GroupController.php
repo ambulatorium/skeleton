@@ -54,8 +54,20 @@ class GroupController extends Controller
         return redirect('/settings/groups');
     }
 
-    public function destroy($id)
+    public function destroy(Group $group)
     {
-        //
+        $relationships = $this->checkRelationships($group, [
+            'doctor' => 'doctor',
+        ]);
+
+        if(empty($relationships)) {
+            $group->delete();
+
+            flash('Successful! The group deleted')->success();
+        } else {
+            flash('Warning! Deletion of '.$group->health_care_name.' not allowed!')->warning();
+        }
+
+        return redirect('/settings/groups');
     }
 }
