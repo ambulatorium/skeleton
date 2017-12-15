@@ -27,6 +27,7 @@ class GroupRequest extends FormRequest
     {
         return [
             'health_care_name'      => $this->health_care_name,
+            'slug'                  => str_slug($this->health_care_name, '-'),
             'country'               => $this->country,
             'city'                  => $this->city,
             'address'               => $this->address,

@@ -16,6 +16,7 @@ class CreateGroupsTable extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->increments('id');
             $table->string('health_care_name');
+            $table->string('slug')->unique();
             $table->string('country');
             $table->string('city');
             $table->text('address');

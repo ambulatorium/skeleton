@@ -39,11 +39,11 @@
                                         <td>{{ $group->min_day_appointment }} day</td>
                                         <td>{{ $group->max_day_appointment }} days</td>
                                         <td>
-                                            <form action="/settings/groups/{{ $group->id }}" method="POST">
+                                            <form action="{{ $group->path() }}" method="POST">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
 
-                                                <a href="/settings/groups/{{ $group->id }}/edit" class="btn btn-secondary btn-sm">edit</a>
+                                                <a href="{{ $group->editGroup() }}" class="btn btn-secondary btn-sm">edit</a>
                                                 <button class="btn btn-danger btn-sm" type="submit">delete</button>
                                             </form>
                                         </td>

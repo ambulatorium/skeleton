@@ -11,7 +11,7 @@
                 <h4 class="card-text">Edit Health Care</h4>
             </div>
             <div class="card-body">
-                <form method="POST" action="/settings/groups/{{ $group->id }}" class="form-horizontal">
+                <form method="POST" action="{{ $group->path() }}" class="form-horizontal">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
 
