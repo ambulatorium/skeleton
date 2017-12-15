@@ -1,9 +1,9 @@
-<div class="col-md-8 offset-md-2 col-sm-12 mt-5">
+<div class="col-md-12 mt-3">
     <h4><strong>{{ Auth::user()->name }}</strong></h4>
     <h6>{{ Auth::user()->email }}</h6>
 </div>
 
-<div class="col-md-8 offset-md-2 col-sm-12 mt-5">
+<div class="col-md-12 mt-3">
     <ul class="nav nav-pills">
         <li class="nav-item">
             <a class="nav-link @yield('tab-people')" href="/people">Appointments</a>
@@ -17,10 +17,10 @@
                 <div class="dropdown-menu">
                     @role('owner')
                         <a class="dropdown-item" href="/settings/staffs">Staff Management</a>
-                        <div class="dropdown-divider"></div>
                     @endrole
                     <a class="dropdown-item" href="/settings/groups">Health Care Provider</a>
                     <a class="dropdown-item" href="/settings/specialities">Polyclinics/Speciality</a>
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/appointments">Appointments</a>
                     <a class="dropdown-item" href="/patients">Patients</a>
                     <a href="/doctors" class="dropdown-item">Doctors</a>

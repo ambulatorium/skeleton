@@ -13,7 +13,7 @@ body {
 
 .rq-navbar {
     background-color: #f9f9f9;
-    // box-shadow: 0 .5rem 0.5rem rgba(0,0,0,.01),inset 0 -1px 0 rgba(0,0,0,.1)
+    // box-shadow: 0 .1rem 0.1rem rgba(0,0,0,.01),inset 0 -1px 0 rgba(0,0,0,.0)
 }
 
 .navbar {
@@ -35,8 +35,22 @@ body {
 .nav-pills .show > .nav-link {
   color: #424C55;
   font-weight: bold;
-  background-color: #f9f9f9;
+  background-color: transparent;
   border-bottom: 1px solid #d71149;
+}
+
+.nav-sidebar .nav-link {
+  color: #424C55;
+  border-radius: 0rem;
+  padding-left: 1rem;
+}
+
+.nav-sidebar .nav-link.active,
+.nav-sidebar .show > .nav-link {
+  color: #424C55;
+  font-weight: bold;
+  background-color: #f9f9f9;
+  border-left: 2px solid #d71149;
 }
 
 .dropdown-item.active,

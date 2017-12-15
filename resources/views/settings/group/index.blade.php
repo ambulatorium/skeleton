@@ -17,7 +17,7 @@
 
                     <div class="card-header">
                         <a href="/settings/groups/create" class="btn btn-outline-danger btn-sm float-right">Add New</a>
-                        <h4 class="card-text">Health Care Group</h4>
+                        <h4 class="card-text text-capitalize">{{ config('app.name', 'reliqui') }} Group</h4>
                     </div>
                 
                     <div class="table-responsive">
