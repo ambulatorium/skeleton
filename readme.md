@@ -28,7 +28,7 @@ Work in progress feel free to contribute!!
 
 ## Translation
 
-walk in pregress, contribution are welcome.
+walk in progress, contribution are welcome.
 
 ## Live Demo
 
