@@ -24,7 +24,7 @@ Reliqui uses [Laravel](http://laravel.com), the best existing PHP framework
 
 ## Documentation
 
-Work in progress feel free to contribute!!o
+Work in progress feel free to contribute!!
 
 ## Translation
 
