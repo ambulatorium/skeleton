@@ -4,7 +4,7 @@
 Reliqui is free open source project, it's a smart outpatient booking appointment system, it's a healthcare platform with First Come First Served queuing discipline.
 
 * Appointment management
-* Staff management(Qwner, Admin and Nurse)
+* Staff management(Owner, Admin and Nurse)
 * Medical records
 * Polyclinic management
 * Doctor management
@@ -24,11 +24,11 @@ Reliqui uses [Laravel](http://laravel.com), the best existing PHP framework
 
 ## Documentation
 
-Work in progress
+Work in progress feel free to contribute!!
 
 ## Translation
 
-walk in pregress, contribution are welcome.
+walk in progress, contribution are welcome.
 
 ## Live Demo
 
