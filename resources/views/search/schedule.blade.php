@@ -10,10 +10,10 @@
             <div class="list-group">
                 <div class="list-group-item">
                     <a class="float-right btn btn-sm btn-outline-danger" data-toggle="collapse" href="#change-search" aria-expanded="false" aria-controls="change-search">Change Search</a>
-                    <strong>{{ $location }} - {{ $polyclinic }} - {{ \Carbon\Carbon::parse($date)->format('l, d F Y') }}</strong>
+                    <strong>{{ $location }} - {{ $speciality }} - {{ \Carbon\Carbon::parse($date)->format('l, d F Y') }}</strong>
 
                     <div class="collapse mt-3" id="change-search">
-                        <form action="/physician" method="GET" class="form-inline">
+                        <form action="/physical-appointment" method="GET" class="form-inline">
                             <div class="form-group mr-1">
                                 <select name="location" class="form-control form-control-sm" required>
                                     <option value="{{ $location }}">{{ $location }}</option>
@@ -23,11 +23,11 @@
                                 </select>
                             </div>
                             <div class="form-group mr-1">
-                                <select name="polyclinic" class="form-control form-control-sm" required>
-                                    <option value="{{ $polyclinic }}">{{ $polyclinic }}</option>
+                                <select name="speciality" class="form-control form-control-sm" required>
+                                    <option value="{{ $speciality }}">{{ $speciality }}</option>
                                     
-                                    @foreach($polyclinics as $polyclinic)
-                                        <option value="{{ $polyclinic->name }}">{{ $polyclinic->name }}</option>
+                                    @foreach($specialities as $speciality)
+                                        <option value="{{ $speciality->name }}">{{ $speciality->name }}</option>
                                     @endforeach
 
                                 </select>

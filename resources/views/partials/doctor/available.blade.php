@@ -1,6 +1,6 @@
 <main class="col-md-12">
 
-    <div class="card mb-3">
+    <div class="card tbr-0">
         <div class="card-header">
             <a href="/doctors/create" class="btn btn-outline-danger btn-sm float-right">Add Doctor</a>
             <h4 class="card-text">Doctor List</h4>
@@ -20,9 +20,9 @@
                 <tbody>
                     @forelse($doctors as $doctor)
                         <tr>
-                            <td><a href="/doctors/{{ $doctor->name }}">{{ $doctor->name }}</a></td>
+                            <td><a href="/{{$doctor->group->slug}}/doctor/{{ $doctor->name }}">{{ $doctor->name }}</a></td>
                             <td>{{ $doctor->gender }}</td>
-                            <td>{{ $doctor->polyclinic->name }}</td>
+                            <td>{{ $doctor->speciality->name }}</td>
                             <td>{{ $doctor->group->health_care_name }}</td>
                             <td>{{ $doctor->price_of_service }}</td>
                         </tr>

@@ -3,10 +3,9 @@
     <small class="text-muted"> {{ $doctor->gender }}</small>
 </h4>
 
-<h6>{{ $doctor->polyclinic->name }} | Rp{{ $doctor->price_of_service }}</h6>
-<h6>Date added {{ $doctor->created_at->format('j F, Y g:ia') }}</h6>
+<h6>{{ $group->health_care_name }} - {{ $doctor->speciality->name }}</h6>
 
-<ul class="list-group mt-3">
+<ul class="list-group mt-4">
     <li class="list-group-item text-center text-muted">
         @if($doctor->bio)
             <em>"{{ $doctor->bio }}"</em>"

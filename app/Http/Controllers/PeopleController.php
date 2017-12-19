@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdateProfileRequest;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Appointment\Appointment;
 use App\Models\MedicalRecord\MedicalRecord;
-use App\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+use App\Http\Requests\UpdateProfileRequest;
 
 class PeopleController extends Controller
 {
     public function profile()
     {
-        $appointments = Appointment::with('doctor.polyclinic', 'doctor.group')
+        $appointments = Appointment::with('doctor.speciality', 'doctor.group')
             ->where([
                 ['user_id', Auth::user()->id],
             ])->get();

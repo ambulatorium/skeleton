@@ -1,8 +1,8 @@
 <div class="col-md-4 offset-md-4">
 
-    <div class="card">
+    <div class="card tbr-0">
         <div class="card-header">
-            <h4 class="card-text">Add Doctor</h4>
+            <h4 class="card-text text-center">Add Doctor</h4>
         </div>
         <div class="card-body">
             <form method="POST" action="/doctors" class="form-horizontal">
@@ -19,7 +19,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="name"  value="{{ old('name') }}" placeholder="Doctor's Name" autofocus required>
+                    <input type="text" class="form-control" name="name"  value="{{ old('name') }}" placeholder="Doctor's Name" required>
                 </div>
                 <div class="form-group">
                     <select name="gender" id="gender" class="form-control" required>
@@ -31,11 +31,11 @@
                 </div>
                 <div class="form-group">
                     <select name="polyclinic_id" id="polyclinic_id" class="form-control" required>   
-                        <option value="">Select Polyclinic...</option>
-                        @forelse($polyclinics as $polyclinic)
-                            <option value="{{ $polyclinic->id }}">{{ $polyclinic->name }}</option>
+                        <option value="">Select Speciality...</option>
+                        @forelse($specialities as $speciality)
+                            <option value="{{ $speciality->id }}">{{ $speciality->name }}</option>
                         @empty
-                            <option value="">::Polyclinic Empty::</option>
+                            <option value="">::speciality Empty::</option>
                         @endforelse
                     </select>
                 </div>

@@ -10,7 +10,7 @@
     @empty
         <div class="col-md-8 offset-2 mt-4">
             <h4 class="text-muted text-center"><strong>No schedules yet</strong></h4>
-            <h6 class="text-muted text-center">when admin create schedule, it'll show up here.</h6>
+            <h6 class="text-muted text-center">when doctor create schedule, it'll show up here.</h6>
         </div>
     @endforelse
 </div>
