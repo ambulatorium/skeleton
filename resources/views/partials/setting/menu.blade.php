@@ -3,11 +3,11 @@
     <ul class="navbar-nav flex-column nav-sidebar">
         @role('owner|admin')
         <li class="nav-item">
-            <a class="nav-link @yield('sidebar_group')" href="/settings/groups">Group</a>
+            <a class="nav-link @yield('sidebar_group')" href="/settings/groups">Groups</a>
         </li>
         @role('owner')
             <li class="nav-item">
-                <a class="nav-link @yield('menu_staffs')" href="/settings/staffs">Staff</a>
+                <a class="nav-link @yield('menu_staffs')" href="/settings/staffs">Staffs</a>
             </li>
         @endrole
         <li class="nav-item">

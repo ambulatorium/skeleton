@@ -6,7 +6,7 @@
 
 @section('content')
             
-    <div class="container">
+    <div class="container mt-3">
         <div class="row">
 
             @include('partials.setting.menu')

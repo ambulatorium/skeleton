@@ -1,13 +1,17 @@
 <div class="collapse navbar-collapse" id="navbarMenu">
 
     <ul class="navbar-nav mr-auto">
-        
+        <form action="#" method="#" class="form-inline">
+            <div class="input-group">
+                <input class="search-input" type="search" name="query" placeholder="search doctor name...">
+            </div>
+        </form>
     </ul>
 
     <ul class="navbar-nav my-2 my-lg-0">
         @guest
             <li class="nav-item">
-                <a href="/login" class="nav-link">My Account</a>
+                <a href="/login" class="nav-link active"><strong>My Account</strong></a>
             </li>
         @else
             <li class="nav-item dropdown">

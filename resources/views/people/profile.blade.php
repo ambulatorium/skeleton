@@ -4,21 +4,24 @@
 @section('tab-people', 'active')
 
 @section('content')
+
+    @include('partials.people.tab')
+
     <div class="container">
         <div class="row">
+            
+            {{--  @include('partials.people.tab')  --}}
 
-            @include('partials.people.tab')
-
-            <div class="col-md-12 mt-4">
+            <div class="col-md-12 mt-5">
                 @forelse($appointments as $appointment)
                     <h5 class="mb-1">{{ \Carbon\Carbon::parse($appointment->date_of_visit)->format('l, d F Y') }}
                         <small><span class="badge badge-info"><em>{{ $appointment->status }}</em></span></small>
                     </h5>
                     <p class="text-muted">
-                        {{ $appointment->doctor->group->health_care_name }} - {{ $appointment->preferred_time }}
+                        {{ $appointment->doctor->group->health_care_name }} - Preferred Time {{ $appointment->preferred_time }}
                     </p>
                     <strong>
-                        {{ $appointment->doctor->name }} - {{ $appointment->doctor->polyclinic->name }}
+                        {{ $appointment->doctor->name }} - {{ $appointment->doctor->speciality->name }}
                     </strong>
                     <form action="/appointments/cancel/{{ $appointment->id }}" method="POST" class="float-right">
                         {{ csrf_field() }}

@@ -4,24 +4,14 @@
 
 @section('content') 
         
-    <div class="col-md-8 offset-md-2 col-sm-12">
+    <div class="col-md-4 offset-md-4 col-sm-12 mt-5">
 
         <h4>
             <strong>{{ $doctor->name }},</strong>
-            <small class="text-muted"> {{ $doctor->gender }}</small>
+            <small class="text-muted">{{ $doctor->speciality->name }}</small>
         </h4>
 
-        <h6>{{ $doctor->group->health_care_name }}, {{ $doctor->group->city }}  - {{ $doctor->polyclinic->name }} | Rp{{ $doctor->price_of_service }}</h6>
-
-        <ul class="list-group mt-3">
-            <li class="list-group-item text-center text-muted">
-                @if($doctor->bio)
-                    <em>"{{ $doctor->bio }}"</em>"
-                @else
-                    <em>"No bio yet"</em>
-                @endif
-            </li>
-        </ul>
+        <h6>{{ $doctor->group->health_care_name }}, {{ $doctor->group->city }}.</h6>
 
         <form action="/physical-appointment/scheduling/{{ $doctor->name }}" method="GET" class="form-inline mt-3">
             <input type="hidden" name="date" value="{{ $date }}">

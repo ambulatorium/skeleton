@@ -7,7 +7,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h4 class="card-text">New Specialities</h4>
+                <h4 class="card-text text-center">New Specialities</h4>
             </div>
             <div class="card-body">
                 <form method="POST" action="/settings/specialities" class="form-horizontal">

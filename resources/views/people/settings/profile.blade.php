@@ -23,7 +23,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name', Auth::user()->name) }}" autofocus required>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name', Auth::user()->name) }}" required>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="email">E-mail</label>

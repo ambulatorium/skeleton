@@ -8,7 +8,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h4 class="card-text">New Health Care</h4>
+                <h4 class="card-text text-center">New Health Care</h4>
             </div>
             <div class="card-body">
                 <form method="POST" action="/settings/groups" class="form-horizontal">

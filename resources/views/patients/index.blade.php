@@ -10,7 +10,7 @@
         
             <main class="col-md-12">
 
-                <div class="card mb-3">
+                <div class="card tbr-0">
                     <div class="card-header">
                         <a href="/patients/create" class="btn btn-outline-danger btn-sm float-right">Add Patient</a>
                         <h4 class="card-text">Patient Data</h4>

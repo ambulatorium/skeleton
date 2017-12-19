@@ -10,7 +10,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h4 class="card-text">Edit Staff</h4>
+                <h4 class="card-text text-center">Edit Staff</h4>
             </div>
             <div class="card-body">
                 <form action="/settings/staffs/{{ $user->id }}" method="POST" class="form-horizontal">

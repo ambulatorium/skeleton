@@ -7,9 +7,9 @@
     
     <div class="col-md-8 offset-md-2">
         
-        <div class="card">
+        <div class="card tbr-0">
             <div class="card-header">
-                <h4 class="card-text text-center"><strong>Patient's Form</strong></h4>
+                <h4 class="card-text text-center">Patient's Form</h4>
             </div>
             <div class="card-body">
                 <form action="#" method="#">
@@ -70,7 +70,9 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-danger" type="submit"><strong>SAVE</strong></button>
+                    <hr> 
+                    <button class="btn btn-sm btn-danger" type="submit"><strong>SAVE</strong></button>
+                    <a href="/patients" class="btn btn-sm btn-secondary">CANCEL</a>
                 </form>
             </div>
         </div>

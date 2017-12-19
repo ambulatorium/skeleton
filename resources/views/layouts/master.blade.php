@@ -16,9 +16,9 @@
             @include('flash::message')
         </div>
 
-        <div class="mt-4">
+        {{--  <div class="mt-4">  --}}
             @yield('content')
-        </div>
+        {{--  </div>  --}}
 
         @include('partials.master.footer')
 

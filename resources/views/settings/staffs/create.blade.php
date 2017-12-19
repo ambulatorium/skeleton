@@ -10,7 +10,7 @@
     
         <div class="card">
             <div class="card-header">
-                <h4 class="card-text">Add Staff</h4>
+                <h4 class="card-text text-center">Add Staff</h4>
             </div>
             <div class="card-body">
                 <form action="/settings/staffs" method="POST" class="form-horizontal">

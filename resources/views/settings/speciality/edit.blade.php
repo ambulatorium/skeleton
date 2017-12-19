@@ -7,7 +7,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h4 class="card-text">Edit Speciality</h4>
+                <h4 class="card-text text-center">Edit Speciality</h4>
             </div>
             <div class="card-body">
                 <form method="POST" action="/settings/specialities/{{ $speciality->id }}" class="form-horizontal">
