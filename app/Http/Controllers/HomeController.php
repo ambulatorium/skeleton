@@ -20,7 +20,7 @@ class HomeController extends Controller
         
         return view('home', [
             'specialities' => Speciality::all(),
-            'locations'   => Group::all(),
+            'locations'    => Group::all(),
         ]);
     }
 
@@ -29,24 +29,25 @@ class HomeController extends Controller
         $schedules = $this->getSchedules();
 
         return view('search.schedule', [
-            'schedules'   => $schedules,
-            'polyclinics' => Polyclinic::all(),
-            'polyclinic'  => request('polyclinic'),
-            'date'        => request('date'),
-            'locations'   => Group::all(),
-            'location'    => request('location'),
+            'schedules'    => $schedules,
+            'specialities' => Speciality::all(),
+            'speciality'   => request('speciality'),
+            'date'         => request('date'),
+            'locations'    => Group::all(),
+            'location'     => request('location'),
         ]);
     }
 
     public function searchDoctor(Doctor $doctor, $schedule)
     {
+        $today = today();
         $day = \Carbon\Carbon::parse($schedule)->format('l');
         $timeInterval = Schedule::with('doctor')->where([
                         ['day', $day],
                         ['doctor_id', $doctor->id],
                     ])->first();
 
-        if (empty($timeInterval)) {
+        if (empty($timeInterval) || $schedule < $today) {
             abort(404);
         }
 
@@ -63,8 +64,8 @@ class HomeController extends Controller
 
     protected function getSchedules()
     {
-        return Schedule::whereHas('doctor.polyclinic', function ($q) {
-            $q->where('name', request('polyclinic'));
+        return Schedule::whereHas('doctor.speciality', function ($q) {
+            $q->where('name', request('speciality'));
         })
         ->whereHas('doctor.group', function ($q)
         {

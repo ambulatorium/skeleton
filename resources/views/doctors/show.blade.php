@@ -1,11 +1,10 @@
 @extends('layouts.master')
 
 @section('title', 'Doctors')
-@section('doctors', 'active')
 
 @section('content')
 
-    <div class="col-md-8 offset-md-2 col-sm-12">
+    <div class="col-md-8 offset-md-2 col-sm-12 mt-4">
 
         @include('partials.doctor.manage')
 

@@ -38,12 +38,12 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <select name="polyclinic_id" id="polyclinic_id" class="form-control" required>
-                                <option value="{{ $doctor->polyclinic_id }}"> {{ $doctor->polyclinic->name }}</option>
-                            @forelse($polyclinics as $polyclinic)
-                                <option value="{{ $polyclinic->id }}">{{ $polyclinic->name }}</option>
+                        <select name="speciality_id" id="speciality_id" class="form-control" required>
+                                <option value="{{ $doctor->speciality_id }}"> {{ $doctor->speciality->name }}</option>
+                            @forelse($specialities as $speciality)
+                                <option value="{{ $speciality->id }}">{{ $speciality->name }}</option>
                             @empty
-                                <option value="">::Polyclinic Empty::</option>
+                                <option value="">::speciality empty::</option>
                             @endforelse
                         </select>
                     </div>
@@ -57,7 +57,7 @@
 
                     <div class="form-group">
                         <button class="btn btn-block btn-danger" type="submit">UPDATE</button>
-                        <a href="/doctors/{{ $doctor->id }}" class="btn btn-block btn-secondary">CANCEL</a>
+                        <a href="/doctors/{{ $doctor->name }}" class="btn btn-block btn-secondary">CANCEL</a>
                     </div>
                 </form>
 

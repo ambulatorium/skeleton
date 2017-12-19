@@ -42,14 +42,14 @@ class ScheduleController extends Controller
         if ($checkSchedules->first()) {
             flash('Warning! Schedule you selected is already exist')->warning();
 
-            return redirect('/doctors/'.$request->get('doctor_id'));
+            return redirect()->back();
         }
 
         Schedule::create($request->all());
 
         flash('Successful! New schedule created')->success();
 
-        return redirect('/doctors/'.$request->get('doctor_id'));
+        return redirect()->back();
     }
 
     public function show($id)

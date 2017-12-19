@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Doctors;
 
+use App\Models\Doctor\Doctor;
+use App\Models\Setting\Group\Group;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DoctorRequest;
 use App\Models\Appointment\Appointment;
-use App\Models\Doctor\Doctor;
-use App\Models\Polyclinic\Polyclinic;
-use App\Models\Setting\Group\Group;
+use App\Models\Setting\Speciality\Speciality;
 
 class DoctorController extends Controller
 {
@@ -19,17 +19,17 @@ class DoctorController extends Controller
     public function index()
     {
         return view('doctors.index', [
-            'doctors' => Doctor::with('polyclinic', 'group')->paginate(10),
+            'doctors' => Doctor::with('speciality', 'group')->paginate(10),
         ]);
     }
 
     public function create()
     {
-        $polyclinics = Polyclinic::all();
+        $specialities = Speciality::all();
         $groups = Group::all();
 
         return view('doctors.create', [
-            'polyclinics' => $polyclinics,
+            'specialities' => $specialities,
             'groups'      => $groups,
         ]);
     }
@@ -43,11 +43,12 @@ class DoctorController extends Controller
         return redirect('/doctors');
     }
 
-    public function show(Doctor $doctor)
+    public function show(Group $group, Doctor $doctor)
     {
         return view('doctors.show', [
             'doctor'    => $doctor,
-            'schedules' => $doctor->schedule()->get(),
+            'group'     => $group,
+            'schedules' => $doctor->load('schedule')->schedule()->get(),
         ]);
     }
 
@@ -67,7 +68,7 @@ class DoctorController extends Controller
     {
         return view('doctors.edit', [
             'doctor'      => $doctor,
-            'polyclinics' => Polyclinic::latest()->get(),
+            'specialities' => Speciality::latest()->get(),
             'groups'      => Group::latest()->get(),
         ]);
     }
