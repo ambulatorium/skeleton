@@ -36,8 +36,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::patch('/settings/account/{user}', 'PeopleController@updateAccount');
     });
 
+    // Multiple Health Care Provider
     Route::group(['prefix' => '{group}'], function () {
         Route::get('/', 'Settings\Group\GroupController@show');
+        Route::get('/doctor/{doctor}', 'Doctors\DoctorController@show');
+        Route::get('/settings/profile', 'Groups\SettingController@profile');
+        Route::get('/settings/staffs', 'Groups\SettingController@staff');
     });
 
     // site settings
@@ -46,7 +50,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('groups/create', 'Settings\Group\GroupController@create');
         Route::post('groups', 'Settings\Group\GroupController@store');
         Route::patch('groups/{group}', 'Settings\Group\GroupController@update');
-        Route::get('groups/{group}/edit', 'Settings\Group\GroupController@edit');
         Route::delete('groups/{group}', 'Settings\Group\GroupController@destroy');
         Route::resource('specialities', 'Settings\Speciality\SpecialityController');
         Route::resource('staffs', 'Settings\Staffs\StaffController');

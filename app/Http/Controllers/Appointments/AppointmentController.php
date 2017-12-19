@@ -71,7 +71,7 @@ class AppointmentController extends Controller
 
         flash('Successful! Your appointment was created')->success();
 
-        return redirect('/people/appointments');
+        return redirect('/people');
     }
 
     public function show(Appointment $appointment)

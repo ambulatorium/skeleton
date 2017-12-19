@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container mt-3">
         <div class="row">
 
             @include('partials.setting.menu')
@@ -26,8 +26,6 @@
                                 <tr>
                                     <th>Health Care Name</th>
                                     <th>Address</th>
-                                    <th>Min Appointment</th>
-                                    <th>Max Appointment</th>
                                     <th>Manage</th>
                                 </tr>
                             </thead>
@@ -36,14 +34,12 @@
                                     <tr>
                                         <td><a href="/{{ $group->slug }}">{{ $group->health_care_name }}</a></td>
                                         <td>{{ $group->address }}</td>
-                                        <td>{{ $group->min_day_appointment }} day</td>
-                                        <td>{{ $group->max_day_appointment }} days</td>
                                         <td>
                                             <form action="{{ $group->path() }}" method="POST">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
 
-                                                <a href="{{ $group->editGroup() }}" class="btn btn-secondary btn-sm">edit</a>
+                                                {{--  <a href="{{ $group->editGroup() }}" class="btn btn-secondary btn-sm">edit</a>  --}}
                                                 <button class="btn btn-danger btn-sm" type="submit">delete</button>
                                             </form>
                                         </td>

@@ -36,12 +36,10 @@ class GroupController extends Controller
 
     public function show(Group $group)
     {
-        return view('groups.show', compact('group'));
-    }
-
-    public function edit(Group $group)
-    {
-        return view('settings.group.edit', compact('group'));
+        return view('groups.show', [
+            'group'   => $group,
+            'doctors' => $group->load('doctor.speciality')->doctor()->get(),
+        ]);
     }
 
     public function update(GroupRequest $request, Group $group)
@@ -50,8 +48,7 @@ class GroupController extends Controller
         $group->save();
 
         flash('Successful! Health Care Updated')->success();
-
-        return redirect('/settings/groups');
+        return redirect('/'.$group->slug.'/settings/profile');
     }
 
     public function destroy(Group $group)
