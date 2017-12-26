@@ -29,6 +29,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function doctor()
+    {
+        return $this->hasOne('App\Models\Doctor\Doctor');
+    }
+
     public function patient()
     {
         return $this->hasOne('App\Models\Patient\Patient');

@@ -8,6 +8,9 @@ Route::get('/physical-appointment/{doctor}/{schedule}', 'HomeController@searchDo
 // Authentication default
 Auth::routes();
 
+Route::get('/invitations/{token}', 'InvitationController@accept')->middleware('guest')->name('accept');
+Route::post('/invitations/{token}', 'InvitationController@join')->middleware('guest')->name('join');
+
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('doctors', 'Doctors\DoctorController');
     Route::resource('schedules', 'Doctors\ScheduleController');
@@ -27,7 +30,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/medical-record', 'MedicalRecords\MedicalRecordController@save');
 
-    // people. patient,owner,admin,nurse
+    Route::post('/invitations', 'InvitationController@send');
+    Route::delete('/invitations/{invitation}', 'InvitationController@destroy');
+
+    // people. patient,owner,administrator,admin-group,doctor,nurse
     Route::group(['prefix' => 'people'], function () {
         Route::get('/', 'PeopleController@profile');
         Route::get('/settings/profile', 'PeopleController@settingProfile');
@@ -42,6 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/doctor/{doctor}', 'Doctors\DoctorController@show');
         Route::get('/settings/profile', 'Groups\SettingController@profile');
         Route::get('/settings/staffs', 'Groups\SettingController@staff');
+        Route::get('/settings/invitations', 'Groups\SettingController@invitation');
     });
 
     // site settings

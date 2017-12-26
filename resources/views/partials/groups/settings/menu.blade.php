@@ -8,5 +8,8 @@
         <li class="nav-item">
             <a class="nav-link @yield('sidebar_staffs')" href="/{{ $group->slug }}/settings/staffs">Staffs</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link @yield('sidebar_invitation')" href="/{{ $group->slug }}/settings/invitations">Invitations</a>
+        </li>
     </ul>
 </nav>

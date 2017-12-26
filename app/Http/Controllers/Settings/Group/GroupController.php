@@ -36,9 +36,13 @@ class GroupController extends Controller
 
     public function show(Group $group)
     {
+        $doctors = $group->load('doctor.user', 'doctor.speciality')
+                         ->doctor()->where('status', 1)
+                         ->get();
+
         return view('groups.show', [
             'group'   => $group,
-            'doctors' => $group->load('doctor.speciality')->doctor()->get(),
+            'doctors' => $doctors,
         ]);
     }
 
