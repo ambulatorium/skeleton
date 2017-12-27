@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 @section('title', 'Settings - Staffs')
-@section('settings', 'active')
 @section('menu_staffs', 'active')
 
 @section('content')
@@ -18,10 +17,10 @@
                     {{ method_field('PATCH') }}
 
                     <div class="form-group">
-                        <input type="text" class="form-control" name="name" value="{{ old('name', $user->name) }}" autofocus required>
+                        <input type="text" class="form-control" name="name" value="{{ $user->name }}" readonly>
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" name="email" value="{{ old('email', $user->email) }}" placeholder="E-mail" required>
+                        <input type="email" class="form-control" name="email" value="{{ $user->email }}" readonly>
                     </div>
 
                     <div class="form-group form-check form-check-inline">
@@ -30,14 +29,6 @@
                                 <input class="form-check-input" type="radio" name="roles[]" value="{{ $role->id }}" {{ $user->roles->implode('name', ' ') == $role->name ? 'checked' : '' }} > {{ ucfirst($role->name) }}
                             </label>
                         @endforeach
-                    </div>
-
-                                    
-                    <div class="form-group">
-                        <input type="password" class="form-control" name="password" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
                     </div>
 
                     <div class="form-group">

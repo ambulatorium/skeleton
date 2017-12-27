@@ -8,21 +8,26 @@ class Doctor extends Model
 {
     protected $table = 'doctors';
 
-    protected $fillable = ['polyclinic_id', 'group_id', 'name', 'gender', 'bio', 'price_of_service'];
+    protected $fillable = ['user_id', 'group_id', 'speciality_id', 'gender', 'bio'];
 
-    public function getRouteKeyName()
-    {
-      return 'name';   
-    }
+    // public function getRouteKeyName()
+    // {
+    //   return 'name';   
+    // }
 
-    public function speciality()
+    public function user()
     {
-        return $this->belongsTo('App\Models\Setting\Speciality\Speciality');
+        return $this->belongsTo('App\User');
     }
 
     public function group()
     {
         return $this->belongsTo('App\Models\Setting\Group\Group');
+    }
+
+    public function speciality()
+    {
+        return $this->belongsTo('App\Models\Setting\Speciality\Speciality');
     }
 
     public function schedule()

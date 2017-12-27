@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 @section('title', 'Settings - Staffs')
-@section('settings', 'active')
 @section('menu_staffs', 'active')
 
 @section('content')
@@ -15,7 +14,7 @@
                 <div class="card">
 
                     <div class="card-header">
-                        <a href="/settings/staffs/create" class="btn btn-outline-danger btn-sm float-right">Add Staff</a>
+                        <a href="/settings/staffs/create" class="btn btn-outline-danger btn-sm float-right">Invite staff</a>
                         <h4 class="card-text">Staff Management</h4>
                     </div>
                 
@@ -26,7 +25,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Roles</th>
-                                    <th>Date Added</th>
+                                    <th>Join Date</th>
                                     <th>Manage</th>
                                 </tr>
                             </thead>
@@ -36,15 +35,9 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->roles->implode('name', ' ') }}</td>
-                                        <td>{{ $user->created_at->format('d F Y, h:ia') }}</td>
+                                        <td>{{ $user->created_at->diffForHumans() }}</td>
                                         <td>
-                                            <form action="/settings/staffs/{{ $user->id }}" method="POST">
-                                                {{ csrf_field() }}
-                                                {{ method_field('DELETE') }}
-
-                                                <a href="/settings/staffs/{{ $user->id }}/edit" class="btn btn-secondary btn-sm">edit</a>
-                                                <button class="btn btn-danger btn-sm" type="submit">delete</button>
-                                            </form>
+                                            <a href="/settings/staffs/{{ $user->id }}/edit" class="btn btn-secondary btn-sm">edit</a>
                                         </td>
                                     </tr>
                                 @endforeach

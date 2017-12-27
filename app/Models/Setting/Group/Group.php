@@ -20,6 +20,16 @@ class Group extends Model
         return $this->hasMany('App\Models\Doctor\Doctor');
     }
 
+    public function invitation()
+    {
+        return $this->hasMany('App\Models\Invitation');
+    }
+
+    public function staff()
+    {
+        return $this->hasMany('App\Models\Setting\Staff\Staff');
+    }
+
     public function path()
     {
         return "/settings/groups/{$this->slug}";

@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
                 $this->command->info('Owner granted all the permissions');
             }
 
-            if ($role->name == 'admin') {
+            if ($role->name == 'administrator') {
                 $role->givePermissionTo([
                     'view-appointments', 'add-appointments', 'edit-appointments', 'delete-appointments',
                     'view-schedules', 'add-schedules', 'edit-schedules', 'delete-schedules',

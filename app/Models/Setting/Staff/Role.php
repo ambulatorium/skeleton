@@ -8,7 +8,9 @@ class Role extends \Spatie\Permission\Models\Role
     {
         return [
             'owner',
-            'admin',
+            'administrator',
+            'admin-group',
+            'doctor',
             'nurse',
             'patient',
         ];

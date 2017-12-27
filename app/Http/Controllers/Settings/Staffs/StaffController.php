@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Settings\Staffs;
 
-use App\Http\Controllers\Controller;
+use App\User;
+use App\Models\Invitation;
+use Illuminate\Http\Request;
+use App\Mail\SendInvitation;
 use App\Models\Patient\Patient;
 use App\Models\Setting\Staff\Role;
-use App\User;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class StaffController extends Controller
 {
@@ -19,7 +22,7 @@ class StaffController extends Controller
     public function index()
     {
         $users = User::with('roles')->whereHas('roles', function ($q) {
-            $q->whereNotIn('name', ['patient', 'nurse']);
+            $q->whereIn('name', ['owner', 'administrator',]);
         })->get();
 
         return view('settings.staffs.index', compact('users'));
@@ -27,7 +30,7 @@ class StaffController extends Controller
 
     public function create()
     {
-        $roles = Role::whereNotIn('name', ['patient', 'nurse'])->get();
+        $roles = Role::whereIn('name', ['owner', 'administrator'])->get();
 
         return view('settings.staffs.create', ['roles' => $roles]);
     }
@@ -35,30 +38,30 @@ class StaffController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'     => 'required|max:120',
-            'email'    => 'required|email|unique:users',
-            'password' => 'required|min:6|confirmed',
-            'roles'    => 'required|min:1',
+            'email' => 'required|string|email|max:255|unique:invitations',
+            'role'  => 'required|min:1',
          ]);
 
-        // hash password
-        $request->merge(['password' => bcrypt($request->get('password'))]);
+        // temporary. invite where user not exist.
+        if (User::where('email', request('email'))->first()) {
+            flash('Warning! Email already exists.')->warning();
 
-        if ($user = User::create($request->except('roles'))) {
-            $user->assignRole($request->get('roles'));
-
-            $user->patient = Patient::create([
-                'user_id'       => $user->id,
-                'register_from' => 'online',
-            ]);
-
-            flash('Successful! Staff added')->success();
-
-            return redirect()->route('staffs.index');
+            return redirect()->back();
         }
 
-        flash('Warning! Unable to create staff')->warning();
+        do { $token = str_random(); }
+        //check if the token already exists and if it does, try again
+        while (Invitation::where('token', $token)->first());
 
+        $invite = Invitation::create([
+            'email'    => $request->get('email'),
+            'role'     => $request->get('role'),
+            'token'    => $token,
+        ]);
+
+        Mail::to($request->get('email'))->send(new SendInvitation($invite));
+
+        flash('Successful! Invitation sent.')->success();
         return redirect()->route('staffs.index');
     }
 
@@ -70,7 +73,7 @@ class StaffController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        $roles = Role::whereNotIn('name', ['patient', 'nurse'])->get();
+        $roles = Role::whereIn('name', ['owner', 'administrator', 'patient'])->get();
 
         return view('settings.staffs.edit', [
             'user'  => $user,
@@ -80,22 +83,19 @@ class StaffController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name'  => 'required|max:120',
-            'email' => 'required|email|unique:users,email,'.$id,
-            'roles' => 'required|min:1',
-        ]);
+        $this->validate($request, ['roles' => 'required|min:1']);
 
-        $user = User::findOrFail($id);
-        $user->fill($request->except('roles', 'password'));
+        if (Auth::user()->id == $id) {
+            flash('Warning! Updation of currently logged in user is not allowed :(')->warning();
 
-        if ($request->get('password')) {
-            $user->password = bcrypt($request->get('password'));
+            return redirect()->back();
         }
 
+        $user = User::findOrFail($id);
+        $user->fill($request->except('roles'));
         $user->save();
-        $roles = $request->get('roles');
 
+        $roles = $request->get('roles');
         if (isset($roles)) {
             $user->roles()->sync($roles);
         } else {
@@ -103,26 +103,11 @@ class StaffController extends Controller
         }
 
         flash('Successful! Staff updated')->success();
-
         return redirect()->route('staffs.index');
     }
 
     public function destroy($id)
     {
-        if (Auth::user()->id == $id) {
-            flash('Warning! Deletion of currently logged in user is not allowed :(')->warning();
-
-            return redirect()->back();
-        }
-
-        if (User::findOrFail($id)->delete()) {
-            flash('Successful! Staff successfully delete')->success();
-
-            return redirect()->back();
-        }
-
-        flash('Warning! Staff not deleted')->warning();
-
-        return redirect()->back();
+        return redirect('/settings/staffs');
     }
 }
