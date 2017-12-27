@@ -1,5 +1,5 @@
 @component('mail::message')
-# You're invited to join {{ $invite->group->health_care_name }} as a {{ $invite->role }}
+# You're invited to join {{ config('app.name') }} as a {{ $invite->role }}
 
 You can accept this invitation and join it with new account.
 

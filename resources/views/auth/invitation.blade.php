@@ -9,7 +9,7 @@
         <strong>Accept Invitation with new account</strong>
     </p><br>
 
-    <p class="text-muted">You're invited to Join {{ $invite->group->health_care_name }} as a {{ $invite->role }}</a></p>
+    <p class="text-muted">You're invited to Join {{ config('app.name') }} as a {{ $invite->role }}</a></p>
     <form method="POST" action="{{ route('join', $invite->token) }}" class="form-horizontal">
         {{ csrf_field() }}
 
