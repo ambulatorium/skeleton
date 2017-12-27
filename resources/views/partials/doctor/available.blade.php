@@ -2,8 +2,7 @@
 
     <div class="card tbr-0">
         <div class="card-header">
-            <a href="/doctors/create" class="btn btn-outline-danger btn-sm float-right">Add Doctor</a>
-            <h4 class="card-text">Doctor List</h4>
+            <h4 class="card-text">All Doctor</h4>
         </div>
 
         <div class="table-responsive">
@@ -20,7 +19,7 @@
                 <tbody>
                     @forelse($doctors as $doctor)
                         <tr>
-                            <td><a href="/{{$doctor->group->slug}}/doctor/{{ $doctor->name }}">{{ $doctor->name }}</a></td>
+                            <td>{{ $doctor->user->name }}</td>
                             <td>{{ $doctor->gender }}</td>
                             <td>{{ $doctor->speciality->name }}</td>
                             <td>{{ $doctor->group->health_care_name }}</td>
