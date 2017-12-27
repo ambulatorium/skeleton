@@ -13,8 +13,6 @@ Route::post('/invitations/{token}', 'InvitationController@join')->middleware('gu
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('schedules', 'Doctors\ScheduleController');
-    // pending, useless feature.
-    // Route::resource('counters', 'Counters\CounterController');
 
     Route::get('/physical-appointment/scheduling/{doctor}', 'BookingController@schedulingAppointment');
 
