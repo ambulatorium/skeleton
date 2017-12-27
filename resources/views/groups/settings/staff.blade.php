@@ -26,7 +26,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Role</th>
-                                    <th>Manage</th>
+                                    <th>Join Date</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -35,14 +35,7 @@
                                         <td>{{ $staff->user->name }}</td>
                                         <td>{{ $staff->user->email }}</td>
                                         <td>{{ $staff->user->roles->implode('name', ' ') }}</td>
-                                        <td>
-                                            <form action="#" method="POST">
-                                                {{ csrf_field() }}
-                                                {{ method_field('DELETE') }}
-
-                                                <button class="btn btn-danger btn-sm" type="submit">delete</button>
-                                            </form>
-                                        </td>
+                                        <td>{{ $staff->created_at->diffForHumans() }}</td>
                                     </tr>
                                 @empty
                                     <tr><td>Empty Staff</td></tr>
