@@ -13,11 +13,12 @@ Route::post('/invitations/{token}', 'InvitationController@join')->middleware('gu
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('schedules', 'Doctors\ScheduleController');
-    Route::resource('patients', 'Patients\PatientController');
     // pending, useless feature.
     // Route::resource('counters', 'Counters\CounterController');
 
     Route::get('/physical-appointment/scheduling/{doctor}', 'BookingController@schedulingAppointment');
+
+    Route::get('/patients', 'Patients\PatientController@index');
 
     Route::get('/doctors', 'Doctors\DoctorController@index');
     Route::get('/doctors/{doctor}', 'Doctors\DoctorController@show');

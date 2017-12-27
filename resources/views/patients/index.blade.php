@@ -12,7 +12,6 @@
 
                 <div class="card tbr-0 mb-2">
                     <div class="card-header">
-                        <a href="/patients/create" class="btn btn-outline-danger btn-sm float-right">Add Patient</a>
                         <h4 class="card-text">All Patient</h4>
                     </div>
 
