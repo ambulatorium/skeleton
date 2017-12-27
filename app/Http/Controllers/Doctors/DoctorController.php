@@ -18,9 +18,9 @@ class DoctorController extends Controller
 
     public function index()
     {
-        return view('doctors.index', [
-            'doctors' => Doctor::with('speciality', 'group')->paginate(10),
-        ]);
+        $doctors = Doctor::with('speciality', 'group')->where('status', 1)->paginate(10);
+
+        return view('doctors.index', compact('doctors'));
     }
 
     public function create()
