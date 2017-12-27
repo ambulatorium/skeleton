@@ -8,6 +8,7 @@ use App\Mail\SendInvitation;
 use Illuminate\Http\Request;
 use App\Models\Doctor\Doctor;
 use App\Models\Patient\Patient;
+use App\Models\Setting\Staff\Staff;
 use Illuminate\Support\Facades\Mail;
 
 class InvitationController extends Controller
@@ -19,6 +20,13 @@ class InvitationController extends Controller
             'group_id' => 'required',
             'role'     => 'required',
         ]);
+
+        // temporary. invite where user not exist.
+        if (User::where('email', request('email'))->first()) {
+            flash('Warning! Email already exists.')->warning();
+
+            return redirect()->back();
+        }
 
         do { $token = str_random(); }
         //check if the token already exists and if it does, try again
@@ -69,12 +77,17 @@ class InvitationController extends Controller
         ]);
 
         if ($invite->role === 'doctor') {
-
             $user->doctor = Doctor::create([
                 'user_id'  => $user->id,
                 'group_id' => $invite->group_id,
             ]);
+        }
 
+        if ($invite->role === 'admin-group' || $invite->role === 'nurse') {
+            $user->staff = Staff::create([
+                'user_id'  => $user->id,
+                'group_id' => $invite->group_id,
+            ]);
         }
         $user->assignRole($invite->role);
         $invite->delete();

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Settings\Staffs;
 
-use App\Http\Controllers\Controller;
-use App\Models\Patient\Patient;
-use App\Models\Setting\Staff\Role;
 use App\User;
 use Illuminate\Http\Request;
+use App\Models\Patient\Patient;
+use App\Models\Setting\Staff\Role;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class StaffController extends Controller
@@ -19,7 +19,7 @@ class StaffController extends Controller
     public function index()
     {
         $users = User::with('roles')->whereHas('roles', function ($q) {
-            $q->whereNotIn('name', ['patient', 'nurse']);
+            $q->whereIn('name', ['owner', 'administrator',]);
         })->get();
 
         return view('settings.staffs.index', compact('users'));
@@ -27,7 +27,7 @@ class StaffController extends Controller
 
     public function create()
     {
-        $roles = Role::whereNotIn('name', ['patient', 'nurse'])->get();
+        $roles = Role::whereIn('name', ['owner', 'administrator'])->get();
 
         return view('settings.staffs.create', ['roles' => $roles]);
     }
@@ -35,10 +35,10 @@ class StaffController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'     => 'required|max:120',
-            'email'    => 'required|email|unique:users',
-            'password' => 'required|min:6|confirmed',
-            'roles'    => 'required|min:1',
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+            'roles'    => 'required|string|min:1',
          ]);
 
         // hash password
@@ -53,12 +53,10 @@ class StaffController extends Controller
             ]);
 
             flash('Successful! Staff added')->success();
-
             return redirect()->route('staffs.index');
         }
 
         flash('Warning! Unable to create staff')->warning();
-
         return redirect()->route('staffs.index');
     }
 
@@ -70,7 +68,7 @@ class StaffController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        $roles = Role::whereNotIn('name', ['patient', 'nurse'])->get();
+        $roles = Role::whereIn('name', ['owner', 'administrator'])->get();
 
         return view('settings.staffs.edit', [
             'user'  => $user,
@@ -81,9 +79,9 @@ class StaffController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name'  => 'required|max:120',
-            'email' => 'required|email|unique:users,email,'.$id,
-            'roles' => 'required|min:1',
+            'name'  => 'required|string|max:225',
+            'email' => 'required|string|email|max:225|unique:users,email,'.$id,
+            'roles' => 'required|string|min:1',
         ]);
 
         $user = User::findOrFail($id);
@@ -103,7 +101,6 @@ class StaffController extends Controller
         }
 
         flash('Successful! Staff updated')->success();
-
         return redirect()->route('staffs.index');
     }
 
@@ -122,7 +119,6 @@ class StaffController extends Controller
         }
 
         flash('Warning! Staff not deleted')->warning();
-
         return redirect()->back();
     }
 }

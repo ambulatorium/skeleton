@@ -16,7 +16,12 @@ class SettingController extends Controller
 
     public function staff(Group $group)
     {
-        return view('groups.settings.staff', compact('group'));
+        $staffs = $group->staff()->get();
+
+        return view('groups.settings.staff', [
+            'group'  => $group,
+            'staffs' => $staffs->load('user.roles'),
+        ]);
     }
 
     public function invitation(Group $group)

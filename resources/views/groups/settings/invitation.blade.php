@@ -11,7 +11,6 @@
             @include('partials.groups.settings.menu')
 
             <main class="col-sm-9 ml-sm-auto col-md-10 mt-5 mb-5">
-                
                 <div class="card mb-3">
                     <div class="card-header">
                         <form action="/invitations" method="POST" class="form-inline float-right">
@@ -69,7 +68,6 @@
                         </table>
                     </div>
                 </div>
-
             </main>
 
         </div>
