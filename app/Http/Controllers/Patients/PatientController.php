@@ -10,13 +10,13 @@ class PatientController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:view-patients|add-patients|edit-patients|delete-patients']);
+        $this->middleware(['role:owner']);
     }
 
     public function index()
     {
         return view('patients.index', [
-            'patients' => Patient::with('user')->paginate(10),
+            'patients' => Patient::with('user')->paginate(8),
         ]);
     }
 
