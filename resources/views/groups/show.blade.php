@@ -13,7 +13,7 @@
             @forelse($doctors as $doctor)
                 <div class="col-md-4 mt-4">
                     <h5 class="mb-1">
-                        <a href="/{{$group->slug}}/doctor/{{$doctor->user->name}}">{{ $doctor->user->name }}</a><p>
+                        <a href="#">{{ $doctor->user->name }}</a><p>
                         <small>{{ $doctor->speciality->name }}</small>
                         <hr>
                     </h5>

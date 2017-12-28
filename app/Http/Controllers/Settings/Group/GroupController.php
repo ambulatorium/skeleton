@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Settings\Group;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\GroupRequest;
 use App\Models\Setting\Group\Group;
+use App\Http\Requests\GroupRequest;
+use App\Http\Controllers\Controller;
 
 class GroupController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:owner|admin']);
+        $this->middleware(['role:owner|admin'])->except(['show']);
     }
     
     public function index()
@@ -30,19 +30,16 @@ class GroupController extends Controller
         Group::create($request->formGroup());
 
         flash('Successful! New health care created')->success();
-
         return redirect('/settings/groups');
     }
 
     public function show(Group $group)
     {
-        $doctors = $group->load('doctor.user', 'doctor.speciality')
-                         ->doctor()->where('status', 1)
-                         ->get();
+        $doctors = $group->doctor()->where('status', true)->get();
 
         return view('groups.show', [
             'group'   => $group,
-            'doctors' => $doctors,
+            'doctors' => $doctors->load('user', 'speciality'),
         ]);
     }
 
