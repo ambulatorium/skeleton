@@ -8,7 +8,7 @@ class Doctor extends Model
 {
     protected $table = 'doctors';
 
-    protected $fillable = ['user_id', 'group_id', 'speciality_id', 'gender', 'bio'];
+    protected $fillable = ['user_id', 'group_id', 'speciality_id', 'bio', 'status'];
 
     // public function getRouteKeyName()
     // {

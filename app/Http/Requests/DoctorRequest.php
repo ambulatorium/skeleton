@@ -14,24 +14,19 @@ class DoctorRequest extends FormRequest
     public function rules()
     {
         return [
-            'polyclinic_id'    => 'required',
-            'group_id'         => 'required',
-            'name'             => 'required|min:5',
-            'gender'           => 'required',
-            'bio'              => 'nullable|max:160',
-            'price_of_service' => 'required',
+            'speciality_id'    => 'required',
+            'bio'              => 'required|string|max:160',
+            // @todo add all information about doctor
         ];
     }
 
     public function formDoctor()
     {
         return [
-            'polyclinic_id'    => $this->polyclinic_id,
-            'group_id'         => $this->group_id,
-            'name'             => $this->name,
-            'gender'           => $this->gender,
+            'speciality_id'    => $this->speciality_id,
             'bio'              => $this->bio,
-            'price_of_service' => $this->price_of_service,
+            'status'           => true,
+            // @todo add all information about doctor
         ];
     }
 }

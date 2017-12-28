@@ -40,6 +40,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::patch('/settings/profile/{user}', 'PeopleController@updateProfile');
         Route::get('/settings/account', 'PeopleController@settingAccount');
         Route::patch('/settings/account/{user}', 'PeopleController@updateAccount');
+        Route::get('/settings/profile/doctor', 'PeopleController@SettingDoctor');
+        Route::patch('/settings/profile/doctor/{doctor}', 'PeopleController@updateDoctor');
     });
 
     // Multiple Health Care Provider
