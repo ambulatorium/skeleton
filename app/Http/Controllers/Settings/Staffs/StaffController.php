@@ -11,6 +11,7 @@ use App\Models\Setting\Staff\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\InvitationRequest;
 
 class StaffController extends Controller
 {
@@ -35,29 +36,9 @@ class StaffController extends Controller
         return view('settings.staffs.create', ['roles' => $roles]);
     }
 
-    public function store(Request $request)
+    public function store(InvitationRequest $request)
     {
-        $this->validate($request, [
-            'email' => 'required|string|email|max:255|unique:invitations',
-            'role'  => 'required|min:1',
-         ]);
-
-        // temporary. invite where user not exist.
-        if (User::where('email', request('email'))->first()) {
-            flash('Warning! Email already exists.')->warning();
-
-            return redirect()->back();
-        }
-
-        do { $token = str_random(); }
-        //check if the token already exists and if it does, try again
-        while (Invitation::where('token', $token)->first());
-
-        $invite = Invitation::create([
-            'email'    => $request->get('email'),
-            'role'     => $request->get('role'),
-            'token'    => $token,
-        ]);
+        $invite = Invitation::create($request->formInvitation()->except('group_id'));
 
         Mail::to($request->get('email'))->send(new SendInvitation($invite));
 
@@ -65,7 +46,7 @@ class StaffController extends Controller
         return redirect()->route('staffs.index');
     }
 
-    public function show($id)
+    public function show()
     {
         return redirect('/settings/staffs');
     }
@@ -75,10 +56,7 @@ class StaffController extends Controller
         $user = User::findOrFail($id);
         $roles = Role::whereIn('name', ['owner', 'administrator', 'patient'])->get();
 
-        return view('settings.staffs.edit', [
-            'user'  => $user,
-            'roles' => $roles,
-        ]);
+        return view('settings.staffs.edit', compact('user', 'roles'));
     }
 
     public function update(Request $request, $id)
@@ -106,7 +84,7 @@ class StaffController extends Controller
         return redirect()->route('staffs.index');
     }
 
-    public function destroy($id)
+    public function destroy()
     {
         return redirect('/settings/staffs');
     }

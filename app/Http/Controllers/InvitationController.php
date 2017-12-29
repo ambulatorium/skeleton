@@ -10,34 +10,13 @@ use App\Models\Doctor\Doctor;
 use App\Models\Patient\Patient;
 use App\Models\Setting\Staff\Staff;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\InvitationRequest;
 
 class InvitationController extends Controller
 {
-    public function send(Request $request)
+    public function send(InvitationRequest $request)
     {
-        $this->validate(request(), [
-            'email'    => 'required|string|email|max:255|unique:invitations',
-            'group_id' => 'required',
-            'role'     => 'required',
-        ]);
-
-        // temporary. invite where user not exist.
-        if (User::where('email', request('email'))->first()) {
-            flash('Warning! Email already exists.')->warning();
-
-            return redirect()->back();
-        }
-
-        do { $token = str_random(); }
-        //check if the token already exists and if it does, try again
-        while (Invitation::where('token', $token)->first());
-
-        $invite = Invitation::create([
-            'email'    => $request->get('email'),
-            'group_id' => $request->get('group_id'),
-            'role'     => $request->get('role'),
-            'token'    => $token,
-        ]);
+        $invite = Invitation::create($request->formInvitation());
 
         Mail::to($request->get('email'))->send(new SendInvitation($invite));
 
