@@ -8,7 +8,10 @@ class Schedule extends Model
 {
     protected $table = 'schedules';
 
-    protected $guarded = [];
+    protected $fillable = [
+        'doctor_id', 'day', 'start_time', 'end_time', 'start_break_time',
+        'end_break_time', 'estimated_service_time', 'estimated_price_service', 'is_available',
+    ];
 
     public function doctor()
     {
