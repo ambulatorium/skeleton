@@ -19,7 +19,7 @@ class CreateSchedulesTable extends Migration
             $table->string('day');
             $table->time('start_time');
             $table->time('end_time');
-            $table->time('estimated_service_time');
+            $table->smallInteger('estimated_service_time');
             $table->double('estimated_price_service');
             $table->boolean('is_available')->default(1);
             $table->timestamps();

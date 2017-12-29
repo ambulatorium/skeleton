@@ -13,7 +13,7 @@
             @forelse($schedules as $schedule)
                 <div class="col-md-4 mt-5">
                     <div class="list-group text-center">
-                        <a href="#" class="list-group-item list-group-item-action">
+                        <a href="/people/schedules/{{$schedule->id}}" class="list-group-item list-group-item-action">
                             <div class="text-muted">
                                 <h1>{{ $schedule->day }}</h1>
                             </div>
@@ -30,9 +30,12 @@
                 <div class="col-md-12 mt-5 text-center">
                     <h5 class="text-muted"><strong>You don't have any schedule yet</strong></h5>
                     <h6 class="text-muted">when you make an schedule, it'll show up here.</h6>
-                    <a href="/people/schedules/create" class="btn btn-danger btn-sm mt-3">Create schedule</a>
                 </div>
             @endforelse
+            
+            <div class="col-md-12 mt-2 text-center">
+                <a href="/people/schedules/create" class="btn btn-danger btn-sm mt-3">Create schedule</a>
+            </div>
 
         </div>
     </div>

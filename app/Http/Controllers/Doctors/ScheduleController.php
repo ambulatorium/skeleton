@@ -46,23 +46,32 @@ class ScheduleController extends Controller
         return redirect('/people/schedules');
     }
 
-    public function show($id)
+    public function show(Schedule $schedule)
     {
-        //
+        return view('people.schedule.show', compact('schedule'));
     }
 
-    public function edit($id)
+    public function edit(Schedule $schedule)
     {
-        //
+        return view('people.schedule.edit', compact('schedule'));
     }
 
-    public function update(Request $request, $id)
+    public function update(ScheduleRequest $request, Schedule $schedule)
     {
-        //
+        $schedule->fill($request->formSchedule());
+        $schedule->save();
+
+        flash('Successful! Schedule updated.')->success();
+
+        return redirect('/people/schedules');
     }
 
-    public function destroy($id)
+    public function destroy(Schedule $schedule)
     {
-        //
+        $schedule->delete();
+
+        flash('Successful! Schedule deleted.')->success();
+
+        return redirect('/people/schedules');
     }
 }
