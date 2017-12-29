@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\Patient\Patient;
-use App\Models\Setting\Staff\Permission;
-use App\Models\Setting\Staff\Role;
 use App\User;
+use App\Models\Patient\Patient;
 use Illuminate\Database\Seeder;
+use App\Models\Setting\Staff\Role;
+use App\Models\Setting\Staff\Permission;
 
 class DatabaseSeeder extends Seeder
 {
@@ -42,27 +42,9 @@ class DatabaseSeeder extends Seeder
                 $this->command->info('Owner granted all the permissions');
             }
 
-            if ($role->name == 'administrator') {
+            if ($role->name == 'doctor') {
                 $role->givePermissionTo([
-                    'view-appointments', 'add-appointments', 'edit-appointments', 'delete-appointments',
                     'view-schedules', 'add-schedules', 'edit-schedules', 'delete-schedules',
-                    'view-patients', 'add-patients', 'edit-patients', 'delete-patients',
-                    'view-doctors', 'add-doctors', 'edit-doctors', 'delete-doctors',
-                    'view-polyclinics', 'add-polyclinics', 'edit-polyclinics', 'delete-polyclinics',
-                ]);
-            }
-
-            if ($role->name == 'nurse') {
-                $role->givePermissionTo([
-                    'view-doctors',
-                ]);
-            }
-
-            if ($role->name == 'patient') {
-                $role->givePermissionTo([
-                    'view-bookings', 'add-bookings',
-                    'add-appointments',
-                    // 'view-doctors', 'view-polyclinics',
                 ]);
             }
         }

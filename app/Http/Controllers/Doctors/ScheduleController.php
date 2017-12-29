@@ -2,42 +2,37 @@
 
 namespace App\Http\Controllers\Doctors;
 
-use App\Http\Controllers\Controller;
-use App\Models\Doctor\Schedule;
 use Illuminate\Http\Request;
+use App\Models\Doctor\Schedule;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ScheduleRequest;
 
 class ScheduleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:view-schedules|add-schedules|edit-schedules|delete-schedules']);
+        $this->middleware(['role:doctor']);
     }
 
     public function index()
     {
-        //
+        $schedules = Schedule::where('doctor_id', Auth::user()->doctor->id)->get();
+
+        return view('people.schedule.index', compact('schedules'));
     }
 
     public function create()
     {
-        //
+        return view('people.schedule.create');
     }
 
-    public function store(Request $request)
+    public function store(ScheduleRequest $request)
     {
-        $this->validate(request(), [
-            'doctor_id' => 'required',
-            'day'       => 'required',
-            'from_time' => 'required',
-            'to_time'   => 'required',
-         ]);
-
         $checkSchedules = Schedule::where([
-            ['doctor_id', $request->get('doctor_id')],
+            ['doctor_id', Auth::user()->doctor->id],
             ['day', $request->get('day')],
         ]);
-
-        // dd($checkSchedules->first());
 
         if ($checkSchedules->first()) {
             flash('Warning! Schedule you selected is already exist')->warning();
@@ -45,11 +40,10 @@ class ScheduleController extends Controller
             return redirect()->back();
         }
 
-        Schedule::create($request->all());
+        $schedule = Schedule::create($request->formSchedule());
 
         flash('Successful! New schedule created')->success();
-
-        return redirect()->back();
+        return redirect('/people/schedules');
     }
 
     public function show($id)

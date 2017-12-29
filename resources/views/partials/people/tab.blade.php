@@ -4,6 +4,11 @@
             <li class="nav-item">
                 <a class="nav-link @yield('tab-people')" href="/people">Appointments</a>
             </li>
+            @role('doctor')
+                <li class="nav-item">
+                    <a class="nav-link @yield('tab-schedule')" href="/people/schedules">Schedules</a>
+                </li>
+            @endrole
             <li class="nav-item">
                 <a class="nav-link @yield('tab-health-history')" href="#">Health History</a>
             </li>
