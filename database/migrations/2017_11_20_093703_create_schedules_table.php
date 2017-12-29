@@ -17,8 +17,11 @@ class CreateSchedulesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('doctor_id');
             $table->string('day');
-            $table->time('from_time');
-            $table->time('to_time');
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->time('estimated_service_time');
+            $table->double('estimated_price_service');
+            $table->boolean('is_available')->default(1);
             $table->timestamps();
         });
     }
