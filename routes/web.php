@@ -12,8 +12,6 @@ Route::get('/invitations/{token}', 'InvitationController@accept')->middleware('g
 Route::post('/invitations/{token}', 'InvitationController@join')->middleware('guest')->name('join');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('schedules', 'Doctors\ScheduleController');
-
     Route::get('/physical-appointment/scheduling/{doctor}', 'BookingController@schedulingAppointment');
 
     Route::get('/patients', 'Patients\PatientController@index');
@@ -36,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
     // people. patient,owner,administrator,admin-group,doctor,nurse
     Route::group(['prefix' => 'people'], function () {
         Route::get('/', 'PeopleController@profile');
+        Route::resource('schedules', 'Doctors\ScheduleController');
         Route::get('/settings/profile', 'PeopleController@settingProfile');
         Route::patch('/settings/profile/{user}', 'PeopleController@updateProfile');
         Route::get('/settings/account', 'PeopleController@settingAccount');
