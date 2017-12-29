@@ -32,7 +32,7 @@ class InvitationRequest extends FormRequest
 
     protected function generateToken()
     {
-        $token = str_random(10);
+        $token = str_random(60);
         if (Invitation::where('token', $token)->first()) {
             $this->generateToken();
         }

@@ -38,7 +38,7 @@ class StaffController extends Controller
 
     public function store(InvitationRequest $request)
     {
-        $invite = Invitation::create($request->formInvitation()->except('group_id'));
+        $invite = Invitation::create($request->formInvitation('email', 'role', 'token'));
 
         Mail::to($request->get('email'))->send(new SendInvitation($invite));
 

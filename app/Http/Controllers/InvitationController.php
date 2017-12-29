@@ -33,6 +33,7 @@ class InvitationController extends Controller
         return view('auth.invitation', compact('invite'));
     }
 
+    // @todo refactoring soon
     public function join($token)
     {
         $this->validate(request(), [
