@@ -48,7 +48,10 @@ class ScheduleController extends Controller
 
     public function show(Schedule $schedule)
     {
-        return view('people.schedule.show', compact('schedule'));
+        $start_time = strtotime($schedule->start_time);
+        $end_time = strtotime($schedule->end_time);
+
+        return view('people.schedule.show', compact('schedule', 'start_time', 'end_time'));
     }
 
     public function edit(Schedule $schedule)
