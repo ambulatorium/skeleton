@@ -35,13 +35,8 @@ class Doctor extends Model
         return $this->hasMany('App\Models\Doctor\Schedule');
     }
 
-    public function appointment()
+    public function scopeFilter($query, $filters)
     {
-        return $this->hasMany('App\Models\Appointment\Appointment');
+        return $filters->apply($query);
     }
-
-    // public function scopeFilter($query, $filters)
-    // {
-    //     return $filters->apply($query);
-    // }
 }

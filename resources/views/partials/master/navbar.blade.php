@@ -1,9 +1,10 @@
 <div class="collapse navbar-collapse" id="navbarMenu">
 
+    {{--  @todo search doctor, healthcare provider  --}}
     <ul class="navbar-nav mr-auto">
         <form action="#" method="#" class="form-inline">
             <div class="input-group">
-                <input class="search-input" type="search" name="query" placeholder="search doctor name...">
+                <input class="search-input" type="search" name="query" placeholder="search...">
             </div>
         </form>
     </ul>
@@ -16,7 +17,7 @@
         @else
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle active" id="navbarMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{ Auth::user()->name }}
+                    <strong>{{ Auth::user()->name }}</strong>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarMenu">
                     <a href="/people" class="dropdown-item">My Profile</a>

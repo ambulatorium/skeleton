@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Appointments;
 
-use App\Http\Controllers\Controller;
-use App\Models\Appointment\Appointment;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Appointment\Appointment;
 
 class AppointmentController extends Controller
 {

@@ -15,12 +15,14 @@ class PeopleController extends Controller
 {
     public function profile()
     {
-        $appointments = Appointment::with('doctor.speciality', 'doctor.group')
-            ->where([
-                ['user_id', Auth::user()->id],
-            ])->get();
+        $appointments = Appointment::with('schedule.doctor.user')->where('user_id', Auth::user()->id)->get();
 
         return view('people.profile', compact('appointments'));
+    }
+
+    public function appointment(Appointment $appointment)
+    {
+        return view('people.appointment', compact('appointment'));
     }
 
     public function settingProfile()

@@ -39,6 +39,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Appointment\Appointment');
     }
 
+    public function schedulingAppointment(Models\Appointment\Appointment $appointment)
+    {
+        $this->appointment()->save($appointment);
+    }
+
     public function medicalRecord()
     {
         return $this->hasMany('App\Models\MedicalRecord\MedicalRecord');

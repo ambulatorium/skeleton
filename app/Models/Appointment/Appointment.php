@@ -9,8 +9,8 @@ class Appointment extends Model
     protected $table = 'appointments';
 
     protected $fillable = [
-        'user_id', 'doctor_id', 'appointment_number', 'date_of_visit',
-        'queue_number', 'patient_condition', 'status', 'preferred_time',
+        'user_id', 'schedule_id', 'appointment_number', 'date',
+        'queue_number', 'preferred_time', 'patient_condition', 'status',
     ];
 
     public function user()
@@ -18,9 +18,9 @@ class Appointment extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function doctor()
+    public function schedule()
     {
-        return $this->belongsTo('App\Models\Doctor\Doctor');
+        return $this->belongsTo('App\Models\Doctor\Schedule');
     }
 
     public function medicalRecord()
