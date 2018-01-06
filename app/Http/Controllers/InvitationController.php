@@ -21,12 +21,13 @@ class InvitationController extends Controller
         Mail::to($request->get('email'))->send(new SendInvitation($invite));
 
         flash('Successful! Invitation sent.')->success();
+
         return redirect()->back();
     }
 
     public function accept($token)
     {
-        if (!$invite = Invitation::where('token', $token)->first()) {
+        if (! $invite = Invitation::where('token', $token)->first()) {
             abort(404);
         }
 
@@ -41,7 +42,7 @@ class InvitationController extends Controller
             'password' => 'required|string|min:6|confirmed',
         ]);
 
-        if (!$invite = Invitation::where('token', $token)->first()) {
+        if (! $invite = Invitation::where('token', $token)->first()) {
             abort(500);
         }
 
@@ -73,6 +74,7 @@ class InvitationController extends Controller
         $invite->delete();
 
         flash('Successful! Invitation Accepted. Now you can login with your credentials.')->success();
+
         return redirect('/login');
     }
 
@@ -81,6 +83,7 @@ class InvitationController extends Controller
         $invitation->delete();
 
         flash('Successful! Invitation deleted.')->success();
+
         return redirect()->back();
     }
 }

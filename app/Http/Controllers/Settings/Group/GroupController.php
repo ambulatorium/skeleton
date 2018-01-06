@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Settings\Group;
 
-use App\Models\Setting\Group\Group;
 use App\Http\Requests\GroupRequest;
+use App\Models\Setting\Group\Group;
 use App\Http\Controllers\Controller;
 
 class GroupController extends Controller
@@ -12,7 +12,7 @@ class GroupController extends Controller
     {
         $this->middleware(['role:owner|admin'])->except(['show']);
     }
-    
+
     public function index()
     {
         $groups = Group::paginate(5);
@@ -30,6 +30,7 @@ class GroupController extends Controller
         Group::create($request->formGroup());
 
         flash('Successful! New health care created')->success();
+
         return redirect('/settings/groups');
     }
 
@@ -49,6 +50,7 @@ class GroupController extends Controller
         $group->save();
 
         flash('Successful! Health Care Updated')->success();
+
         return redirect('/'.$group->slug.'/settings/profile');
     }
 
@@ -58,7 +60,7 @@ class GroupController extends Controller
             'doctor' => 'doctor',
         ]);
 
-        if(empty($relationships)) {
+        if (empty($relationships)) {
             $group->delete();
 
             flash('Successful! The group deleted')->success();

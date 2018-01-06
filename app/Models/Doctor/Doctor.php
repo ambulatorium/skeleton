@@ -12,7 +12,7 @@ class Doctor extends Model
 
     // public function getRouteKeyName()
     // {
-    //   return 'name';   
+    //   return 'name';
     // }
 
     public function user()

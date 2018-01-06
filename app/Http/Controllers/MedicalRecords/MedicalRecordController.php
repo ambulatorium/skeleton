@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\MedicalRecords;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment\Appointment;
 use App\Models\MedicalRecord\MedicalRecord;
-use Illuminate\Http\Request;
 
 class MedicalRecordController extends Controller
 {
