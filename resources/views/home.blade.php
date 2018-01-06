@@ -16,7 +16,7 @@
                         </p>
                     </div>
                     <div class="card-body">
-                        <form action="/physical-appointment" method="get" class="form-horizontal">
+                        <form action="/scheduling/physical-appointment" method="get" class="form-horizontal">
 
                             <div class="form-group">
                                 <select name="location" class="form-control" required>

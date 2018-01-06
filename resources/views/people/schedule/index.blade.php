@@ -7,36 +7,34 @@
 
     @include('partials.people.tab')
 
-    <div class="container">
-        <div class="row">
+    <div class="col-md-8 offset-md-2 mt-3">
+        
+        @include('partials.people.profile')
 
+        <div class="list-group mt-2">
             @forelse($schedules as $schedule)
-                <div class="col-md-4 mt-5">
-                    <div class="list-group text-center">
-                        <a href="/people/schedules/{{$schedule->id}}" class="list-group-item list-group-item-action">
-                            <div class="text-muted">
-                                <h1>{{ $schedule->day }}</h1>
-                            </div>
-                            <small class="mb-1">
-                                Working Hours
-                                {{ \Carbon\Carbon::parse($schedule->start_time)->format('H:ia') }} 
-                                        -
-                                {{ \Carbon\Carbon::parse($schedule->end_time)->format('H:ia') }}
-                            </small>
-                        </a>
-                    </div>
-                </div>
+                <a href="/people/schedules/{{$schedule->id}}" class="list-group-item list-group-item-action">
+                    <h5>
+                        {{ $schedule->day }}
+                        <small>
+                            {{ \Carbon\Carbon::parse($schedule->start_time)->format('H:ia') }} 
+                                -
+                            {{ \Carbon\Carbon::parse($schedule->end_time)->format('H:ia') }}
+                        </small>
+                    </h5>
+                </a>
             @empty
-                <div class="col-md-12 mt-5 text-center">
-                    <h5 class="text-muted"><strong>You don't have any schedule yet</strong></h5>
-                    <h6 class="text-muted">when you make an schedule, it'll show up here.</h6>
+                <div class="list-group-item">
+                    <h5 class="text-muted text-center"><strong>You don't have any schedule yet</strong></h5>
+                    <h6 class="text-muted text-center">when you create schedule, it'll show up here.</h6>
                 </div>
             @endforelse
-            
-            <div class="col-md-12 mt-2 text-center">
-                <a href="/people/schedules/create" class="btn btn-danger btn-sm mt-3">Create schedule</a>
-            </div>
-
         </div>
+
+        <div class="mt-3 text-center">
+            <a href="/people/schedules/create" class="btn btn-outline-secondary btn-sm">Create schedule</a>            
+        </div>
+
     </div>
+
 @endsection

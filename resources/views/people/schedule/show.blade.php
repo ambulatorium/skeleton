@@ -1,50 +1,47 @@
 @extends('layouts.master')
 
 @section('title', Auth::user()->name)
+@section('tab-schedule', 'active')
 
 @section('content')
-    <div class="container mb-3">
-        <div class="row">
 
-            <div class="col-md-8 mt-5">
-                <h4 class="text-muted mb-2">
-                    <strong>{{ $schedule->day }}</strong>
-                    @if($schedule->is_available)
-                        <small class="text-muted">available</small>
-                    @else
-                        <small class="text-muted">unavailable</small>
-                    @endif
+    @include('partials.people.tab')
 
-                    <div class="dropdown float-right">
-                        <button class="btn btn-sm btn-outline-danger dropdown-toggle" type="button" id="manageSchedule" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Manage
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="manageSchedule">
-                            <a href="/people/schedules/{{$schedule->id}}/edit" class="dropdown-item">Edit</a>
-                        
-                            <a href="/people/schedules/{{ $schedule->id }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('delete-schedule').submit();">
-                                Delete
-                            </a>
-                        </div>
-                    </div>
+    <div class="col-md-8 offset-md-2 mt-5">
+        <h4 class="text-secondary mb-4">
+            <strong>{{ $schedule->day }}</strong>
+            @if($schedule->is_available)
+                <small class="text-muted">available</small>
+            @else
+                <small class="text-muted">unavailable</small>
+            @endif
 
-                    <small>
-                            {{ \Carbon\Carbon::parse($schedule->start_time)->format('g:ia') }}
-                            -
-                            {{ \Carbon\Carbon::parse($schedule->end_time)->format('g:ia') }}
-                    </small>
-                    <hr>
-                </h4>
-
-                @for($i=$start_time; $i<=$end_time; $i+=(60*$schedule->estimated_service_time))
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="timeslot[]" autocomplete="off"> {{ date('g:ia', $i) }}
-                    </label>
-                @endfor
-
+            <div class="dropdown float-right">
+                <button class="btn btn-sm btn-outline-danger dropdown-toggle" type="button" id="manageSchedule" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Manage
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="manageSchedule">
+                    <a href="/people/schedules/{{$schedule->id}}/edit" class="dropdown-item">Edit</a>
+                
+                    <a href="/people/schedules/{{ $schedule->id }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('delete-schedule').submit();">
+                        Delete
+                    </a>
+                </div>
             </div>
 
-        </div>
+            <small>
+                    {{ \Carbon\Carbon::parse($schedule->start_time)->format('g:ia') }}
+                    -
+                    {{ \Carbon\Carbon::parse($schedule->end_time)->format('g:ia') }}
+            </small>
+        </h4>
+
+        @for($i=$start_time; $i<=$end_time; $i+=(60*$schedule->estimated_service_time))
+            <label class="btn btn-secondary">
+                <input type="radio" name="timeslot[]" autocomplete="off"> {{ date('g:ia', $i) }}
+            </label>
+        @endfor
+
     </div>
 
     <form id="delete-schedule" action="/people/schedules/{{ $schedule->id }}" method="POST" style="display: none;">

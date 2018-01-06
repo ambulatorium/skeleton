@@ -17,4 +17,14 @@ class Schedule extends Model
     {
         return $this->belongsTo('App\Models\Doctor\Doctor');
     }
+
+    public function appointment()
+    {
+        return $this->hasMany('App\Models\Doctor\Schedule');
+    }
+
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
 }
