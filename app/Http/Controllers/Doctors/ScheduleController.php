@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Doctors;
 
-use Illuminate\Http\Request;
 use App\Models\Doctor\Schedule;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ScheduleRequest;
 
 class ScheduleController extends Controller
@@ -43,6 +42,7 @@ class ScheduleController extends Controller
         $schedule = Schedule::create($request->formSchedule());
 
         flash('Successful! New schedule created')->success();
+
         return redirect('/people/schedules');
     }
 

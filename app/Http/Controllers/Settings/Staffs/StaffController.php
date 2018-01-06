@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Settings\Staffs;
 
 use App\User;
 use App\Models\Invitation;
-use Illuminate\Http\Request;
 use App\Mail\SendInvitation;
+use Illuminate\Http\Request;
 use App\Models\Patient\Patient;
 use App\Models\Setting\Staff\Role;
 use App\Http\Controllers\Controller;
@@ -23,7 +23,7 @@ class StaffController extends Controller
     public function index()
     {
         $users = User::with('roles')->whereHas('roles', function ($q) {
-            $q->whereIn('name', ['owner', 'administrator',]);
+            $q->whereIn('name', ['owner', 'administrator']);
         })->get();
 
         return view('settings.staffs.index', compact('users'));
@@ -43,6 +43,7 @@ class StaffController extends Controller
         Mail::to($request->get('email'))->send(new SendInvitation($invite));
 
         flash('Successful! Invitation sent.')->success();
+
         return redirect()->route('staffs.index');
     }
 
@@ -81,6 +82,7 @@ class StaffController extends Controller
         }
 
         flash('Successful! Staff updated')->success();
+
         return redirect()->route('staffs.index');
     }
 

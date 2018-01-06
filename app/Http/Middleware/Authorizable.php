@@ -22,13 +22,13 @@ class Authorizable
         }
 
         if ($role != null) {
-            if (!$request->user()->hasAnyRole(explode('|', $role))) {
+            if (! $request->user()->hasAnyRole(explode('|', $role))) {
                 abort(403);
             }
         }
 
         if ($permission != null) {
-            if (!$request->user()->can($permission)) {
+            if (! $request->user()->can($permission)) {
                 abort(403);
             }
         }

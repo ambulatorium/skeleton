@@ -35,5 +35,4 @@ class DoctorController extends Controller
 
         return view('doctors.appointments.index', compact('appointments'));
     }
-
 }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Appointments;
 
 use Illuminate\Http\Request;
 use App\Models\Doctor\Doctor;
-use App\Filters\DoctorFilters;
 use Illuminate\Support\Carbon;
 use App\Models\Doctor\Schedule;
 use App\Models\Setting\Group\Group;
@@ -60,7 +59,7 @@ class PhysicalController extends Controller
 
             return view('appointments.physical.create', compact('doctor', 'schedule', 'start_time', 'end_time'));
         }
-            
+
         $schedules = $doctor->schedule()->get();
 
         return view('appointments.physical.show', compact('doctor', 'schedules'));

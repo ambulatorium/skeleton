@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Settings\Speciality;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Setting\Speciality\Speciality;
-use Illuminate\Http\Request;
 
 class SpecialityController extends Controller
 {
@@ -35,6 +35,7 @@ class SpecialityController extends Controller
         Speciality::create($request->all());
 
         flash('Successful! The new speciality created')->success();
+
         return redirect('/settings/specialities');
     }
 
@@ -59,6 +60,7 @@ class SpecialityController extends Controller
         $speciality->save();
 
         flash('Successful! The speciality updated')->success();
+
         return redirect('/settings/specialities');
     }
 

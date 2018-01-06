@@ -42,7 +42,7 @@ $factory->define(App\Models\Doctor\Doctor::class, function (Faker $faker) {
 // specialities
 $factory->define(App\Models\Setting\Speciality\Speciality::class, function (Faker $faker) {
     return [
-        'name'        => $faker->randomElement($array = array ('Pulmonology', 'Nephrology')),
+        'name'        => $faker->randomElement($array = ['Pulmonology', 'Nephrology']),
         'description' => $faker->word,
     ];
 });

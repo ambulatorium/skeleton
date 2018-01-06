@@ -2,8 +2,8 @@
 
 namespace App\Models\Patient;
 
-use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Model;
 
 class Patient extends Model
 {

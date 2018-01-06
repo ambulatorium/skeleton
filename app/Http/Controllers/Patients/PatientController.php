@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Patients;
 
-use Illuminate\Http\Request;
 use App\Models\Patient\Patient;
 use App\Http\Controllers\Controller;
 

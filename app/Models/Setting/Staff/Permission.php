@@ -31,7 +31,7 @@ class Permission extends \Spatie\Permission\Models\Permission
             'add-appointments',
             'edit-appointments',
             'delete-appointments',
-            
+
             'view-bookings',
             'add-bookings',
 
