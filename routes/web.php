@@ -2,17 +2,20 @@
 
 // home
 Route::get('/', 'HomeController@home');
-Route::get('/physical-appointment', 'HomeController@searchSchedule');
-Route::get('/physical-appointment/{doctor}/{schedule}', 'HomeController@searchDoctor')->where('schedule', '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))');
+Route::get('/scheduling/physical-appointment', 'Appointments\PhysicalController@index');
 
 // Authentication default
 Auth::routes();
 
+// user invitation
 Route::get('/invitations/{token}', 'InvitationController@accept')->middleware('guest')->name('accept');
 Route::post('/invitations/{token}', 'InvitationController@join')->middleware('guest')->name('join');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/physical-appointment/scheduling/{doctor}', 'BookingController@schedulingAppointment');
+
+    // scheduling physical appointment
+    Route::get('/scheduling/physical-appointment/doctor/{doctor}', 'Appointments\PhysicalController@create');
+    Route::post('/scheduling/physical-appointment', 'Appointments\PhysicalController@store');
 
     Route::get('/patients', 'Patients\PatientController@index');
 
@@ -35,6 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'people'], function () {
         Route::get('/', 'PeopleController@profile');
         Route::resource('schedules', 'Doctors\ScheduleController');
+        Route::get('/appointment/{appointment}', 'PeopleController@appointment');
         Route::get('/settings/profile', 'PeopleController@settingProfile');
         Route::patch('/settings/profile/{user}', 'PeopleController@updateProfile');
         Route::get('/settings/account', 'PeopleController@settingAccount');
