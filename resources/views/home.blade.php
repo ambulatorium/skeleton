@@ -12,7 +12,7 @@
                     <div class="card-header">
                         <h5 class="card-title text-center"><strong>Search Doctor Schedule</strong></h5>
                         <p class="card-subtitle text-center">
-                            Choose polyclinic and date for your appointment
+                            Choose speciality/polyclinic and date for your appointment
                         </p>
                     </div>
                     <div class="card-body">
