@@ -17,14 +17,16 @@
         @else
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle active" id="navbarMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <strong>{{ Auth::user()->email }}</strong>
+                    <img src="{{ asset('img/example-avatar.png') }}" alt="{{ Auth::user()->name }}" class="img-responsive rounded" width="30">
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarMenu">
-                    <a href="/people" class="dropdown-item">My Profile</a>
-                    <a href="/people/settings/account" class="dropdown-item">My Account Settings</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarMenu">
+                    <h6 class="dropdown-header"><strong>{{ Auth::user()->name }}</strong></h6>
+                    <div class="dropdown-divider"></div>
+                    <a href="/people" class="dropdown-item">Profile</a>
+                    <a href="/people/settings/account" class="dropdown-item">Settings</a>
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        Log Out
+                        Sign Out
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
