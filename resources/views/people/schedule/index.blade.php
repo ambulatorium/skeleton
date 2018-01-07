@@ -13,7 +13,7 @@
 
         <div class="list-group mt-2">
             @forelse($schedules as $schedule)
-                <a href="/people/schedules/{{$schedule->id}}" class="list-group-item list-group-item-action">
+                <a href="/people/schedules/{{$schedule->id}}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                     <h5>
                         {{ $schedule->day }}
                         <small>
@@ -22,6 +22,8 @@
                             {{ \Carbon\Carbon::parse($schedule->end_time)->format('H:ia') }}
                         </small>
                     </h5>
+
+                    <span class="badge badge-danger">{{ $schedule->appointment()->count() }} appointment</span>
                 </a>
             @empty
                 <div class="list-group-item">

@@ -36,11 +36,21 @@
             </small>
         </h4>
 
-        @for($i=$start_time; $i<=$end_time; $i+=(60*$schedule->estimated_service_time))
-            <label class="btn btn-secondary">
-                <input type="radio" name="timeslot[]" autocomplete="off"> {{ date('g:ia', $i) }}
-            </label>
-        @endfor
+        <div class="list-group">
+            @forelse($appointments as $appointment)
+                <div class="list-group-item">
+                    <h5>
+                        {{ \Carbon\Carbon::parse($appointment->date)->format('d F Y') }}
+                        preferred time {{ \Carbon\Carbon::parse($appointment->preferred_time)->format('H:ia') }}
+                        with {{ $appointment->user->name }}
+                    </h5>
+                </div>
+            @empty
+                <div class="list-group-item">
+                    <h5 class="text-muted text-center"><strong>This schedule don't have any appointment yet</strong></h5>
+                </div>
+            @endforelse
+        </div>
 
     </div>
 

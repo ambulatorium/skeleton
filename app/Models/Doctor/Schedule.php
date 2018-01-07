@@ -20,7 +20,7 @@ class Schedule extends Model
 
     public function appointment()
     {
-        return $this->hasMany('App\Models\Doctor\Schedule');
+        return $this->hasMany('App\Models\Appointment\Appointment');
     }
 
     public function scopeFilter($query, $filters)

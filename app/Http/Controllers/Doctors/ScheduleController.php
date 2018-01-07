@@ -6,6 +6,7 @@ use App\Models\Doctor\Schedule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ScheduleRequest;
+use App\Models\Appointment\Appointment;
 
 class ScheduleController extends Controller
 {
@@ -48,10 +49,9 @@ class ScheduleController extends Controller
 
     public function show(Schedule $schedule)
     {
-        $start_time = strtotime($schedule->start_time);
-        $end_time = strtotime($schedule->end_time);
+        $appointments = Appointment::with('user')->where('schedule_id', $schedule->id)->get();
 
-        return view('people.schedule.show', compact('schedule', 'start_time', 'end_time'));
+        return view('people.schedule.show', compact('schedule', 'appointments'));
     }
 
     public function edit(Schedule $schedule)
