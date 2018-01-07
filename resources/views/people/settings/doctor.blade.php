@@ -1,58 +1,53 @@
 @extends('layouts.master')
 
 @section('title', 'Profile Doctor')
-@section('tab-doctor', 'active')
+@section('sidebar_doctor_form', 'active')
 
 @section('content')
-<div class="container">
-    <div class="row">
 
-        @include('partials.people.tab-settings')
+    <div class="container mt-5">
+        <div class="row">
 
-        <div class="list-group col-md-9">
+            @include('partials.people.settings.sidebar')
 
-            <div class="list-group-item">
-                <strong>Doctor Information</strong>
-            </div>
+            <main class="col-sm-8 ml-sm-auto col-md-9 mb-5">
+                <div class="card">
 
-            <div class="list-group-item">
-                <form action="/people/settings/profile/doctor/{{$doctorProfile->id}}" method="POST">
-                    {{ csrf_field() }}
-                    {{ method_field('PATCH') }}
-                    
-                    {{--  <input type="hidden" name="status" value="1">  --}}
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label for="speciality_id">Speciality/Polyclinic</label>
-                            <select name="speciality_id" id="speciality_id" class="form-control" required>
-                                @if(!$doctorProfile->speciality_id)
-                                    <option value="">Select Speciality...</option>
-                                    @foreach($specialities as $speciality)
-                                        <option value="{{ $speciality->id }}">{{ $speciality->name }}</option>
-                                    @endforeach
-                                @else
-                                    <option value="{{ $doctorProfile->speciality_id }}">{{ $doctorProfile->speciality->name }}</option>
-                                    @foreach($specialities as $speciality)
-                                        <option value="{{ $speciality->id }}">{{ $speciality->name }}</option>
-                                    @endforeach
-                                @endif
-                            </select>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label for="bio">Bio</label>
-                            <textarea name="bio" id="bio" cols="5" rows="5" class="form-control">
-                                {{ old('bio', $doctorProfile->bio) }}
-                            </textarea>
-                        </div>
+                    <div class="card-header">
+                        <h5 class="card-text text-capitalize">Profile doctor</h5>
                     </div>
 
-                    <button class="btn btn-sm btn-danger" type="submit"><strong>UPDATE</strong></button>
-                </form>
-            </div>
+                    <div class="card-body">
+                        <form action="/people/settings/profile/doctor/{{$doctorProfile->id}}" method="POST">
+                            {{ csrf_field() }}
+                            {{ method_field('PATCH') }}
+                            
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="speciality_id">Speciality/Polyclinic*</label>
+                                    <select name="speciality_id" id="speciality_id" class="form-control" required>
+                                        <option value="">Choose one...</option>
+                                        @foreach($specialities as $speciality)
+                                            <option value="{{ $speciality->id }}" {{ old('speciality_id', $doctorProfile->speciality_id) == $speciality->id  ? 'selected' : '' }}>
+                                                {{ $speciality->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="bio">Bio*</label>
+                                    <input type="text" class="form-control" id="bio" name="bio" value="{{ old('bio', $doctorProfile->bio) }}" required>
+                                </div>
+                            </div>
+        
+                            <button class="btn btn-sm btn-danger" type="submit"><strong>UPDATE</strong></button>
+                        </form>
+                    </div>
+
+                </div>
+            </main>
 
         </div>
-
     </div>
-</div>
 
 @endsection
