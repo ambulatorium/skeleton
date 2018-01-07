@@ -17,7 +17,7 @@
         @else
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle active" id="navbarMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <strong>{{ Auth::user()->name }}</strong>
+                    <strong>{{ Auth::user()->email }}</strong>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarMenu">
                     <a href="/people" class="dropdown-item">My Profile</a>
