@@ -9841,12 +9841,6 @@ a:hover {
   text-decoration: underline;
 }
 
-.card-header-active {
-  background-color: #d71149;
-  color: #fff;
-  border: 0px solid #d71149;
-}
-
 .tbr-0 {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
