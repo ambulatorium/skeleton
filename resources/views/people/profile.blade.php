@@ -13,7 +13,7 @@
 
         <div class="list-group mt-2">
             @forelse($appointments as $appointment)
-                <a href="/people/appointment/{{$appointment->id}}" class="list-group-item list-group-item-action">
+                <a href="/people/appointment/{{$appointment->token}}" class="list-group-item list-group-item-action">
                     <h5>{{ \Carbon\Carbon::parse($appointment->date)->format('l') }}
                         <small>
                             {{ \Carbon\Carbon::parse($appointment->date)->format('F Y') }} with

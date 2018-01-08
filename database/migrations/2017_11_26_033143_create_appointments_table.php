@@ -18,7 +18,7 @@ class CreateAppointmentsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('schedule_id');
             $table->unsignedInteger('group_id');
-            $table->string('appointment_number');
+            $table->string('token')->unique();
             $table->date('date');
             $table->string('queue_number')->nullable();
             $table->time('preferred_time');

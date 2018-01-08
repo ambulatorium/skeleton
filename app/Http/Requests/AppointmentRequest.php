@@ -38,7 +38,7 @@ class AppointmentRequest extends FormRequest
             'user_id'            => $this->user_id,
             'schedule_id'        => $this->schedule_id,
             'group_id'           => $this->doctor->group->id,
-            'appointment_number' => $this->generateAppointmentNumber(),
+            'token'              => $this->generateToken(),
             'date'               => $this->date,
             'preferred_time'     => $this->preferred_time,
             'patient_condition'  => $this->patient_condition,
@@ -46,14 +46,14 @@ class AppointmentRequest extends FormRequest
         ];
     }
 
-    protected function generateAppointmentNumber()
+    protected function generateToken()
     {
-        $appointment_number = str_random(6);
+        $token = str_random(6);
 
-        if (Appointment::where('appointment_number', $appointment_number)->first()) {
-            $this->generateAppointmentNumber();
+        if (Appointment::where('token', $token)->first()) {
+            $this->generateToken();
         }
 
-        return $appointment_number;
+        return $token;
     }
 }

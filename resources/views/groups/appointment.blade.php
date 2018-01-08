@@ -13,7 +13,10 @@
             @forelse($appointments as $appointment)
                 <div class="col-md-4 mt-4">
                     <h5 class="mb-1">
-                        <a href="#">{{ $appointment->user->name }}</a><p>
+                        <small>token: </small>
+                        <a href="#"><small>{{ $appointment->token }}</small></a><p>
+                        
+                        {{ $appointment->user->name }}
                         <small>
                             {{ \Carbon\Carbon::parse($appointment->date)->format('l') }},
                             {{ \Carbon\Carbon::parse($appointment->date)->format('d F Y') }},
