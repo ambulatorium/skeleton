@@ -15,7 +15,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // scheduling physical appointment
     Route::get('/scheduling/physical-appointment/doctor/{doctor}', 'Appointments\PhysicalController@create');
-    Route::post('/scheduling/physical-appointment', 'Appointments\PhysicalController@store');
+    Route::post('/scheduling/physical-appointment/doctor/{doctor}', 'Appointments\PhysicalController@store');
 
     Route::get('/patients', 'Patients\PatientController@index');
 
@@ -50,6 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Multiple Health Care Provider
     Route::group(['prefix' => '{group}'], function () {
         Route::get('/', 'Settings\Group\GroupController@show');
+        Route::get('/appointments', 'Groups\GroupController@appointment');
         Route::get('/doctor/{doctor}', 'Doctors\DoctorController@show');
         Route::get('/settings/profile', 'Groups\SettingController@profile');
         Route::get('/settings/staffs', 'Groups\SettingController@staff');

@@ -17,6 +17,7 @@ class CreateAppointmentsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('schedule_id');
+            $table->unsignedInteger('group_id');
             $table->string('appointment_number');
             $table->date('date');
             $table->string('queue_number')->nullable();

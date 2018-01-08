@@ -65,7 +65,7 @@ class PhysicalController extends Controller
         return view('appointments.physical.show', compact('doctor', 'schedules'));
     }
 
-    public function store(AppointmentRequest $request)
+    public function store(Doctor $doctor, AppointmentRequest $request)
     {
         auth()->user()->schedulingAppointment(
             new Appointment($request->formAppointment())

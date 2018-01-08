@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers\Groups;
 
-use App\Models\Doctor\Doctor;
 use App\Models\Setting\Group\Group;
 use App\Http\Controllers\Controller;
 
 class GroupController extends Controller
 {
-    public function doctor(Doctor $doctor, Group $group)
+    public function appointment(Group $group)
     {
-        return view('groups.doctor.profile', compact('doctor', 'group'));
+        $appointments = $group->appointments()->get();
+
+        return view('groups.appointment', [
+            'group'        => $group,
+            'appointments' => $appointments->load('user'),
+        ]);
     }
 }

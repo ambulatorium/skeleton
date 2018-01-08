@@ -1,7 +1,7 @@
 <div class="col-md-12 mt-3">
     <div class="list-group">
         <div class="list-group-item">
-            <form action="/scheduling/physical-appointment" method="POST">
+            <form action="/scheduling/physical-appointment/doctor/{{$doctor->id}}" method="POST">
                 {{ csrf_field() }}
 
                 <input type="hidden" name="schedule_id" value="{{ $schedule->id }}">

@@ -34,7 +34,10 @@
         </div>
 
         <div class="mt-3 text-center">
-            <a href="/" class="btn btn-outline-secondary btn-sm">Schedule an appoinment</a>            
+            <a href="/" class="btn btn-outline-secondary btn-sm">Schedule an appoinment</a>
+            @role('admin-group|nurse')        
+                <a href="{{ $staff->group->slug }}" class="btn btn-outline-secondary btn-sm">{{ $staff->group->health_care_name }}</a>        
+            @endrole
         </div>
 
     </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\Doctor\Doctor;
+use App\Models\Setting\Staff\Staff;
 use App\Http\Requests\DoctorRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Appointment\Appointment;
@@ -16,6 +17,10 @@ class PeopleController extends Controller
     public function profile()
     {
         $appointments = Appointment::with('schedule.doctor.user')->where('user_id', Auth::user()->id)->get();
+        
+        if ($staff = Staff::where('user_id', Auth::user()->id)->first()) {
+            return view('people.profile', compact('appointments', 'staff'));
+        }
 
         return view('people.profile', compact('appointments'));
     }
