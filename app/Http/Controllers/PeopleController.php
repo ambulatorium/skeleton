@@ -17,7 +17,7 @@ class PeopleController extends Controller
     public function profile()
     {
         $appointments = Appointment::with('schedule.doctor.user')->where('user_id', Auth::user()->id)->get();
-        
+
         if ($staff = Staff::where('user_id', Auth::user()->id)->first()) {
             return view('people.profile', compact('appointments', 'staff'));
         }
