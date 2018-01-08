@@ -14,7 +14,7 @@
                 <div class="col-md-4 mt-4">
                     <h5 class="mb-1">
                         <small>token: </small>
-                        <a href="#"><small>{{ $appointment->token }}</small></a><p>
+                        <a href="/{{$group->slug}}/appointments/{{$appointment->token}}"><small>{{ $appointment->token }}</small></a><p>
                         
                         {{ $appointment->user->name }}
                         <small>

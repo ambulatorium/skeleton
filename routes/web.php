@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => '{group}'], function () {
         Route::get('/', 'Settings\Group\GroupController@show');
         Route::get('/appointments', 'Groups\GroupController@appointment');
+        Route::get('/appointments/{appointment}', 'Groups\GroupController@showAppointment');
         Route::get('/doctor/{doctor}', 'Doctors\DoctorController@show');
         Route::get('/settings/profile', 'Groups\SettingController@profile');
         Route::get('/settings/staffs', 'Groups\SettingController@staff');
