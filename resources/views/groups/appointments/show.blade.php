@@ -35,10 +35,11 @@
                 </div>
 
                 <div class="mt-3">
-                    <form action="#" method="#">
+                    <form action="/{{$group->slug}}/appointments/{{$appointment->token}}" method="POST">
                         {{ csrf_field() }}
+                        {{ method_field('PATCH') }}
 
-                        <button class="btn btn-sm btn-danger btn-block" type="submit">CONFIRM</button>
+                        <button class="btn btn-sm btn-danger btn-block" type="submit">CONFIRM APPOINTMENT</button>
                         <a href="/{{$group->slug}}/appointments" class="btn btn-sm btn-secondary btn-block">CANCEL</a>
                     </form>
                 </div>

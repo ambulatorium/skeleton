@@ -28,7 +28,9 @@
             @empty
                 <div class="col-md-12 mt-4 text-center">
                     <h5 class="text-muted">
-                        <strong class="mb-5">This Healthcare Provider doesn't have any appointment yet</strong>
+                        <strong class="mb-5">
+                            {{ $group->health_care_name }} don't have scheduled appointment yet
+                        </strong>
                     </h5>
                 </div>
             @endforelse
