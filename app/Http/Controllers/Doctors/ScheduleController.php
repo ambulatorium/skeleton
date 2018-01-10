@@ -17,7 +17,7 @@ class ScheduleController extends Controller
 
     public function index()
     {
-        $schedules = Schedule::where('doctor_id', Auth::user()->doctor->id)->get();
+        $schedules = Schedule::withCount('appointments')->where('doctor_id', Auth::user()->doctor->id)->get();
 
         return view('people.schedule.index', compact('schedules'));
     }

@@ -8,8 +8,6 @@
     @include('partials.people.tab')
 
     <div class="col-md-8 offset-md-2 mt-3">
-        
-        @include('partials.people.profile')
 
         <div class="list-group mt-2">
             @forelse($schedules as $schedule)
@@ -23,7 +21,7 @@
                         </small>
                     </h5>
 
-                    <span class="badge badge-danger">{{ $schedule->appointment()->count() }} appointment</span>
+                    <span class="badge badge-danger">{{ $schedule->appointments_count }} appointment</span>
                 </a>
             @empty
                 <div class="list-group-item">

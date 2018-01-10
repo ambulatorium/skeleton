@@ -18,7 +18,7 @@ class Schedule extends Model
         return $this->belongsTo('App\Models\Doctor\Doctor');
     }
 
-    public function appointment()
+    public function appointments()
     {
         return $this->hasMany('App\Models\Appointment\Appointment');
     }
