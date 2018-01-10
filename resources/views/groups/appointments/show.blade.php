@@ -39,7 +39,7 @@
                         {{ csrf_field() }}
 
                         <button class="btn btn-sm btn-danger btn-block" type="submit">CONFIRM</button>
-                        <a href="/{{$group->health_care_name}}/appointments" class="btn btn-sm btn-secondary btn-block">CANCEL</a>
+                        <a href="/{{$group->slug}}/appointments" class="btn btn-sm btn-secondary btn-block">CANCEL</a>
                     </form>
                 </div>
             </div>
