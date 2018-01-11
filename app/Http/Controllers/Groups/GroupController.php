@@ -22,7 +22,7 @@ class GroupController extends Controller
 
     public function showAppointment(Group $group, Appointment $appointment)
     {
-        return view('groups.appointments.show', compact('group','appointment'));
+        return view('groups.appointments.show', compact('group', 'appointment'));
     }
 
     public function confirmAppointment(Group $group, Appointment $appointment)
@@ -33,6 +33,5 @@ class GroupController extends Controller
         flash('Successful! appointment confirmed.')->success();
 
         return redirect('/'.$group->slug.'/appointments');
-        
     }
 }
