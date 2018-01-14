@@ -9,7 +9,7 @@ class Appointment extends Model
     protected $table = 'appointments';
 
     protected $fillable = [
-        'user_id', 'schedule_id', 'group_id', 'token', 'date',
+        'user_id', 'doctor_id', 'schedule_id', 'group_id', 'token', 'date',
         'queue_number', 'preferred_time', 'patient_condition', 'status',
     ];
 
@@ -21,6 +21,11 @@ class Appointment extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function doctor()
+    {
+        return $this->belongsTo('App\Models\Doctor\Doctor');
     }
 
     public function schedule()
