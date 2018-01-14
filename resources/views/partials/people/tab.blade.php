@@ -11,7 +11,7 @@
         </li>
     @endrole
     <li class="nav-item">
-        <a class="nav-link @yield('tab-health-history')" href="#">Health History</a>
+        <a class="nav-link @yield('tab-health-history')" href="/people/health-history">Health History</a>
     </li>
     @role('owner|admin')
         <li class="nav-item dropdown">

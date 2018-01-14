@@ -77,4 +77,17 @@ class ScheduleController extends Controller
 
         return redirect('/people/schedules');
     }
+
+    public function appointment()
+    {
+        $today = today()->format('Y-m-d');
+
+        $appointments = Appointment::where([
+                                        ['date', $today],
+                                        ['doctor_id', Auth::user()->doctor->id],
+                                    ])
+                                    ->paginate(1);
+
+        return view('people.schedule.appointment', compact('appointments'));
+    }
 }

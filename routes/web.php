@@ -39,6 +39,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', 'PeopleController@profile');
         Route::resource('schedules', 'Doctors\ScheduleController');
         Route::get('/appointment/{appointment}', 'PeopleController@appointment');
+        Route::get('/doctor/appointments/', 'Doctors\ScheduleController@appointment');
+        Route::get('/doctor/appointments/{appointment}', 'Patients\HealthHistoryController@create');
+        Route::post('/doctor/appointments/{appointment}', 'Patients\HealthHistoryController@store');
+        Route::get('/health-history', 'Patients\HealthHistoryController@index');
+        Route::get('/health-history/{id}', 'Patients\HealthHistoryController@show');
         Route::get('/settings/profile', 'PeopleController@settingProfile');
         Route::patch('/settings/profile/{user}', 'PeopleController@updateProfile');
         Route::get('/settings/account', 'PeopleController@settingAccount');

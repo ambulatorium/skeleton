@@ -40,6 +40,11 @@ class Doctor extends Model
         return $this->hasMany('App\Models\Doctor\Schedule');
     }
 
+    public function healthHistory()
+    {
+        return $this->hasMany('App\Models\Patient\HealthHistory');
+    }
+
     public function scopeFilter($query, $filters)
     {
         return $filters->apply($query);

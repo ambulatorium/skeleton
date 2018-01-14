@@ -20,6 +20,11 @@ class Patient extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function healthHistory()
+    {
+        return $this->hasMany('App\Models\Patient\HealthHistory');
+    }
+
     public function medicalRecord()
     {
         $this->hasMany('App\Models\MedicalRecord\MedicalRecord');
