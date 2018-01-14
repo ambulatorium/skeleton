@@ -19,9 +19,14 @@ class HealthHistoryController extends Controller
         return view('people.health_history.index', compact('health_histories'));
     }
 
-    public function show(HealthHistory $health_history)
+    public function show($id)
     {
-        # code...
+        $health_history = HealthHistory::where([
+                                            ['id', $id],
+                                            ['user_id', Auth::user()->id],
+                                        ])->firstOrFail();
+
+        return view('people.health_history.show', compact('health_history'));
     }
 
     public function create(Appointment $appointment)

@@ -18,4 +18,19 @@ class HealthHistory extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function doctor()
+    {
+        return $this->belongsTo('App\Models\Doctor\Doctor');
+    }
+
+    public function group()
+    {
+        return $this->belongsTo('App\Models\Setting\Group\Group');
+    }
+
+    public function patient()
+    {
+        return $this->belongsTo('App\Models\Patient\Patient');
+    }
 }

@@ -10,10 +10,15 @@
     <div class="col-md-8 offset-md-2 mt-3">
         <div class="list-group">
             @forelse($health_histories as $health_history)
-                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                    <h5>{{ $health_history->user->name }}</h5>
+                <a href="/people/health-history/{{$health_history->id}}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <div class="text-secondary">
+                        <img src="{{ asset('img/example-avatar.png') }}" alt="reliqui avatar" class="img-responsive mr-2" width="28">
+                        {{ $health_history->user->name }}
+                    </div>
 
-                    <small>{{ $health_history->created_at->diffForHumans() }}</small>
+                    <div class="text-secondary">
+                        {{ $health_history->created_at->diffForHumans() }}
+                    </div>
                 </a>
             @empty
                 <div class="mt-5">

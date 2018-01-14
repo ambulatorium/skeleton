@@ -35,6 +35,11 @@ class Group extends Model
         return $this->hasMany('App\Models\Appointment\Appointment');
     }
 
+    public function healthHistory()
+    {
+        return $this->hasMany('App\Models\Patient\HealthHistory');
+    }
+
     public function path()
     {
         return "/settings/groups/{$this->slug}";
