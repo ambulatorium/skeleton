@@ -48,9 +48,4 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Patient\HealthHistory');
     }
-
-    public function medicalRecord()
-    {
-        return $this->hasMany('App\Models\MedicalRecord\MedicalRecord');
-    }
 }

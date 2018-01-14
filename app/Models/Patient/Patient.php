@@ -24,9 +24,4 @@ class Patient extends Model
     {
         return $this->hasMany('App\Models\Patient\HealthHistory');
     }
-
-    public function medicalRecord()
-    {
-        $this->hasMany('App\Models\MedicalRecord\MedicalRecord');
-    }
 }

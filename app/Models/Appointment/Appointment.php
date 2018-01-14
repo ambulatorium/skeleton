@@ -32,9 +32,4 @@ class Appointment extends Model
     {
         return $this->belongsTo('App\Models\Doctor\Schedule');
     }
-
-    public function medicalRecord()
-    {
-        $this->hasMany('App\Models\MedicalRecord\MedicalRecord');
-    }
 }

@@ -29,8 +29,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/appointments/cancel', 'Appointments\AppointmentController@cancel');
     Route::resource('appointments', 'Appointments\AppointmentController');
 
-    Route::post('/medical-record', 'MedicalRecords\MedicalRecordController@save');
-
     Route::post('/invitations', 'InvitationController@send');
     Route::delete('/invitations/{invitation}', 'InvitationController@destroy');
 
