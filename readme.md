@@ -1,48 +1,56 @@
-<p align="center"><img src="https://i.imgur.com/CP6TJvCl.png"></p
+# Reliqui
 
+[![Laravel Version](https://shield.with.social/cc/github/reliqui/reliqui/master.svg?style=flat-square)](https://packagist.org/packages/laravel/framework)
+[![StyleCI](https://styleci.io/repos/110965973/shield?branch=master)](https://styleci.io/repos/110965973)
+[![Latest Stable Version](https://img.shields.io/github/release/reliqui/reliqui.svg?style=flat-square)](https://github.com/reliqui/reliqui/releases)
  
-Reliqui is free open source project, it's a smart outpatient booking appointment system, it's a healthcare platform with First Come First Served queuing discipline.
+Reliqui is free and open source scheduling system for outpatient appointments to provide the easiest service for hospital patients or clinics.
 
-* Appointment management
-* Staff management(Owner, Admin and Nurse)
-* Medical records
-* Polyclinic management
-* Doctor management
+* Physical Appointment
+* Multiple Hospital/Clinic
+* Health History
+* Specialities/Polyclinics
+* Doctor's Schedule
+* Doctor & Staff Management
 
 ## Requirements
 
-* PHP 7.0.1 or higher
-* Database (eg: MySQL, PostgreSQL, SQLite)
-* Web Server (eg: Apache, Nginx, IIS)
+The following tools are required in order to start the installation.
 
-## Framework
-
-Reliqui uses [Laravel](http://laravel.com), the best existing PHP framework
+- [VirtualBox](https://www.virtualbox.org/)
+- [Vagrant](https://www.vagrantup.com/)
+- [Laravel Homestead](https://laravel.com/docs/5.5/homestead)
 
 ## Installation
 
+> Note that you are free to customize `reliqui.test` tld to whatever you want.
 
-## Documentation
+1. Clone this repository: `git clone git@github.com:reliqui/reliqui.git ~/code/reliqui`
+2. Copy `.env.example` paste and rename `.env`
+3. Open `.env` file and update your environment
+4. Configuring [Homestead.yaml](https://laravel.com/docs/5.5/homestead), go to `/home/user/Homestead`
+5. Add `192.168.10.10 reliqui.test` to your computer's `/etc/hosts` file
+6. Run `vagrant up`
+7. SSH into your Vagrant box, go to `/home/vagrant/code/reliqui` and run `composer install`
+8. Generate app key `php artisan key:generate`
+9. Setup a working e-mail driver like [Mailtrap](https://mailtrap.io/)
 
-Work in progress feel free to contribute!!
+You can now visit the app in your browser by visiting [http://reliqui.test](http://reliqui.test).
 
-## Translation
+## Contributing
 
-walk in progress, contribution are welcome.
+Fork the repository, make the code changes then submit a pull request.
 
-## Live Demo
+Please, be very clear on your commit messages and pull requests, empty pull request messages may be rejected without reason.
 
-[Test drive the *beta live demo*](http://reliqui.insthing,com)
+## Code of Conduct
 
-> **HINT:** You may use a [maildrop.cc](http://maildrop.cc/) fake account for testing
+Please read our [Code of Conduct](code_of_conduct.md) before contributing or engaging in discussions.
 
-## Security
+## Security Vulnerabilities
 
-If you discover any security related issues, please email reliqui.id.gmail.com instead of using the issue tracker.
+If you discover any security related issues, please email davidhasiholans@gmail.com instead of using the issue tracker.
 
-## Credits
+## License
 
-- [David H. Sianturi](https://twitter.com/davidhsianturi)
-- [Taufan Maulana](https://twitter.com/enzotaufan)
-- [Soleman](https://www.instagram.com/ssoleman48)
-
+Reliqui is released under the [GPLv3 license](LICENSE).
