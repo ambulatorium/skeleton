@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Patients;
 
-use Illuminate\Http\Request;
 use App\Models\Doctor\Schedule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
