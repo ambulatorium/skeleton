@@ -44,6 +44,11 @@ class User extends Authenticatable
         $this->appointment()->save($appointment);
     }
 
+    public function healthHistory()
+    {
+        return $this->hasMany('App\Models\Patient\HealthHistory');
+    }
+
     public function medicalRecord()
     {
         return $this->hasMany('App\Models\MedicalRecord\MedicalRecord');
