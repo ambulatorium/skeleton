@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', 'PeopleController@profile');
         Route::resource('schedules', 'Doctors\ScheduleController');
         Route::get('/appointment/{appointment}', 'PeopleController@appointment');
+        Route::get('/doctor/appointments/', 'Doctors\ScheduleController@appointment');
         Route::get('/settings/profile', 'PeopleController@settingProfile');
         Route::patch('/settings/profile/{user}', 'PeopleController@updateProfile');
         Route::get('/settings/account', 'PeopleController@settingAccount');
