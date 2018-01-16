@@ -14,19 +14,23 @@ class DoctorRequest extends FormRequest
     public function rules()
     {
         return [
-            'speciality_id'    => 'required',
-            'bio'              => 'required|string|max:160',
-            // @todo add all information about doctor
+            'speciality_id'       => 'required',
+            'full_name'           => 'required|string|max:255',
+            'years_of_experience' => 'required|numeric',
+            'qualification'       => 'required|string|max:25',
+            'bio'                 => 'required|string|max:160',
         ];
     }
 
     public function formDoctor()
     {
         return [
-            'speciality_id'    => $this->speciality_id,
-            'bio'              => $this->bio,
-            'status'           => true,
-            // @todo add all information about doctor
+            'speciality_id'       => $this->speciality_id,
+            'full_name'           => $this->full_name,
+            'years_of_experience' => $this->years_of_experience,
+            'qualification'       => $this->qualification,
+            'bio'                 => $this->bio,
+            'is_active'           => true,
         ];
     }
 }

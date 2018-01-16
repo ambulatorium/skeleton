@@ -4,12 +4,9 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use App\Models\Doctor\Doctor;
 use App\Models\Setting\Staff\Staff;
-use App\Http\Requests\DoctorRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Appointment\Appointment;
-use App\Models\Setting\Speciality\Speciality;
 
 class PeopleController extends Controller
 {
@@ -27,11 +24,6 @@ class PeopleController extends Controller
     public function appointment(Appointment $appointment)
     {
         return view('people.appointment', compact('appointment'));
-    }
-
-    public function settingProfile()
-    {
-        return view('people.settings.profile');
     }
 
     public function settingAccount()
@@ -56,27 +48,5 @@ class PeopleController extends Controller
         flash('Successful! Your account updated.')->success();
 
         return redirect('/people/settings/account');
-    }
-
-    public function settingDoctor()
-    {
-        if (! $user = Auth::user()->doctor()->first()) {
-            abort(404);
-        }
-
-        return view('people.settings.doctor', [
-            'doctorProfile' => $user,
-            'specialities'  => Speciality::all(),
-        ]);
-    }
-
-    public function updateDoctor(DoctorRequest $request, Doctor $doctor)
-    {
-        $doctor->fill($request->formDoctor());
-        $doctor->update();
-
-        flash('Successful! Doctor Profile Updated.')->success();
-
-        return redirect()->back();
     }
 }
