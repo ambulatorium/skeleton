@@ -50,8 +50,8 @@ class DatabaseSeeder extends Seeder
         }
 
         $this->command->info('Default Roles added.');
-        factory(Patient::class)->create();
-        $user = User::find(1);
+        $this->command->warn('Create default user role owner"');
+        $user = factory(User::class)->create();
         $user->assignRole('owner');
         $this->command->info('Default Owner added.');
         $this->command->info('Here is your owner details to login:');
