@@ -52,11 +52,6 @@ class InvitationController extends Controller
             'password' => bcrypt(request('password')),
         ]);
 
-        $user->patient = Patient::create([
-            'user_id'       => $user->id,
-            'register_from' => 'invited',
-        ]);
-
         if ($invite->role === 'doctor') {
             $user->doctor = Doctor::create([
                 'user_id'  => $user->id,

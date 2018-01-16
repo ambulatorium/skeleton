@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\Models\Patient\Patient;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -65,18 +64,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::create([
+        return User::create([
             'name'     => $data['name'],
             'email'    => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-
-        $user->patient = Patient::create([
-            'user_id'       => $user->id,
-            'register_from' => 'online',
-        ]);
-        $user->assignRole('patient');
-
-        return $user;
     }
 }
