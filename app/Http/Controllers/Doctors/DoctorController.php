@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Doctors;
 
 use App\Models\Doctor\Doctor;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DoctorRequest;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Setting\Speciality\Speciality;
 
 class DoctorController extends Controller
@@ -19,7 +19,7 @@ class DoctorController extends Controller
 
     public function editProfile()
     {
-        if (!$user = Auth::user()->doctor()->first()) {
+        if (! $user = Auth::user()->doctor()->first()) {
             abort(404);
         }
 

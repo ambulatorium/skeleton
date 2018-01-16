@@ -13,7 +13,7 @@
                 <a href="/people/health-history/{{$health_history->id}}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                     <div class="text-secondary">
                         <img src="{{ asset('img/example-avatar.png') }}" alt="reliqui avatar" class="img-responsive mr-2" width="28">
-                        {{ $health_history->user->name }}
+                        {{ $health_history->patient->full_name }}
                     </div>
 
                     <div class="text-secondary">

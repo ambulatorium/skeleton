@@ -17,7 +17,7 @@
                     <h5>{{ \Carbon\Carbon::parse($appointment->date)->format('l') }}
                         <small>
                             {{ \Carbon\Carbon::parse($appointment->date)->format('F Y') }} with
-                            {{ $appointment->schedule->doctor->user->name }}
+                            {{ $appointment->schedule->doctor->full_name }}
                         </small>
                     </h5>
                     <small>

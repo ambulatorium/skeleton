@@ -50,7 +50,7 @@
                     <a href="/scheduling/physical-appointment/doctor/{{$schedule->doctor->id}}?date={{request('date')}}" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">
-                                {{ $schedule->doctor->user->name }}
+                                {{ $schedule->doctor->full_name }}
                             </h5>
                             <p class="text-muted">
                                 <strong>

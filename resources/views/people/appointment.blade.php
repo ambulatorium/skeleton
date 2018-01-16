@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 @section('title', Auth::user()->name)
-@section('tab-people', 'active')
 
 @section('content')
 
@@ -15,7 +14,7 @@
         <h5>
             <strong>
                 Preferred Time {{ \Carbon\Carbon::parse($appointment->preferred_time)->format('H:ia') }}
-                With {{ $appointment->schedule->doctor->user->name }}
+                With {{ $appointment->schedule->doctor->full_name }}
             </strong>
         </h5>
         

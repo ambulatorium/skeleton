@@ -34,7 +34,7 @@ class HealthHistoryRequest extends FormRequest
     {
         return [
             'user_id'                          => $this->appointment->user_id,
-            'patient_id'                       => $this->appointment->user->patient->id,
+            'patient_id'                       => $this->appointment->patient_id,
             'doctor_id'                        => $this->appointment->doctor_id,
             'group_id'                         => $this->appointment->group_id,
             'appointment_date'                 => $this->appointment->date,

@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="form-row mt-3">
-                    <div class="form-group col-6">
+                    <div class="form-group col-sm-12 col-md-6">
                         <select name="patient_id" class="custom-select form-control" required>
                             <option value="" selected>Choose patient form...</option>
                             @foreach ($patients as $patient)

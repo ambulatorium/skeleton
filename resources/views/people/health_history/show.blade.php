@@ -7,12 +7,12 @@
 
     @include('partials.people.tab')
 
-    <div class="col-md-8 offset-md-2 mt-3">
+    <div class="col-md-8 offset-md-2 mt-3 mb-3">
         <div class="list-group">
             <div class="list-group-item d-flex justify-content-between align-items-center">
                 <div class="text-secondary">
                     <img src="{{ asset('img/example-avatar.png') }}" class="img-responsive mr-2" width="28">
-                    {{ $health_history->user->name }}
+                    {{ $health_history->patient->full_name }}
                 </div>
 
                 <div class="text-secondary">
@@ -30,17 +30,20 @@
                 </h5>
 
                 <div class="alert alert-danger bg-light">
-                    <p>Diagnosis {{ $health_history->doctor->user->name }}</p><hr>
+                    <strong>Diagnosis by {{ $health_history->doctor->full_name }}</strong>
+                    <hr>
                     {{ $health_history->doctor_diagnosis }}
                 </div>
 
                 <div class="alert alert-success bg-light">
-                    <p>Action {{ $health_history->doctor->user->name }}</p><hr>
+                    <strong>Action by {{ $health_history->doctor->full_name }}</strong>
+                    <hr>
                     {{ $health_history->doctor_action }}
                 </div>
 
                 <div class="alert alert-info bg-light">
-                    <p>Note {{ $health_history->doctor->user->name }}</p><hr>
+                    <strong>Note by {{ $health_history->doctor->full_name }}</strong>
+                    <hr>
 
                     @if (! $health_history->doctor_note)
                         ... ... ...

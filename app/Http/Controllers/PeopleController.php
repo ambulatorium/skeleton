@@ -5,16 +5,15 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\Setting\Staff\Staff;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Appointment\Appointment;
 
 class PeopleController extends Controller
 {
     public function profile()
     {
-        $appointments = Appointment::with('schedule.doctor.user')->where('user_id', Auth::user()->id)->get();
+        $appointments = Appointment::with('schedule.doctor')->where('user_id', auth()->id())->get();
 
-        if ($staff = Staff::where('user_id', Auth::user()->id)->first()) {
+        if ($staff = Staff::where('user_id', auth()->id())->first()) {
             return view('people.profile', compact('appointments', 'staff'));
         }
 
