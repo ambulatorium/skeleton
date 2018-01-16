@@ -24,12 +24,7 @@
                 <a class="dropdown-item" href="/settings/specialities">Polyclinics/Speciality</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/appointments">Appointments</a>
-                <a class="dropdown-item" href="/patients">Patients</a>
                 <a href="/doctors" class="dropdown-item">Doctors</a>
-                {{--  pending, useless feature  --}}
-                {{--  @can('view-counters')
-                    <a class="dropdown-item" href="/counters">Counters</a>
-                @endcan  --}}
             </div>
         </li>
     @endrole
