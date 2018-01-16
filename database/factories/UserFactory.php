@@ -13,15 +13,6 @@ $factory->define(App\User::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(App\Models\Patient\Patient::class, function () {
-    return [
-        'user_id' => function () {
-            return factory('App\User')->create()->id;
-        },
-        'register_from' => 'command',
-    ];
-});
-
 // doctors
 $factory->define(App\Models\Doctor\Doctor::class, function (Faker $faker) {
     return [
@@ -34,8 +25,11 @@ $factory->define(App\Models\Doctor\Doctor::class, function (Faker $faker) {
         'speciality_id' => function () {
             return factory('App\Models\Setting\Speciality\Speciality')->create()->id;
         },
-        'bio'    => $faker->word,
-        'status' => 0,
+        'full_name'            => $faker->name,
+        'years_of_experience'  => '10',
+        'qualification'        => 'MBBS, MS',
+        'bio'                  => $faker->word,
+        'is_active'            => true,
     ];
 });
 
