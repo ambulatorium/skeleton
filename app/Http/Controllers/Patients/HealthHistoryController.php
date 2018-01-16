@@ -35,10 +35,13 @@ class HealthHistoryController extends Controller
         $appointment = $appointment->where([
                                         ['date', $today],
                                         ['doctor_id', Auth::user()->doctor->id],
+                                        ['status', 'confirmed'],
                                     ])
                                     ->firstOrFail();
 
-        return view('people.schedule.show-appointment', compact('appointment'));
+        $health_histories = HealthHistory::with('doctor')->where('patient_id', $appointment->patient_id)->get();
+
+        return view('people.schedule.show-appointment', compact('appointment','health_histories'));
     }
 
     public function store(HealthHistoryRequest $request, Appointment $appointment)
