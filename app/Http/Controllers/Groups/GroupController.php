@@ -16,7 +16,7 @@ class GroupController extends Controller
 
         return view('groups.appointments.index', [
             'group'        => $group,
-            'appointments' => $appointments->load('user'),
+            'appointments' => $appointments->load('patient'),
         ]);
     }
 

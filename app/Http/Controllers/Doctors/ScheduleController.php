@@ -49,7 +49,7 @@ class ScheduleController extends Controller
 
     public function show(Schedule $schedule)
     {
-        $appointments = Appointment::with('user')->where('schedule_id', $schedule->id)->get();
+        $appointments = Appointment::with('patient')->where('schedule_id', $schedule->id)->get();
 
         return view('people.schedule.show', compact('schedule', 'appointments'));
     }
@@ -84,6 +84,7 @@ class ScheduleController extends Controller
 
         $appointments = Appointment::where([
                                         ['date', $today],
+                                        ['status', 'confirmed'],
                                         ['doctor_id', Auth::user()->doctor->id],
                                     ])
                                     ->paginate(1);

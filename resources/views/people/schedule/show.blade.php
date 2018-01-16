@@ -42,7 +42,7 @@
                     <h5>
                         {{ \Carbon\Carbon::parse($appointment->date)->format('d F Y') }}
                         preferred time {{ \Carbon\Carbon::parse($appointment->preferred_time)->format('H:ia') }}
-                        with {{ $appointment->user->name }}
+                        with {{ $appointment->patient->full_name }}
                     </h5>
                 </div>
             @empty

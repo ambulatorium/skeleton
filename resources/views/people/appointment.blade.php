@@ -14,14 +14,15 @@
         <h5>
             <strong>
                 Preferred Time {{ \Carbon\Carbon::parse($appointment->preferred_time)->format('H:ia') }}
-                With {{ $appointment->schedule->doctor->full_name }}
+                with {{ $appointment->doctor->full_name }}
             </strong>
         </h5>
         
         <h4 class="text-secondary">
-            {{ $appointment->schedule->doctor->group->health_care_name }}, 
-            {{ $appointment->schedule->doctor->group->address }},
-            {{ $appointment->schedule->doctor->group->city }}.
+            show this token <span class="badge badge-info">{{ $appointment->token }}</span> when visit<p>
+            {{ $appointment->doctor->group->health_care_name }}, 
+            {{ $appointment->doctor->group->address }},
+            {{ $appointment->doctor->group->city }}.
         <h4>
         
         <div class="list-group mt-5">

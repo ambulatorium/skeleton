@@ -9,7 +9,10 @@
 
             <div class="list-group col-md-8">
                 <div class="list-group-item d-flex justify-content-between align-items-center">
-                    <strong>{{ $appointment->user->name }}</strong>
+                    <strong>
+                        {{ $appointment->user->name }}<small class="mr-5"> account</small>
+                        {{ $appointment->patient->full_name }}<small> patient</small>
+                    </strong>
                        
                     <span class="badge badge-info">
                         {{ \Carbon\Carbon::parse($appointment->preferred_time)->format('H:ia') }}
@@ -61,31 +64,32 @@
 
                 <div id="accordion" role="tablist">
                     <div class="list-group">
-                        <div class="list-group-item">
-                            <strong class="mb-0">
-                                <a data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="true" aria-controls="collapseOne">
-                                    #28 Agustus 2018
-                                </a>
-                            </strong>
-                        </div>
-                        <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-                            <div class="list-group-item bg-light">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                        </div>
 
-                        <div class="list-group-item">
-                            <strong class="mb-0">
-                                <a data-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="true" aria-controls="collapseTwo">
-                                    #13 September 2018
-                                </a>
-                            </strong>
-                        </div>
-                        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-                            <div class="list-group-item bg-light">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        @forelse ($health_histories as $health_history)
+                            <div class="list-group-item">
+                                <strong class="mb-0">
+                                    <a data-toggle="collapse" href="#{{$health_history->id}}" role="button" aria-expanded="true" aria-controls="{{$health_history->id}}">
+                                        #{{ $health_history->created_at->diffForHumans() }}
+                                    </a>
+                                </strong>
                             </div>
-                        </div>
+                            <div id="{{$health_history->id}}" class="collapse" role="tabpanel" aria-labelledby="heading{{$health_history->id}}" data-parent="#accordion">
+                                <div class="list-group-item bg-light">
+                                    <strong>Diagnosis by {{ $health_history->doctor->full_name }}</strong>
+                                    {{ $health_history->doctor_diagnosis }}
+                                    <hr>
+                                    <strong>Action by {{ $health_history->doctor->full_name }}</strong><p>
+                                    {{ $health_history->doctor_action }}
+                                    <hr>
+                                    <strong>Note by {{ $health_history->doctor->full_name }}</strong><p>
+                                    {{ $health_history->doctor_note }}
+                                </div>
+                            </div>
+                        @empty
+                            <div class="list-group-item">
+                                <strong>EMPTY</strong>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
             </div>
