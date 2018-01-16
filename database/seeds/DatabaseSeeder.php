@@ -14,47 +14,51 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Reset cached roles and permissions
-        app()['cache']->forget('spatie.permission.cache');
-
-        // Call the php artisan migrate:refresh
-        $this->command->call('migrate:refresh');
-        $this->command->warn('Data cleared, starting from blank database.');
-
-        $permissions = Permission::defaultPermissions();
-
-        // Seed the default permissions
-        foreach ($permissions as $p) {
-            Permission::firstOrCreate(['name' => $p]);
+        // Ask for db migration refresh, default is no
+        if ($this->command->confirm('Do you wish to refresh migration before seeding, it will clear all old data ?')) {
+            $this->command->call('migrate:refresh');
+            $this->command->warn("Data cleared, starting from blank database.");
         }
-        $this->command->info('Default Permissions added.');
 
-        $roles = Role::defaultRoles();
+        // Confirm roles and permisson default needed
+        if ($this->command->confirm('Create default roles, permission and user owner?', true)) {
+            app()['cache']->forget('spatie.permission.cache'); // Reset cached roles and permissions
 
-        // Seed the default roles
-        foreach ($roles as $role) {
-            $role = Role::firstOrCreate(['name' => $role]);
+            $permissions = Permission::defaultPermissions();
 
-            if ($role->name == 'owner') {
+            // Seed the default permissions
+            foreach ($permissions as $p) {
+                Permission::firstOrCreate(['name' => $p]);
+            }
+            $this->command->info('Default Permissions added.');
+
+            $roles = Role::defaultRoles();
+
+            // Seed the default roles
+            foreach ($roles as $role) {
+                $role = Role::firstOrCreate(['name' => $role]);
+
+                if ($role->name == 'owner') {
                 // assign all permissions
-                $role->syncPermissions(Permission::all());
-                $this->command->info('Owner granted all the permissions');
+                    $role->syncPermissions(Permission::all());
+                    $this->command->info('Owner granted all the permissions');
+                }
+
+                if ($role->name == 'doctor') {
+                    $role->givePermissionTo([
+                        'view-schedules', 'add-schedules', 'edit-schedules', 'delete-schedules',
+                    ]);
+                }
             }
 
-            if ($role->name == 'doctor') {
-                $role->givePermissionTo([
-                    'view-schedules', 'add-schedules', 'edit-schedules', 'delete-schedules',
-                ]);
-            }
+            $this->command->info('Default Roles added.');
+            $this->command->warn('Create default user role owner');
+            $user = factory(User::class)->create();
+            $user->assignRole('owner');
+            $this->command->info('Default Owner added.');
+            $this->command->info('Here is your owner details to login:');
+            $this->command->warn($user->email);
+            $this->command->warn('Password is "secret"');
         }
-
-        $this->command->info('Default Roles added.');
-        $this->command->warn('Create default user role owner"');
-        $user = factory(User::class)->create();
-        $user->assignRole('owner');
-        $this->command->info('Default Owner added.');
-        $this->command->info('Here is your owner details to login:');
-        $this->command->warn($user->email);
-        $this->command->warn('Password is "secret"');
     }
 }
