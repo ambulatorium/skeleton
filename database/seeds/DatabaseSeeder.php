@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         // Ask for db migration refresh, default is no
         if ($this->command->confirm('Do you wish to refresh migration before seeding, it will clear all old data ?')) {
             $this->command->call('migrate:refresh');
-            $this->command->warn("Data cleared, starting from blank database.");
+            $this->command->warn('Data cleared, starting from blank database.');
         }
 
         // Confirm roles and permisson default needed
@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
                 $role = Role::firstOrCreate(['name' => $role]);
 
                 if ($role->name == 'owner') {
-                // assign all permissions
+                    // assign all permissions
                     $role->syncPermissions(Permission::all());
                     $this->command->info('Owner granted all the permissions');
                 }
