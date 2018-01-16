@@ -18,8 +18,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/scheduling/physical-appointment/doctor/{doctor}', 'Appointments\PhysicalController@store');
 
     Route::get('/doctors', 'Doctors\DoctorController@index');
-    Route::get('/doctors/{doctor}', 'Doctors\DoctorController@show');
-    Route::get('/doctors/appointments/{doctor}', 'Doctors\DoctorController@appointments');
 
     // appointments
     Route::get('/appointments/today', 'Appointments\AppointmentController@today');
@@ -47,8 +45,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::patch('/settings/patient-form/{patient}', 'Patients\PatientController@update');
         Route::get('/settings/account', 'PeopleController@settingAccount');
         Route::patch('/settings/account/{user}', 'PeopleController@updateAccount');
-        Route::get('/settings/profile/doctor', 'PeopleController@SettingDoctor');
-        Route::patch('/settings/profile/doctor/{doctor}', 'PeopleController@updateDoctor');
+        Route::get('/settings/profile/doctor', 'Doctors\DoctorController@editProfile');
+        Route::patch('/settings/profile/doctor/{doctor}', 'Doctors\DoctorController@updateProfile');
     });
 
     // Multiple Health Care Provider
@@ -57,7 +55,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/appointments', 'Groups\GroupController@appointment');
         Route::get('/appointments/{appointment}', 'Groups\GroupController@showAppointment');
         Route::patch('/appointments/{appointment}', 'Groups\GroupController@confirmAppointment');
-        Route::get('/doctor/{doctor}', 'Doctors\DoctorController@show');
         Route::get('/settings/profile', 'Groups\SettingController@profile');
         Route::get('/settings/staffs', 'Groups\SettingController@staff');
         Route::get('/settings/invitations', 'Groups\SettingController@invitation');

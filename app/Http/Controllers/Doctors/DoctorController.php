@@ -3,36 +3,39 @@
 namespace App\Http\Controllers\Doctors;
 
 use App\Models\Doctor\Doctor;
-use App\Models\Setting\Group\Group;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\DoctorRequest;
+use App\Models\Setting\Speciality\Speciality;
 
 class DoctorController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['permission:view-doctors|delete-doctors']);
-    }
-
     public function index()
     {
-        $doctors = Doctor::with('speciality', 'group', 'user')->where('status', 1)->paginate(10);
+        $doctors = Doctor::with('speciality', 'group', 'user')->paginate(10);
 
         return view('doctors.index', compact('doctors'));
     }
 
-    public function show(Group $group, Doctor $doctor)
+    public function editProfile()
     {
-        return view('doctors.show', [
-            'doctor'    => $doctor,
-            'group'     => $group,
-            'schedules' => $doctor->load('schedule')->schedule()->get(),
+        if (!$user = Auth::user()->doctor()->first()) {
+            abort(404);
+        }
+
+        return view('people.settings.doctor', [
+            'doctorProfile' => $user,
+            'specialities' => Speciality::all(),
         ]);
     }
 
-    public function appointments(Doctor $doctor)
+    public function updateProfile(DoctorRequest $request, Doctor $doctor)
     {
-        $appointments = $doctor->appointment()->where('status', 'confirmed')->get();
+        $doctor->fill($request->formDoctor());
+        $doctor->update();
 
-        return view('doctors.appointments.index', compact('appointments'));
+        flash('Successful! Doctor Profile Updated.')->success();
+
+        return redirect()->back();
     }
 }
