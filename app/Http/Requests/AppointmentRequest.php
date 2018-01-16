@@ -26,6 +26,7 @@ class AppointmentRequest extends FormRequest
     {
         return [
             'schedule_id'       => 'required|exists:schedules,id',
+            'patient_id'        => 'required|exists:patients,id',
             'date'              => 'required|date',
             'preferred_time'    => 'required',
             'patient_condition' => 'required|max:160',
@@ -36,6 +37,7 @@ class AppointmentRequest extends FormRequest
     {
         return [
             'user_id'            => $this->user_id,
+            'patient_id'         => $this->patient_id,
             'doctor_id'          => $this->doctor->id,
             'schedule_id'        => $this->schedule_id,
             'group_id'           => $this->doctor->group->id,

@@ -6,11 +6,14 @@
 <div class="container">    
     <div class="row">
 
-        @if(is_null(Auth::user()->patient->dob))
+        @if($patients->count() === 0)
             <div class="col-md-12 mt-5">
-                <div class="alert alert-warning alert-disabled text-center">
-                    <h5>Sorry, you do not have permission to schedule physical appointment yet. please complete your data as a patient. and make appointment again.</h5>
-                    <a href="/people/settings/profile" class="text-center"><strong>AGREE</strong></a>
+                <div class="alert alert-warning text-center">
+                    <h5>
+                        Sorry, you do not have permission to schedule physical appointment yet. 
+                        please create your patient form. and make appointment again.
+                    </h5>
+                    <a href="/people/settings/patient-form" class="text-center"><strong>AGREE</strong></a>
                 </div>
             </div>
         @else
