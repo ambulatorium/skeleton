@@ -16,12 +16,12 @@ class CreateAppointmentsTable extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('patient_id');
             $table->unsignedInteger('doctor_id');
             $table->unsignedInteger('schedule_id');
             $table->unsignedInteger('group_id');
             $table->string('token')->unique();
             $table->date('date');
-            $table->string('queue_number')->nullable();
             $table->time('preferred_time');
             $table->string('patient_condition');
             $table->string('status');

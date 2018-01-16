@@ -2,10 +2,10 @@
     <h5 class="text-muted"><strong>Personal Settings</strong></h5>
     <ul class="navbar-nav flex-column nav-sidebar">
         <li class="nav-item">
-            <a class="nav-link @yield('sidebar_profile')" href="/people/settings/profile">Profile</a>
+            <a class="nav-link @yield('sidebar_account')" href="/people/settings/account">Account</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link @yield('sidebar_account')" href="/people/settings/account">Account</a>
+            <a class="nav-link @yield('sidebar_patients')" href="/people/settings/patient-form">Patient form</a>
         </li>
         @role('doctor')
             <li class="nav-item">

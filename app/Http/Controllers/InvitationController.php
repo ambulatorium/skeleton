@@ -7,7 +7,6 @@ use App\Models\Invitation;
 use App\Mail\SendInvitation;
 use Illuminate\Http\Request;
 use App\Models\Doctor\Doctor;
-use App\Models\Patient\Patient;
 use App\Models\Setting\Staff\Staff;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\InvitationRequest;
@@ -50,11 +49,6 @@ class InvitationController extends Controller
             'name'     => request('name'),
             'email'    => $invite->email,
             'password' => bcrypt(request('password')),
-        ]);
-
-        $user->patient = Patient::create([
-            'user_id'       => $user->id,
-            'register_from' => 'invited',
         ]);
 
         if ($invite->role === 'doctor') {

@@ -1,7 +1,6 @@
 <?php
 
 use App\User;
-use App\Models\Patient\Patient;
 use Illuminate\Database\Seeder;
 use App\Models\Setting\Staff\Role;
 use App\Models\Setting\Staff\Permission;
@@ -50,8 +49,8 @@ class DatabaseSeeder extends Seeder
         }
 
         $this->command->info('Default Roles added.');
-        factory(Patient::class)->create();
-        $user = User::find(1);
+        $this->command->warn('Create default user role owner"');
+        $user = factory(User::class)->create();
         $user->assignRole('owner');
         $this->command->info('Default Owner added.');
         $this->command->info('Here is your owner details to login:');

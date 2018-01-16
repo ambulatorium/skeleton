@@ -20,8 +20,17 @@
                 </div>
 
                 <div class="form-row mt-3">
+                    <div class="form-group col-6">
+                        <select name="patient_id" class="custom-select form-control" required>
+                            <option value="" selected>Choose patient form...</option>
+                            @foreach ($patients as $patient)
+                                <option value="{{$patient->id}}">{{$patient->form_name}} ({{$patient->full_name}})</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     <div class="form-group col-12">
-                        <textarea name="patient_condition" class="form-control" placeholder="explain your condition..." autofocus required>
+                        <textarea name="patient_condition" class="form-control" placeholder="current patient condition...." required>
                             {{ old('patient_condition') }}
                         </textarea>
                         <span class="help-block text-muted"><small>*max 160 character</small></span>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Doctor\Doctor;
 use Illuminate\Support\Carbon;
 use App\Models\Doctor\Schedule;
+use App\Models\Patient\Patient;
 use App\Models\Setting\Group\Group;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment\Appointment;
@@ -57,7 +58,9 @@ class PhysicalController extends Controller
             $start_time = strtotime($schedule->start_time);
             $end_time = strtotime($schedule->end_time);
 
-            return view('appointments.physical.create', compact('doctor', 'schedule', 'start_time', 'end_time'));
+            $patients = Patient::where('user_id', auth()->id())->get();
+
+            return view('appointments.physical.create', compact('doctor', 'patients', 'schedule', 'start_time', 'end_time'));
         }
 
         $schedules = $doctor->schedule()->get();
