@@ -8,7 +8,16 @@ class Doctor extends Model
 {
     protected $table = 'doctors';
 
-    protected $fillable = ['user_id', 'group_id', 'speciality_id', 'bio', 'status'];
+    protected $fillable = [
+        'user_id',
+        'group_id',
+        'speciality_id',
+        'full_name',
+        'years_of_experience',
+        'qualification',
+        'bio',
+        'is_active',
+    ];
 
     // public function getRouteKeyName()
     // {
@@ -45,8 +54,8 @@ class Doctor extends Model
         return $this->hasMany('App\Models\Patient\HealthHistory');
     }
 
-    public function scopeFilter($query, $filters)
-    {
-        return $filters->apply($query);
-    }
+    // public function scopeFilter($query, $filters)
+    // {
+    //     return $filters->apply($query);
+    // }
 }
