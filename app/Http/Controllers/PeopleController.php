@@ -9,7 +9,6 @@ use App\Models\Setting\Staff\Staff;
 use App\Http\Requests\DoctorRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Appointment\Appointment;
-use App\Http\Requests\UpdateProfileRequest;
 use App\Models\Setting\Speciality\Speciality;
 
 class PeopleController extends Controller

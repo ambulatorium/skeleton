@@ -7,7 +7,6 @@ use App\Models\Invitation;
 use App\Mail\SendInvitation;
 use Illuminate\Http\Request;
 use App\Models\Doctor\Doctor;
-use App\Models\Patient\Patient;
 use App\Models\Setting\Staff\Staff;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\InvitationRequest;

@@ -1,7 +1,6 @@
 <?php
 
 use App\User;
-use App\Models\Patient\Patient;
 use Illuminate\Database\Seeder;
 use App\Models\Setting\Staff\Role;
 use App\Models\Setting\Staff\Permission;

@@ -9,7 +9,6 @@ use App\Http\Requests\PatientFormRequest;
 
 class PatientController extends Controller
 {
-
     public function index()
     {
         $patients = Patient::where('user_id', Auth::user()->id)->get();
@@ -21,11 +20,11 @@ class PatientController extends Controller
     {
         return view('people.settings.patient.create');
     }
-    
+
     public function store(PatientFormRequest $request)
     {
         Patient::create($request->patientRegistrationForm());
-        
+
         flash('Successful! your patient form submitted')->success();
 
         return redirect('/people');
