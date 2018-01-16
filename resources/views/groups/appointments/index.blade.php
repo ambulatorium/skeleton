@@ -16,7 +16,7 @@
                         <small>token: </small>
                         <a href="/{{$group->slug}}/appointments/{{$appointment->token}}"><small>{{ $appointment->token }}</small></a><p>
                         
-                        {{ $appointment->user->name }}
+                        {{ $appointment->patient->full_name }}
                         <small>
                             {{ \Carbon\Carbon::parse($appointment->date)->format('l') }},
                             {{ \Carbon\Carbon::parse($appointment->date)->format('d F Y') }},

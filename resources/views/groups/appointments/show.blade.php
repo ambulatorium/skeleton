@@ -13,18 +13,16 @@
             <div class="col-md-4 offset-md-4 mt-3">
                 <div class="list-group">
                     <div class="list-group-item text-center">
-                        <h5>
-                            {{ $appointment->schedule->doctor->user->name }},
-                            <small class="text-muted">
-                                {{ \Carbon\Carbon::parse($appointment->date)->format('l') }},
-                                {{ \Carbon\Carbon::parse($appointment->date)->format('d F Y') }}
-                                {{ \Carbon\Carbon::parse($appointment->preferred_time)->format('H:ia') }}
-                            </smal>
-                        </h5>
+                        <h4>
+                            <small>meet with</small><p>
+                            <strong>{{ $appointment->doctor->full_name }}</strong>
+                        </h4>
                     </div>
                     <div class="list-group-item text-center">
                         <em>
-                            "{{ $appointment->patient_condition }}""
+                            {{ \Carbon\Carbon::parse($appointment->date)->format('l') }},
+                            {{ \Carbon\Carbon::parse($appointment->date)->format('d F Y') }}
+                            {{ \Carbon\Carbon::parse($appointment->preferred_time)->format('H:ia') }}
                         </em>
                     </div>
                     <div class="list-group-item">
