@@ -20,10 +20,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/doctors', 'Doctors\DoctorController@index');
 
     // appointments
-    Route::get('/appointments/today', 'Appointments\AppointmentController@today');
-    Route::patch('/appointments/cancel/{appointment}', 'Appointments\AppointmentController@cancelAppointment');
-    Route::get('/appointments/cancel', 'Appointments\AppointmentController@cancel');
-    Route::resource('appointments', 'Appointments\AppointmentController');
+    Route::get('/appointments', 'Appointments\AppointmentController@index');
 
     Route::post('/invitations', 'InvitationController@send');
     Route::delete('/invitations/{invitation}', 'InvitationController@destroy');

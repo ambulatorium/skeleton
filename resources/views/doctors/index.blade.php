@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Doctors')
-@section('doctors', 'active')
+@section('title', 'All Doctors')
 
 @section('content')
     <div class="container">
