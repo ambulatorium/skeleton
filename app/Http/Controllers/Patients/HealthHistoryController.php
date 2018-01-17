@@ -41,7 +41,7 @@ class HealthHistoryController extends Controller
 
         $health_histories = HealthHistory::with('doctor')->where('patient_id', $appointment->patient_id)->get();
 
-        return view('people.schedule.show-appointment', compact('appointment','health_histories'));
+        return view('people.schedule.show-appointment', compact('appointment', 'health_histories'));
     }
 
     public function store(HealthHistoryRequest $request, Appointment $appointment)
