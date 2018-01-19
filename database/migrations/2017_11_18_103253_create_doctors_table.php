@@ -18,9 +18,9 @@ class CreateDoctorsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('group_id');
             $table->unsignedInteger('speciality_id')->nullable();
-            $table->string('full_name');
-            $table->smallInteger('years_of_experience');
-            $table->string('qualification');
+            $table->string('full_name')->nullable();
+            $table->smallInteger('years_of_experience')->nullable();
+            $table->string('qualification')->nullable();
             $table->string('bio')->nullable();
             $table->boolean('is_active')->default(0);
             $table->timestamps();
