@@ -33,6 +33,10 @@
             @endforelse
         </div>
 
+        <div class="mt-3 text-center">
+            <a href="/" class="btn btn-outline-secondary btn-sm">Schedule an appoinment</a>
+        </div>
+
     </div>
 
 @endsection
