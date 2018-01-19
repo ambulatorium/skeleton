@@ -7,15 +7,15 @@ use App\Models\Appointment\Appointment;
 
 class AppointmentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['role:owner']);
-    }
-
     public function index()
     {
-        $appointments = Appointment::with('doctor', 'patient')->paginate(10);
+        return redirect('/people');
+    }
 
-        return view('appointments.index', compact('appointments'));
+    public function show(Appointment $appointment)
+    {
+        $this->authorize('view', $appointment);
+        
+        return view('people.appointment', compact('appointment'));
     }
 }

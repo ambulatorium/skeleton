@@ -10,7 +10,7 @@ class GroupController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:owner|admin'])->except(['show']);
+        $this->middleware(['role:owner|administrator'])->except(['show', 'update']);
     }
 
     public function index()
@@ -29,7 +29,7 @@ class GroupController extends Controller
     {
         Group::create($request->formGroup());
 
-        flash('Successful! New health care created')->success();
+        flash('Successful! New group created')->success();
 
         return redirect('/settings/groups');
     }
@@ -46,10 +46,12 @@ class GroupController extends Controller
 
     public function update(GroupRequest $request, Group $group)
     {
+        $this->authorize('update', $group);
+        
         $group->fill($request->formGroup());
         $group->save();
 
-        flash('Successful! Health Care Updated')->success();
+        flash('Successful! group Updated')->success();
 
         return redirect('/'.$group->slug.'/settings/profile');
     }

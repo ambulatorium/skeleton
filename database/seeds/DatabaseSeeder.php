@@ -43,16 +43,9 @@ class DatabaseSeeder extends Seeder
                     $role->syncPermissions(Permission::all());
                     $this->command->info('Owner granted all the permissions');
                 }
-
-                if ($role->name == 'doctor') {
-                    $role->givePermissionTo([
-                        'view-schedules', 'add-schedules', 'edit-schedules', 'delete-schedules',
-                    ]);
-                }
             }
 
             $this->command->info('Default Roles added.');
-            $this->command->warn('Create default user role owner');
             $user = factory(User::class)->create();
             $user->assignRole('owner');
             $this->command->info('Default Owner added.');

@@ -10,7 +10,7 @@ class SpecialityController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:owner|admin']);
+        $this->middleware(['role:owner|administrator']);
     }
 
     public function index()

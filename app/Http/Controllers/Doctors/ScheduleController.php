@@ -30,9 +30,9 @@ class ScheduleController extends Controller
     public function store(ScheduleRequest $request)
     {
         $checkSchedules = Schedule::where([
-            ['doctor_id', Auth::user()->doctor->id],
-            ['day', $request->get('day')],
-        ]);
+                            ['doctor_id', Auth::user()->doctor->id],
+                            ['day', $request->get('day')],
+                        ]);
 
         if ($checkSchedules->first()) {
             flash('Warning! Schedule you selected is already exist')->warning();
@@ -40,7 +40,7 @@ class ScheduleController extends Controller
             return redirect()->back();
         }
 
-        $schedule = Schedule::create($request->formSchedule());
+        Schedule::create($request->formSchedule());
 
         flash('Successful! New schedule created')->success();
 
@@ -49,6 +49,8 @@ class ScheduleController extends Controller
 
     public function show(Schedule $schedule)
     {
+        $this->authorize('update', $schedule);
+
         $appointments = Appointment::with('patient')->where('schedule_id', $schedule->id)->get();
 
         return view('people.schedule.show', compact('schedule', 'appointments'));
@@ -56,11 +58,15 @@ class ScheduleController extends Controller
 
     public function edit(Schedule $schedule)
     {
+        $this->authorize('update', $schedule);
+
         return view('people.schedule.edit', compact('schedule'));
     }
 
     public function update(ScheduleRequest $request, Schedule $schedule)
     {
+        $this->authorize('update', $schedule);
+
         $schedule->fill($request->formSchedule());
         $schedule->save();
 
@@ -71,24 +77,12 @@ class ScheduleController extends Controller
 
     public function destroy(Schedule $schedule)
     {
+        $this->authorize('update', $schedule);
+
         $schedule->delete();
 
         flash('Successful! Schedule deleted.')->success();
 
         return redirect('/people/schedules');
-    }
-
-    public function appointment()
-    {
-        $today = today()->format('Y-m-d');
-
-        $appointments = Appointment::where([
-                                        ['date', $today],
-                                        ['status', 'confirmed'],
-                                        ['doctor_id', Auth::user()->doctor->id],
-                                    ])
-                                    ->paginate(1);
-
-        return view('people.schedule.appointment', compact('appointments'));
     }
 }
