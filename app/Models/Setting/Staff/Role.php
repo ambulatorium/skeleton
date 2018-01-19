@@ -9,10 +9,9 @@ class Role extends \Spatie\Permission\Models\Role
         return [
             'owner',
             'administrator',
-            'admin-group',
             'doctor',
-            'nurse',
-            'patient',
+            'admin-group',
+            'admin-counter',
         ];
     }
 }

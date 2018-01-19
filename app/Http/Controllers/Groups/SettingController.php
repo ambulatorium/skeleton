@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 
 class SettingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:owner|administrator|admin-group']);
+    }
+
     public function profile(Group $group)
     {
         return view('groups.settings.profile', compact('group'));

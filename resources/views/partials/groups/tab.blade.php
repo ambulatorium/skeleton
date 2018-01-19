@@ -13,9 +13,11 @@
                 <div class="nav-item">
                     <a class="nav-link @yield('tab-appointments')" href="/{{ $group->slug }}/appointments">Appointments</a>
                 </div>
-                <div class="nav-item">
-                    <a class="nav-link @yield('tab-settings')" href="/{{ $group->slug }}/settings/profile">Settings</a>
-                </div>
+                @role('owner|adminstrator|admin-group')
+                    <div class="nav-item">
+                        <a class="nav-link @yield('tab-settings')" href="/{{ $group->slug }}/settings/profile">Settings</a>
+                    </div>
+                @endrole
             </div>
         </div>
     </div>
