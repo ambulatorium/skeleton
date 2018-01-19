@@ -13,11 +13,11 @@
 
         <div class="list-group mt-2">
             @forelse($appointments as $appointment)
-                <a href="/people/appointment/{{$appointment->token}}" class="list-group-item list-group-item-action">
+                <a href="/people/appointments/{{$appointment->token}}" class="list-group-item list-group-item-action">
                     <h5>{{ \Carbon\Carbon::parse($appointment->date)->format('l') }}
                         <small>
                             {{ \Carbon\Carbon::parse($appointment->date)->format('F Y') }} with
-                            {{ $appointment->schedule->doctor->full_name }}
+                            {{ $appointment->doctor->full_name }}
                         </small>
                     </h5>
                     <small>
@@ -31,13 +31,6 @@
                     <h6 class="text-muted text-center">when you have an appointment, it'll show up here.</h6>
                 </div>
             @endforelse
-        </div>
-
-        <div class="mt-3 text-center">
-            <a href="/" class="btn btn-outline-secondary btn-sm">Schedule an appoinment</a>
-            @role('admin-group|nurse')        
-                <a href="{{ $staff->group->slug }}" class="btn btn-outline-secondary btn-sm">{{ $staff->group->health_care_name }}</a>        
-            @endrole
         </div>
 
     </div>
