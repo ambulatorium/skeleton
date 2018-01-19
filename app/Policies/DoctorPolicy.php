@@ -18,9 +18,7 @@ class DoctorPolicy
      */
     public function view(User $user)
     {
-        if ($user->can('view-doctors')) {
-            return true;
-        }
+        return $user->can('view-doctors');
     }
 
     /**
@@ -32,10 +30,6 @@ class DoctorPolicy
      */
     public function update(User $user, Doctor $doctor)
     {
-        if ($user->role('doctor')) {
-            return true;
-        }
-
         return $doctor->id == $user->id;
     }
 }

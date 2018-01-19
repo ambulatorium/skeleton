@@ -13,7 +13,7 @@ class DoctorController extends Controller
 {
     public function index()
     {
-        $this->authorize('view');
+        $this->authorize('view-doctors');
 
         $doctors = Doctor::with('speciality', 'group')->paginate(10);
 
