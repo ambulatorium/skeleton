@@ -30,10 +30,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', 'PeopleController@profile');
         Route::get('/appointments', 'Appointments\AppointmentController@index');
         Route::get('/appointments/{appointment}', 'Appointments\AppointmentController@show');
-        Route::resource('schedules', 'Doctors\ScheduleController');
-        Route::get('/doctor/appointments/', 'Doctors\ScheduleController@appointment');
+        Route::get('/doctor/appointments/', 'Doctors\DoctorController@appointment');
         Route::get('/doctor/appointments/{appointment}', 'Patients\HealthHistoryController@create');
         Route::post('/doctor/appointments/{appointment}', 'Patients\HealthHistoryController@store');
+        Route::resource('schedules', 'Doctors\ScheduleController');
         Route::get('/health-history', 'Patients\HealthHistoryController@index');
         Route::get('/health-history/{id}', 'Patients\HealthHistoryController@show');
         Route::get('/settings/patient-form', 'Patients\PatientController@index');
@@ -43,8 +43,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::patch('/settings/patient-form/{patient}', 'Patients\PatientController@update');
         Route::get('/settings/account', 'PeopleController@settingAccount');
         Route::patch('/settings/account/{user}', 'PeopleController@updateAccount');
-        Route::get('/settings/profile/doctor', 'Doctors\DoctorController@editProfile');
-        Route::patch('/settings/profile/doctor/{doctor}', 'Doctors\DoctorController@updateProfile');
+        Route::get('/settings/profile/doctor', 'Doctors\DoctorController@edit');
+        Route::patch('/settings/profile/doctor/{doctor}', 'Doctors\DoctorController@update');
     });
 
     // Multiple Health Care Provider

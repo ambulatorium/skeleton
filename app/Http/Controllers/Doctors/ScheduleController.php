@@ -6,7 +6,6 @@ use App\Models\Doctor\Schedule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ScheduleRequest;
-use App\Models\Appointment\Appointment;
 
 class ScheduleController extends Controller
 {
@@ -76,19 +75,5 @@ class ScheduleController extends Controller
         flash('Successful! Schedule deleted.')->success();
 
         return redirect('/people/schedules');
-    }
-
-    public function appointment()
-    {
-        $today = today()->format('Y-m-d');
-
-        $appointments = Appointment::where([
-                                        ['date', $today],
-                                        ['status', 'confirmed'],
-                                        ['doctor_id', Auth::user()->doctor->id],
-                                    ])
-                                    ->paginate(1);
-
-        return view('people.schedule.appointment', compact('appointments'));
     }
 }

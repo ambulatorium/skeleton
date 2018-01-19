@@ -13,9 +13,6 @@ class Permission extends \Spatie\Permission\Models\Permission
             'delete-polyclinics',
 
             'view-doctors',
-            'add-doctors',
-            'edit-doctors',
-            'delete-doctors',
 
             'view-schedules',
             'add-schedules',
@@ -26,14 +23,6 @@ class Permission extends \Spatie\Permission\Models\Permission
             'add-patients',
             'edit-patients',
             'delete-patients',
-
-            'view-appointments',
-            'add-appointments',
-            'edit-appointments',
-            'delete-appointments',
-
-            'view-bookings',
-            'add-bookings',
 
         ];
     }
