@@ -47,7 +47,7 @@ class GroupController extends Controller
     public function update(GroupRequest $request, Group $group)
     {
         $this->authorize('update', $group);
-        
+
         $group->fill($request->formGroup());
         $group->save();
 

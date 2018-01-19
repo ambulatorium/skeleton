@@ -35,7 +35,7 @@ class DoctorController extends Controller
     public function update(DoctorRequest $request, Doctor $doctor)
     {
         $this->authorize('update', $doctor);
-        
+
         $doctor->fill($request->formDoctor());
         $doctor->update();
 
