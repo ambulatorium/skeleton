@@ -11,6 +11,11 @@ use App\Models\Setting\Speciality\Speciality;
 
 class DoctorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:doctor'])->except('index');
+    }
+
     public function index()
     {
         $this->authorize('view-doctors');

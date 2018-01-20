@@ -11,6 +11,11 @@ use App\Http\Requests\HealthHistoryRequest;
 
 class HealthHistoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:doctor'])->except('index', 'show');
+    }
+
     public function index()
     {
         $health_histories = HealthHistory::with('patient')->where('user_id', auth()->id())->get();
@@ -45,7 +50,7 @@ class HealthHistoryController extends Controller
     }
 
     public function store(HealthHistoryRequest $request, Appointment $appointment)
-    {
+    {   
         if (HealthHistory::create($request->formHealthHistory())) {
             $appointment->delete();
         } else {
