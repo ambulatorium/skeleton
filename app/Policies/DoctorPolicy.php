@@ -30,6 +30,6 @@ class DoctorPolicy
      */
     public function update(User $user, Doctor $doctor)
     {
-        return $doctor->id == $user->id;
+        return $doctor->id == $user->doctor->id;
     }
 }
