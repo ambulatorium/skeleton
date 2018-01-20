@@ -16,18 +16,21 @@
                         <form action="/scheduling/physical-appointment" method="GET" class="form-inline">
                             <div class="form-group mr-1">
                                 <select name="location" class="form-control form-control-sm" required>
-                                    <option value="{{ request('location') }}">{{ request('location') }}</option>
+                                    <option value="">Choose location...</option>
                                     @foreach($locations as $location)
-                                        <option value="{{ $location->health_care_name }}">{{ $location->health_care_name }}-{{ $location->city }}</option>
+                                        <option value="{{ $location->health_care_name }}" {{ request('location') == $location->health_care_name ? 'selected' : '' }}>
+                                            {{ $location->health_care_name }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group mr-1">
                                 <select name="speciality" class="form-control form-control-sm" required>
-                                    <option value="{{ request('speciality') }}">{{ request('speciality') }}</option>
-                                    
+                                    <option value="">Choose specialities...</option>
                                     @foreach($specialities as $speciality)
-                                        <option value="{{ $speciality->name }}">{{ $speciality->name }}</option>
+                                        <option value="{{ $speciality->name }}" {{ request('speciality') == $speciality->name ? 'selected' : '' }}>
+                                            {{ $speciality->name }}
+                                        </option>
                                     @endforeach
 
                                 </select>
