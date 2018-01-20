@@ -79,9 +79,17 @@ class ScheduleController extends Controller
     {
         $this->authorize('update', $schedule);
 
-        $schedule->delete();
+        $relationships = $this->checkRelationships($schedule, [
+            'appointment' => 'appointments',
+        ]);
 
-        flash('Successful! Schedule deleted.')->success();
+        if (empty($relationships)) {
+            $schedule->delete();
+
+            flash('Successful! schedule deleted')->success();
+        } else {
+            flash('Warning! Deletion ' . $schedule->day . ' not allowed!')->warning();
+        }
 
         return redirect('/people/schedules');
     }

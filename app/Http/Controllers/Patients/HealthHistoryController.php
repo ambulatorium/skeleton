@@ -50,7 +50,7 @@ class HealthHistoryController extends Controller
     }
 
     public function store(HealthHistoryRequest $request, Appointment $appointment)
-    {   
+    {
         if (HealthHistory::create($request->formHealthHistory())) {
             $appointment->delete();
         } else {
