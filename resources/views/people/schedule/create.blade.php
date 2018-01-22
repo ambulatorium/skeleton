@@ -6,54 +6,21 @@
     <div class="container mb-3">
         <div class="row">
 
-            <div class="col-md-8 mt-5">
+            <div class="col-md-8 offset-md-2 mt-5">
                 <h4 class="text-muted mb-5"><strong>Create New Schedule</strong></h4>
 
-                <form action="/people/schedules" method="POST" class="form-horizontal">
-                    {{ csrf_field() }}
-
-                    <div class="form-row mb-4">
-                        <div class="form-group col-md-4">
-                            <label for="day">Day*</label>
-                            <select name="day" class="form-control" required>
-                                <option value="Sunday">Sunday</option>
-                                <option value="Monday">Monday</option>
-                                <option value="Tuesday">Tuesday</option>
-                                <option value="Wednesday">Wednesday</option>
-                                <option value="Thursday">Thursday</option>
-                                <option value="Friday">Friday</option>
-                                <option value="Saturday">Saturday</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="start_time">Start Time*</label>
-                            <input type="time" class="form-control" name="start_time" id="start_time" required>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="end_time">End Time*</label>
-                            <input type="time" class="form-control" name="end_time" id="end_time" required>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="estimated_service_time">Estimated Service Time*</label>
-                            <input type="number" class="form-control" name="estimated_service_time" id="estimated_service_time" required>
-                            <small class="form-text text-muted">In minutes</small>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="estimated_price_service">Estimated Price Service*</label>
-                            <input type="number" class="form-control" name="estimated_price_service" id="estimated_price_service" required>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="is_available">Visibility*</label>
-                            <select name="is_available" class="form-control" required>
-                                <option value="1">Available</option>
-                                <option value="0">Unavailbale</option>
-                            </select>
-                        </div>
+                @if (Auth::user()->doctor->is_active)
+                    @include('partials.doctor.schedule.form')
+                @else
+                    <div class="alert alert-warning text-center">
+                        <h5>
+                            Sorry, you do not have permission to create schedule yet.
+                            Please complete your profile as a doctor and create schedule again.
+                        </h5>
+                        <a href="/people/settings/profile/doctor" class="text-center"><strong>AGREE</strong></a>
                     </div>
-
-                    <button class="btn btn-sm btn-danger" type="submit">CREATE</button>
-                    <a href="/people/schedules" class="btn btn-sm btn-secondary">CANCEL</a>
-                </form>
+                @endif
+                
             </div>
 
         </div>
