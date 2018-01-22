@@ -1,12 +1,13 @@
 @extends('layouts.master')
 
 @section('title', Auth::user()->name)
-@section('tab-health-history', 'active')
+@section('dashboard-health-history', 'active')
+
+@section('menu')
+    @include('partials.master.menu.dashboard')
+@endsection
 
 @section('content')
-
-    @include('partials.people.tab')
-
     <div class="col-md-8 offset-md-2 mt-3 mb-3">
         <div class="list-group">
             <div class="list-group-item d-flex justify-content-between align-items-center">
@@ -22,7 +23,7 @@
 
 
             <div class="list-group-item bg-light">
-                <h5 class="mt-5 mb-5 text-center text-secondary">
+                <h5 class="mt-4 mb-5 text-center text-secondary">
                     <strong class="text-uppercase">{{ $health_history->group->health_care_name }}</strong><p>
                     <small>
                         {{ $health_history->group->address }}, {{ $health_history->group->city }}, {{ $health_history->group->country }}.
@@ -54,5 +55,4 @@
             </div>
         </div>
     </div>
-
 @endsection

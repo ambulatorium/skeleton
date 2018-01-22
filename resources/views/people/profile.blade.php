@@ -1,12 +1,13 @@
 @extends('layouts.master')
 
 @section('title', Auth::user()->name)
-@section('tab-people', 'active')
+@section('dashboard-profile', 'active')
+
+@section('menu')
+    @include('partials.master.menu.dashboard')
+@endsection
 
 @section('content')
-
-    @include('partials.people.tab')
-
     <div class="col-md-8 offset-md-2 mt-3">
         
         @include('partials.people.profile')
@@ -38,5 +39,4 @@
         </div>
 
     </div>
-
 @endsection

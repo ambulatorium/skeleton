@@ -1,6 +1,7 @@
 <form action="/people/schedules" method="POST" class="form-horizontal">
     {{ csrf_field() }}
-    <div class="form-row mb-4">
+
+    <div class="form-row mt-4">
         <div class="form-group col-md-4">
             <label for="day">Day*</label>
             <select name="day" class="form-control" required>
@@ -40,6 +41,9 @@
             </select>
         </div>
     </div>
+
+    <hr>
+    
     <button class="btn btn-sm btn-danger" type="submit">CREATE</button>
     <a href="/people/schedules" class="btn btn-sm btn-secondary">CANCEL</a>
 </form>

@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="col-md-8 offset-md-2 mt-5 text-center">
+    <div class="col-md-8 offset-md-2 text-center mt-4 mb-4">
 
         <h1 class="mt-3">
             {{ \Carbon\Carbon::parse($appointment->date)->format('l') }}

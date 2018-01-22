@@ -1,12 +1,13 @@
 @extends('layouts.master')
 
 @section('title', Auth::user()->name)
-@section('tab-schedule', 'active')
+@section('dashboard-schedules', 'active')
+
+@section('menu')
+    @include('partials.master.menu.dashboard')
+@endsection
 
 @section('content')
-
-    @include('partials.people.tab')
-
     <div class="col-md-8 offset-md-2 mt-3">
 
         <div class="list-group mt-2">
@@ -32,9 +33,8 @@
         </div>
 
         <div class="mt-3 text-center">
-            <a href="/people/schedules/create" class="btn btn-outline-secondary btn-sm">Create schedule</a>            
+            <a href="/people/schedules/create" class="btn btn-outline-secondary btn-sm">CREATE SCHEDULE</a>            
         </div>
 
     </div>
-
 @endsection

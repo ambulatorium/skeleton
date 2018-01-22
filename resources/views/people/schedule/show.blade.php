@@ -1,13 +1,14 @@
 @extends('layouts.master')
 
 @section('title', Auth::user()->name)
-@section('tab-schedule', 'active')
+@section('dashboard-schedules', 'active')
+
+@section('menu')
+    @include('partials.master.menu.dashboard')
+@endsection
 
 @section('content')
-
-    @include('partials.people.tab')
-
-    <div class="col-md-8 offset-md-2 mt-5">
+    <div class="col-md-8 offset-md-2 mt-4 mb-4">
         <h4 class="text-secondary mb-4">
             <strong>{{ $schedule->day }}</strong>
             @if($schedule->is_available)

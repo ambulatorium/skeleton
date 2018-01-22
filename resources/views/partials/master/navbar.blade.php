@@ -1,13 +1,11 @@
-<div class="collapse navbar-collapse" id="navbarMenu">
+<div class="navbar-collapse offcanvas-collapse" id="navbarMenu">
 
     {{--  @todo search doctor, healthcare provider  --}}
-    <ul class="navbar-nav mr-auto">
-        <form action="#" method="#" class="form-inline">
-            <div class="input-group">
-                <input class="search-input" type="search" name="query" placeholder="search...">
-            </div>
-        </form>
-    </ul>
+    <form action="#" method="#" class="form-inline mr-auto">
+        <div class="input-group">
+            <input class="search-input" type="search" name="query" placeholder="search...">
+        </div>
+    </form>
 
     <ul class="navbar-nav my-2 my-lg-0">
         @guest
@@ -17,7 +15,7 @@
         @else
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle active" id="navbarMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="{{ asset('img/example-avatar.png') }}" alt="{{ Auth::user()->name }}" class="img-responsive rounded" width="30">
+                    <img src="{{ asset('img/example-avatar.png') }}" alt="{{ Auth::user()->name }}" class="img-responsive rounded" height="25" width="25">
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarMenu">
                     <h6 class="dropdown-header"><strong>{{ Auth::user()->name }}</strong></h6>
