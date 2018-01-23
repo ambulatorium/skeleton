@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // people. patient,owner,administrator,admin-group,doctor,nurse
     Route::group(['prefix' => 'people'], function () {
-        Route::get('/', 'PeopleController@profile');
+        Route::get('/', 'PeopleController@inbox');
         Route::get('/appointments', 'Appointments\AppointmentController@index');
         Route::get('/appointments/{appointment}', 'Appointments\AppointmentController@show');
         Route::get('/doctor/appointments/', 'Doctors\DoctorController@appointment');

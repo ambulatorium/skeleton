@@ -19,7 +19,8 @@
         </h5>
         
         <h4 class="text-secondary">
-            show this token <span class="badge badge-info">{{ $appointment->token }}</span> when visit<p>
+            show this token <span class="badge badge-info text-uppercase">{{ $appointment->token }}</span>
+            when visiting<p>
             {{ $appointment->doctor->group->health_care_name }}, 
             {{ $appointment->doctor->group->address }},
             {{ $appointment->doctor->group->city }}.

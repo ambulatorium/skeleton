@@ -1,6 +1,6 @@
 <div class="nav-scroller box-shadow">
     <nav class="nav nav-underline justify-content-md-center">
-        <a class="nav-link @yield('dashboard-profile')" href="/people">Profile</a>
+        <a class="nav-link @yield('dashboard-inbox')" href="/people">Inbox</a>
         @role('doctor')
             <a class="nav-link @yield('dashboard-appointments')" href="/people/doctor/appointments">Appointments</a>
             <a class="nav-link @yield('dashboard-schedules')" href="/people/schedules">Schedules</a>

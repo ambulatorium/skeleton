@@ -74,7 +74,9 @@ body {
   color: #d71149;
 }
 
-.box-shadow { box-shadow: 0 .25rem .55rem rgba(0, 0, 0, .05); }
+.box-shadow { 
+  box-shadow: 0 0.45rem 9rem 0px rgba(0, 0, 0, 0.05);
+}
 
 .page-header {
   background-color: #f9f9f9;

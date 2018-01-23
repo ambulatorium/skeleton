@@ -8,11 +8,11 @@ use App\Models\Appointment\Appointment;
 
 class PeopleController extends Controller
 {
-    public function profile()
+    public function inbox()
     {
         $appointments = Appointment::with('doctor')->where('user_id', auth()->id())->get();
 
-        return view('people.profile', compact('appointments'));
+        return view('people.inbox', compact('appointments'));
     }
 
     public function settingAccount()
