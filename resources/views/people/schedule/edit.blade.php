@@ -1,20 +1,22 @@
 @extends('layouts.master')
 
 @section('title', Auth::user()->name)
-@section('tab-schedule', 'active')
+@section('dashboard-schedules', 'active')
+
+@section('menu')
+    @include('partials.master.menu.dashboard')
+@endsection
 
 @section('content')
-
-    @include('partials.people.tab')
-
-    <div class="col-md-8 offset-md-2 mt-5">
-        <h4 class="text-secondary mb-5"><strong>edit schedule</strong></h4>
+    <div class="col-md-8 offset-md-2 mt-4 mb-4">
+        <h4>Edit schedule</h4>
+        <hr>
 
         <form action="/people/schedules/{{$schedule->id}}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
 
-            <div class="form-row mb-4">
+            <div class="form-row mt-4">
                 <div class="form-group col-md-4">
                     <label for="day">Day*</label>
                     <select name="day" class="form-control" required>
@@ -61,9 +63,10 @@
                 </div>
             </div>
 
+            <hr>
+
             <button class="btn btn-sm btn-danger" type="submit">UPDATE</button>
             <a href="/people/schedules" class="btn btn-sm btn-secondary">CANCEL</a>
         </form>
     </div>
-
 @endsection

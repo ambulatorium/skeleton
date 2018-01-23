@@ -12,23 +12,20 @@
 
             <div class="col-md-4 offset-md-4 mt-3">
                 <div class="list-group">
-                    <div class="list-group-item text-center">
-                        <h4>
-                            <small>meet with</small><p>
-                            <strong>{{ $appointment->doctor->full_name }}</strong>
-                        </h4>
-                    </div>
-                    <div class="list-group-item text-center">
-                        <em>
-                            {{ \Carbon\Carbon::parse($appointment->date)->format('l') }},
-                            {{ \Carbon\Carbon::parse($appointment->date)->format('d F Y') }}
-                            {{ \Carbon\Carbon::parse($appointment->preferred_time)->format('H:ia') }}
-                        </em>
-                    </div>
                     <div class="list-group-item">
-                        <h5><strong>
-                            Rp{{ $appointment->schedule->estimated_price_service }}
-                        </strong></h5>
+                        <div class="text-center">
+                            <h4>
+                                <small>meet with</small><p>
+                                <strong>{{ $appointment->doctor->full_name }}</strong>
+                            </h4>
+                            
+                            <em>Physical Appointment</em>
+                        </div>
+
+                        <hr>
+
+                        <strong>Price</strong>
+                        <strong class="float-right">{{ $appointment->schedule->estimated_price_service }}</strong>
                     </div>
                 </div>
 
@@ -37,7 +34,7 @@
                         {{ csrf_field() }}
                         {{ method_field('PATCH') }}
 
-                        <button class="btn btn-sm btn-danger btn-block" type="submit">CONFIRM APPOINTMENT</button>
+                        <button class="btn btn-sm btn-danger btn-block" type="submit">CHECKIN OUTPATIENTS</button>
                         <a href="/{{$group->slug}}/appointments" class="btn btn-sm btn-secondary btn-block">CANCEL</a>
                     </form>
                 </div>

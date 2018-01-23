@@ -1,4 +1,4 @@
-<header class="navbar navbar-expand-lg navbar-dark bg-danger">
+<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-danger">
     <div class="container">
 
         @guest
@@ -8,11 +8,12 @@
         @endguest
                 <strong>RELIQUI</strong>
             </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+
+        <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         @include('partials.master.navbar')
 
     </div>
-</header>
+</nav>

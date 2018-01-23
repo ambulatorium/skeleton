@@ -49,17 +49,17 @@ class DoctorController extends Controller
         return redirect()->back();
     }
 
-    public function appointment()
+    public function outpatients()
     {
         $today = today()->format('Y-m-d');
 
         $appointments = Appointment::where([
                             ['date', $today],
-                            ['status', 'confirmed'],
+                            ['status', 'checked'],
                             ['doctor_id', Auth::user()->doctor->id],
                         ])
                         ->paginate(1);
 
-        return view('people.schedule.appointment', compact('appointments'));
+        return view('people.outpatients.index', compact('appointments'));
     }
 }

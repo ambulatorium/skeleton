@@ -25,12 +25,12 @@ class GroupController extends Controller
         return view('groups.appointments.show', compact('group', 'appointment'));
     }
 
-    public function confirmAppointment(Group $group, Appointment $appointment)
+    public function checkinAppointment(Group $group, Appointment $appointment)
     {
-        $appointment->fill(['status' => 'confirmed']);
+        $appointment->fill(['status' => 'checked']);
         $appointment->save();
 
-        flash('Successful! appointment confirmed.')->success();
+        flash('Successful! outpatients checked.')->success();
 
         return redirect('/'.$group->slug.'/appointments');
     }
