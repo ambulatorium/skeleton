@@ -29,7 +29,9 @@
                 </a>
             @empty
                 <div class="list-group-item">
-                    <h5 class="text-muted text-center mt-2"><strong>You don't have any appointment yet</strong></h5>
+                    <h5 class="text-muted text-center mt-2">
+                        You don't have doctor's appointment yet.
+                    </h5>
                     <h6 class="text-muted text-center">when you have an appointment, it'll show up here.</h6>
                 </div>
             @endforelse

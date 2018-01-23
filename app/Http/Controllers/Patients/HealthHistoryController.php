@@ -40,13 +40,13 @@ class HealthHistoryController extends Controller
         $appointment = $appointment->where([
                                         ['date', $today],
                                         ['doctor_id', Auth::user()->doctor->id],
-                                        ['status', 'confirmed'],
+                                        ['status', 'checked'],
                                     ])
                                     ->firstOrFail();
 
         $health_histories = HealthHistory::with('doctor')->where('patient_id', $appointment->patient_id)->get();
 
-        return view('people.schedule.show-appointment', compact('appointment', 'health_histories'));
+        return view('people.outpatients.create', compact('appointment', 'health_histories'));
     }
 
     public function store(HealthHistoryRequest $request, Appointment $appointment)
@@ -61,6 +61,6 @@ class HealthHistoryController extends Controller
 
         flash('Successful! treatments and consultation saved.')->success();
 
-        return redirect('/people/doctor/appointments');
+        return redirect('/people/outpatients');
     }
 }

@@ -22,7 +22,7 @@
                         </small>
                     </h5>
 
-                    <span class="badge badge-danger">{{ $schedule->appointments_count }} appointment</span>
+                    <span class="badge badge-info">{{ $schedule->appointments_count }} appointment</span>
                 </a>
             @empty
                 <div class="list-group-item">

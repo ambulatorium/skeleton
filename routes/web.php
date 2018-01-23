@@ -30,9 +30,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', 'PeopleController@inbox');
         Route::get('/appointments', 'Appointments\AppointmentController@index');
         Route::get('/appointments/{appointment}', 'Appointments\AppointmentController@show');
-        Route::get('/doctor/appointments/', 'Doctors\DoctorController@appointment');
-        Route::get('/doctor/appointments/{appointment}', 'Patients\HealthHistoryController@create');
-        Route::post('/doctor/appointments/{appointment}', 'Patients\HealthHistoryController@store');
+        Route::get('/outpatients', 'Doctors\DoctorController@outpatients');
+        Route::get('/outpatients/{appointment}', 'Patients\HealthHistoryController@create');
+        Route::post('/outpatients/{appointment}', 'Patients\HealthHistoryController@store');
         Route::resource('schedules', 'Doctors\ScheduleController');
         Route::get('/health-history', 'Patients\HealthHistoryController@index');
         Route::get('/health-history/{id}', 'Patients\HealthHistoryController@show');
@@ -52,7 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', 'Settings\Group\GroupController@show');
         Route::get('/appointments', 'Groups\GroupController@appointment');
         Route::get('/appointments/{appointment}', 'Groups\GroupController@showAppointment');
-        Route::patch('/appointments/{appointment}', 'Groups\GroupController@confirmAppointment');
+        Route::patch('/appointments/{appointment}', 'Groups\GroupController@checkinAppointment');
         Route::get('/settings/profile', 'Groups\SettingController@profile');
         Route::get('/settings/staffs', 'Groups\SettingController@staff');
         Route::get('/settings/invitations', 'Groups\SettingController@invitation');
