@@ -88,7 +88,7 @@ class ScheduleController extends Controller
 
             flash('Successful! schedule deleted')->success();
         } else {
-            flash('Warning! Deletion ' . $schedule->day . ' not allowed!')->warning();
+            flash('Warning! Deletion '.$schedule->day.' not allowed!')->warning();
         }
 
         return redirect('/people/schedules');
