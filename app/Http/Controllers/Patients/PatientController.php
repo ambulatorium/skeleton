@@ -30,18 +30,45 @@ class PatientController extends Controller
         return redirect('/people');
     }
 
-    public function edit(Patient $patient)
+    public function show()
     {
-        $patient = $patient->where('user_id', auth()->id())->firstOrFail();
+        return redirect('/people/settings/patient-form');
+    }
+
+    public function edit(Patient $patient_form)
+    {
+        $patient = $patient_form->where([
+                                ['user_id', auth()->id()],
+                                ['id', $patient_form->id],
+                            ])
+                            ->firstOrFail();
 
         return view('people.settings.patient.edit', compact('patient'));
     }
 
-    public function update(PatientFormRequest $request, Patient $patient)
+    public function update(PatientFormRequest $request, Patient $patient_form)
     {
-        $patient->update($request->patientRegistrationForm());
+        $patient_form->update($request->patientRegistrationForm());
 
         flash('Successful! your patient form updated')->success();
+
+        return redirect('/people/settings/patient-form');
+    }
+
+    public function destroy(Patient $patient_form)
+    {
+        $relationships = $this->checkRelationships($patient_form, [
+            'appointment'   => 'appointment',
+            'healthhistory' => 'healthHistory',
+        ]);
+
+        if (empty($relationships)) {
+            $patient_form->delete();
+
+            flash('Successful! patient form deleted')->success();
+        } else {
+            flash('Warning! deletion '.$patient_form->form_name.' not allowed.')->warning();
+        }
 
         return redirect('/people/settings/patient-form');
     }

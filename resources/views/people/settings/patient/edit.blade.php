@@ -3,19 +3,16 @@
 @section('title', 'Patient Registration Form')
 
 @section('content')
-
     <div class="container">
         <div class="row">
-
             <main class="col-md-10 offset-md-1 mb-3 mt-3">
                 <div class="card">
-
                     <div class="card-header">
                         <h5 class="card-text text-capitalize">Edit Patient Form</h5>
                     </div>
 
                     <div class="card-body">
-                        <form action="/people/settings/patient-form/{{$patient->id}}" method="POST">
+                        <form action="{{ route('patient-form.update', $patient->id) }}" method="POST">
                             {{ csrf_field() }}
                             {{ method_field('PATCH') }}
                             
@@ -76,15 +73,13 @@
                             </div>
 
                             <hr>
-                            <button class="btn btn-danger" type="submit">Update</button>
-                            <a href="/people/settings/patient-form" class="btn btn-secondary">Cancel</a>
+                            <button class="btn btn-sm btn-danger" type="submit">UPDATE</button>
+                            <a href="/people/settings/patient-form" class="btn btn-sm btn-secondary">CANCEL</a>
                         </form>
                     </div>
 
                 </div>
             </main>
-
         </div>
     </div>
-
 @endsection

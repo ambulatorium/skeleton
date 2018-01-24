@@ -4,7 +4,6 @@
 @section('sidebar_patients', 'active')
 
 @section('content')
-
     <div class="container mt-5">
         <div class="row">
 
@@ -12,9 +11,8 @@
 
             <main class="col-sm-8 ml-sm-auto col-md-9 mb-5">
                 <div class="card">
-
                     <div class="card-header">
-                        <a href="/people/settings/patient-form/create" class="btn btn-outline-danger btn-sm float-right">Add New</a>
+                        <a href="{{ route('patient-form.create') }}" class="btn btn-outline-danger btn-sm float-right">Add New</a>
                         <h4 class="card-text">Your patient form</h4>
                     </div>
 
@@ -35,11 +33,11 @@
                                         <td>{{ $patient->full_name }}</td>
                                         <td>{{ $patient->gender }}</td>                                        
                                         <td>
-                                            <form action="#" method="POST">
+                                            <form action="{{ route('patient-form.destroy', $patient->id) }}" method="POST">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
 
-                                                <a href="/people/settings/patient-form/{{$patient->id}}/edit" class="btn btn-secondary btn-sm">edit</a>
+                                                <a href="{{ route('patient-form.edit', $patient->id) }}" class="btn btn-secondary btn-sm">edit</a>
                                                 <button class="btn btn-danger btn-sm" type="submit">delete</button>
                                             </form>
                                         </td>
@@ -56,5 +54,4 @@
 
         </div>
     </div>
-
 @endsection

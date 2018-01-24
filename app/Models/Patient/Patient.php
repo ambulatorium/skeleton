@@ -22,4 +22,9 @@ class Patient extends Model
     {
         return $this->hasMany('App\Models\Patient\HealthHistory');
     }
+
+    public function appointment()
+    {
+        return $this->hasOne('App\Models\Appointment\Appointment');
+    }
 }
