@@ -40,7 +40,7 @@ class GroupController extends Controller
 
         return view('groups.show', [
             'group'   => $group,
-            'doctors' => $doctors->load('user', 'speciality'),
+            'doctors' => $doctors->load('speciality'),
         ]);
     }
 
