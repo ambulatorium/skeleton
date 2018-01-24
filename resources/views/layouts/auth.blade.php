@@ -5,15 +5,9 @@
 
 <body>
     <div id="app">
-
-        <header class="navbar navbar-expand navbar-light justify-content-center">
-            <a href="/" class="navbar-brand"><h1>RELIQUI</h1></a>
-        </header>
-
-        @include('flash::message')
+        <a href="/" class="text-center text-secondary"><h1>RELIQUI</h1></a>
 
         @yield('form')
-        
     </div>
 
     <script src="{{ asset('js/app.js') }}"></script>

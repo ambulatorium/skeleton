@@ -8,8 +8,8 @@
 @endsection
 
 @section('content')
-    <div class="col-md-8 offset-md-2 mt-3">
-        <div class="list-group mt-2">
+    <div class="col-md-8 offset-md-2 mt-4">
+        <div class="list-group">
             <div class="list-group-item bg-secondary">
                 <h5 class="text-white mb-0"><strong>Inbox</strong></h5>
             </div>
