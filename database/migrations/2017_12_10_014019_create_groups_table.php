@@ -20,8 +20,6 @@ class CreateGroupsTable extends Migration
             $table->string('country');
             $table->string('city');
             $table->text('address');
-            $table->string('min_day_appointment');
-            $table->string('max_day_appointment');
             $table->timestamps();
         });
     }

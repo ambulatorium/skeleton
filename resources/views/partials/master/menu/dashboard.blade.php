@@ -1,4 +1,4 @@
-<div class="nav-scroller box-shadow">
+<div class="nav-scroller box-shadow-nav">
     <nav class="nav nav-underline justify-content-md-center">
         <a class="nav-link @yield('dashboard-inbox')" href="/people">Inbox</a>
         @role('doctor')

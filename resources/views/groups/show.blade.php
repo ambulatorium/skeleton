@@ -23,7 +23,6 @@
                     <h5 class="text-muted">
                         <strong class="mb-5">{{ $group->health_care_name }} doesn't have any doctors yet</strong>
                     </h5>
-                    <a href="{{ $group->slug }}/settings/invitations" class="btn btn-sm btn-danger">Invite Doctor</a>
                 </div>
             @endforelse
             

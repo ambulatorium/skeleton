@@ -10065,9 +10065,14 @@ body {
   color: #d71149;
 }
 
-.box-shadow {
+.box-shadow-nav {
   -webkit-box-shadow: 0 0.45rem 9rem 0px rgba(0, 0, 0, 0.05);
           box-shadow: 0 0.45rem 9rem 0px rgba(0, 0, 0, 0.05);
+}
+
+.box-shadow-table {
+  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16);
+          box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16);
 }
 
 .page-header {
