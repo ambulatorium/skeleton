@@ -6,7 +6,7 @@
     <main class="col-md-4 offset-md-4 my-3 p-3">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-text text-capitalize">invite staff</h5>
+                <h5 class="card-text text-capitalize">edit staff</h5>
             </div>
             <div class="card-body">
                 <form action="/settings/staffs/{{ $user->id }}" method="POST" class="form-horizontal">

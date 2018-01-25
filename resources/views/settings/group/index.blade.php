@@ -39,7 +39,8 @@
             </table>
         </div>
 
-        <a href="/settings/groups/create" class="btn btn-sm btn-outline-secondary float-right">Add New</a>
+        <a href="/settings/groups/create" class="btn btn-sm btn-light float-right active">Add New</a>
+
         {{ $groups->links('vendor.pagination.bootstrap-4') }}
         
     </main>

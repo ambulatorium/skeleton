@@ -36,7 +36,7 @@
             </table>
         </div>
 
-        <a href="/settings/staffs/create" class="btn btn-sm btn-outline-secondary float-right">Invite</a>
+        <a href="/settings/staffs/create" class="btn btn-sm btn-light float-right active">Invite</a>
         
     </main>
 @endsection
