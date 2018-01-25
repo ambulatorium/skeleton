@@ -20,7 +20,7 @@
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarMenu">
                     <h6 class="dropdown-header"><strong>{{ Auth::user()->name }}</strong></h6>
                     <div class="dropdown-divider"></div>
-                    <a href="/people" class="dropdown-item">Profile</a>
+                    <a href="/people" class="dropdown-item">Inbox</a>
                     <a href="/people/settings/account" class="dropdown-item">Settings</a>
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
