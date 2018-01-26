@@ -24,7 +24,7 @@ class GroupPolicy
         }
 
         if ($user->can('edit-group')) {
-            return $group->id === $user->staff->group_id;    
+            return $group->id === $user->staff->group_id;
         }
 
     }

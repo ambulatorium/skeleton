@@ -14,7 +14,7 @@ class GroupRequest extends FormRequest
     public function rules()
     {
         return [
-            'health_care_name'      => 'required|min:5',
+            'health_care_name'      => 'required|min:5|unique:groups',
             'country'               => 'required|min:3',
             'city'                  => 'required|min:3',
             'address'               => 'required|max:60',
