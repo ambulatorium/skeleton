@@ -3,7 +3,7 @@
 @section('title', Auth::user()->name)
 
 @section('content')
-    <div class="col-md-8 offset-md-2 mt-4 mb-4">
+    <main class="col-md-8 offset-md-2 my-3 p-3">
         <h4>Create New Schedule</h4>
         <hr>
 
@@ -19,5 +19,5 @@
             </div>
         @endif
         
-    </div>
+    </main>
 @endsection

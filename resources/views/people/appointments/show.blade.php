@@ -3,7 +3,7 @@
 @section('title', Auth::user()->name) 
 
 @section('content')
-    <div class="col-md-8 offset-md-2 text-center mt-4 mb-4">
+    <main class="col-md-8 offset-md-2 my-3 p-3 text-center">
         <h1 class="mt-3">
             {{ \Carbon\Carbon::parse($appointment->date)->format('l') }}
             <p>{{ \Carbon\Carbon::parse($appointment->date)->format('d F Y') }}</p>
@@ -30,5 +30,5 @@
         <div class="mt-5">
             <a href="/people" class="btn btn-sm btn-outline-secondary">< back</a>
         </div>
-    </div>
+    </main>
 @endsection

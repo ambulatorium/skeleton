@@ -43,6 +43,24 @@ class DatabaseSeeder extends Seeder
                     $role->syncPermissions(Permission::all());
                     $this->command->info('Owner granted all the permissions');
                 }
+
+                if ($role->name == 'administrator') {
+                    $role->givePermissionTo([
+                        'edit-groups', 'view-doctors',
+                    ]);
+                }
+
+                if ($role->name == 'admin-group') {
+                    $role->givePermissionTo([
+                        'edit-group', 'checkin-appointment-group',
+                    ]);
+                }
+
+                if ($role->name == 'admin-counter') {
+                    $role->givePermissionTo([
+                        'checkin-appointment-group',
+                    ]);
+                }
             }
 
             $this->command->info('Default Roles added.');

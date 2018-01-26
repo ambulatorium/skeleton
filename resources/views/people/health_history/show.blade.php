@@ -1,14 +1,9 @@
 @extends('layouts.master')
 
 @section('title', Auth::user()->name)
-@section('dashboard-health-history', 'active')
-
-@section('menu')
-    @include('partials.master.menu.dashboard')
-@endsection
 
 @section('content')
-    <div class="col-md-8 offset-md-2 mt-3 mb-3">
+    <main class="col-md-8 offset-md-2 my-3 p-3">
         <div class="list-group">
             <div class="list-group-item d-flex justify-content-between align-items-center">
                 <div class="text-secondary">
@@ -54,5 +49,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 @endsection

@@ -8,8 +8,15 @@ use App\Models\Appointment\Appointment;
 
 class GroupController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:admin-group|admin-counter']);
+    }
+
     public function appointment(Group $group)
     {
+        $this->authorize('appointment', $group);
+
         $appointments = $group->appointments()
                               ->where('status', 'scheduled')
                               ->get();
@@ -22,11 +29,15 @@ class GroupController extends Controller
 
     public function showAppointment(Group $group, Appointment $appointment)
     {
+        $this->authorize('appointment', $group);
+
         return view('groups.appointments.show', compact('group', 'appointment'));
     }
 
     public function checkinAppointment(Group $group, Appointment $appointment)
     {
+        $this->authorize('appointment', $group);
+        
         $appointment->fill(['status' => 'checked']);
         $appointment->save();
 

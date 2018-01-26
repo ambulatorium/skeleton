@@ -3,7 +3,7 @@
 @section('title', Auth::user()->name)
 
 @section('content')
-    <div class="container mt-3 mb-3">
+    <main class="container my-3 p-3">
         <div class="row">
             <div class="list-group col-md-8">
                 <div class="list-group-item d-flex justify-content-between align-items-center">
@@ -88,5 +88,5 @@
             </div>
 
         </div>
-    </div>
+    </main>
 @endsection

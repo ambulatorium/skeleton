@@ -9,11 +9,9 @@ class Permission extends \Spatie\Permission\Models\Permission
         return [
             'view-doctors',
 
-            'view-patients',
-            'add-patients',
-            'edit-patients',
-            'delete-patients',
-
+            'edit-groups',
+            'edit-group',
+            'checkin-appointment-group',
         ];
     }
 }
