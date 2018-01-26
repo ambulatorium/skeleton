@@ -4,7 +4,7 @@
 @section('group-profile', 'active')
 
 @section('menu')
-    @include('partials.master.menu.group')
+    @include('partials.master.menu.groups.setting')
 @endsection
 
 @section('content')

@@ -1,40 +1,47 @@
 @extends('layouts.master')
 
 @section('title', $group->health_care_name)
-@section('tab-appointments', 'active')
+@section('appointment-all', 'active') 
+
+@section('menu')
+    @include('partials.master.menu.groups.appointment')
+@endsection
 
 @section('content')
-
-    @include('partials.groups.tab')
-    
-    <div class="container mt-3">
-        <div class="row">
-
-            @forelse($appointments as $appointment)
-                <div class="col-md-4 mt-4">
-                    <h5 class="mb-1">
-                        <small>token: </small>
-                        <a href="/{{$group->slug}}/appointments/{{$appointment->token}}"><small>{{ $appointment->token }}</small></a><p>
-                        
-                        {{ $appointment->patient->full_name }}
-                        <small>
-                            {{ \Carbon\Carbon::parse($appointment->date)->format('l') }},
-                            {{ \Carbon\Carbon::parse($appointment->date)->format('d F Y') }},
-                            {{ \Carbon\Carbon::parse($appointment->preferred_time)->format('H:ia') }}
-                        </small>
-                        <hr>
-                    </h5>
-                </div>
-            @empty
-                <div class="col-md-12 mt-4 text-center">
-                    <h5 class="text-muted">
-                        <strong class="mb-5">
-                            {{ $group->health_care_name }} don't have scheduled appointment yet
-                        </strong>
-                    </h5>
-                </div>
-            @endforelse
-            
+    <main class="col-md-8 offset-md-2 my-3 p-3">
+        <div class="table-responsive">
+            <table class="table table-hover table-rq box-shadow-table">
+                <thead class="thead-rq">
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Token</th>
+                        <th>Appointment date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($appointments as $appointment)
+                        <tr>
+                            <td>{{ $appointment->patient->full_name }}</td>
+                            <td class="text-uppercase">
+                                <a href="/{{$group->slug}}/appointments/{{$appointment->token}}">
+                                    {{ $appointment->token }}
+                                </a>
+                            </td>
+                            <td>
+                                {{ \Carbon\Carbon::parse($appointment->date)->format('l') }},
+                                {{ \Carbon\Carbon::parse($appointment->date)->format('d F Y')}},
+                                {{ \Carbon\Carbon::parse($appointment->preferred_time)->format('H:ia') }}
+                            </td>
+                        </tr>
+                    @empty
+                    <tr>
+                        <td class="text-muted">...</td>
+                        <td class="text-muted">...</td>
+                        <td class="text-muted">...</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
-    </div>
+    </main>
 @endsection

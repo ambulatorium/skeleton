@@ -1,16 +1,16 @@
 @extends('layouts.master')
 
 @section('title', 'Manage groups')
-@section('manage-groups', 'active') 
+@section('setting-groups', 'active') 
 
 @section('menu')
-    @include('partials.master.menu.manage')
+    @include('partials.master.menu.users.app-settings')
 @endsection
 
 @section('content')
     <main class="col-md-8 offset-md-2 my-3 p-3">
         <div class="table-responsive">
-            <table class="table table-hover table-rq">
+            <table class="table table-hover table-rq box-shadow-table">
                 <thead class="thead-rq">
                     <tr>
                         <th>Name</th>
