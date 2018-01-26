@@ -37,7 +37,7 @@ class GroupController extends Controller
     public function checkinAppointment(Group $group, Appointment $appointment)
     {
         $this->authorize('appointment', $group);
-        
+
         $appointment->fill(['status' => 'checked']);
         $appointment->save();
 

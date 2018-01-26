@@ -24,13 +24,13 @@ class GroupPolicy
         }
 
         if ($user->can('edit-group')) {
-            return $group->id === $user->staff->group_id;            
+            return $group->id === $user->staff->group_id;    
         }
 
     }
 
     /**
-     * Determine whether user can view appointments in group
+     * Determine whether user can view appointments in group.
      *
      * @param User $user
      * @param Group $group
@@ -39,7 +39,7 @@ class GroupPolicy
     public function appointment(User $user, Group $group)
     {
         // if ($user->can('checkin-appointment-group')) {
-            return $group->id === $user->staff->group_id;
+        return $group->id === $user->staff->group_id;
         // }
     }
 }

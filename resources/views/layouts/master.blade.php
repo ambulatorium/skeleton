@@ -10,6 +10,8 @@
 
         @include('partials.master.header')
         
+        @yield('menu')
+        
         @include('partials.master.errors')
 
         <div id="flash-msg">

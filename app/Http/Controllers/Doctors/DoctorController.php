@@ -52,7 +52,7 @@ class DoctorController extends Controller
     public function outpatients()
     {
         $today = today()->format('Y-m-d');
-        
+
         $appointments = Appointment::where([
                             ['date', $today],
                             ['status', 'checked'],
