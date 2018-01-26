@@ -9,10 +9,6 @@ class HomeController extends Controller
 {
     public function home()
     {
-        // if (Auth::check()) {
-        //     return redirect('/people');
-        // }
-
         return view('home', [
             'specialities' => Speciality::all(),
             'locations'    => Group::all(),

@@ -4,7 +4,7 @@
         @guest
             <a href="/" class="navbar-brand">
         @else
-            <a href="/people" class="navbar-brand">
+            <a href="/people/inbox" class="navbar-brand">
         @endguest
                 <strong>RELIQUI</strong>
             </a>

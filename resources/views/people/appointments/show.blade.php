@@ -28,7 +28,7 @@
         </div>
 
         <div class="mt-5">
-            <a href="/people" class="btn btn-sm btn-outline-secondary">< back</a>
+            <a href="/people/inbox" class="btn btn-sm btn-outline-secondary">< back</a>
         </div>
     </main>
 @endsection

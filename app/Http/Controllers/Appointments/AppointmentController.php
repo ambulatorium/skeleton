@@ -9,7 +9,7 @@ class AppointmentController extends Controller
 {
     public function index()
     {
-        return redirect('/people');
+        return redirect('/people/inbox');
     }
 
     public function show(Appointment $appointment)

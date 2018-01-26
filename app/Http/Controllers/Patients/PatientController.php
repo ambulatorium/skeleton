@@ -27,7 +27,7 @@ class PatientController extends Controller
 
         flash('Successful! your patient form submitted')->success();
 
-        return redirect('/people');
+        return redirect('/people/inbox');
     }
 
     public function show()

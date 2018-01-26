@@ -11,7 +11,7 @@
     <main class="col-md-8 offset-md-2 my-3 p-3">
         <div class="list-group">
             @forelse($appointments as $appointment)
-                <a href="/people/appointments/{{$appointment->token}}" class="list-group-item list-group-item-action">
+                <a href="/people/inbox/appointments/{{$appointment->token}}" class="list-group-item list-group-item-action">
                     {{ \Carbon\Carbon::parse($appointment->date)->format('l') }}
                     {{ \Carbon\Carbon::parse($appointment->date)->format('d F Y') }} with
 

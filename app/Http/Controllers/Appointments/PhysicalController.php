@@ -78,7 +78,7 @@ class PhysicalController extends Controller
 
         flash('Successful! Physcial appointment scheduled')->success();
 
-        return redirect('/people');
+        return redirect('/people/inbox');
     }
 
     protected function getSchedules()

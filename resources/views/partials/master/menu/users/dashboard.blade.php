@@ -24,7 +24,7 @@
 
 <div class="nav-scroller box-shadow-nav">
     <nav class="nav nav-pills container">
-        <a class="nav-link @yield('dashboard-inbox')" href="/people">Inbox</a>
+        <a class="nav-link @yield('dashboard-inbox')" href="/people/inbox">Inbox</a>
         <a class="nav-link @yield('dashboard-health-history')" href="/people/health-history">Health history</a>
 
         @role('doctor')
