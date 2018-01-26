@@ -1,14 +1,9 @@
 @extends('layouts.master')
 
 @section('title', Auth::user()->name)
-@section('dashboard-schedules', 'active')
-
-@section('menu')
-    @include('partials.master.menu.dashboard')
-@endsection
 
 @section('content')
-    <div class="col-md-8 offset-md-2 mt-4 mb-4">
+    <main class="col-md-8 offset-md-2 my-3 p-3">
         <h4>Edit schedule</h4>
         <hr>
 
@@ -16,7 +11,7 @@
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
 
-            <div class="form-row mt-4">
+            <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="day">Day*</label>
                     <select name="day" class="form-control" required>
@@ -68,5 +63,5 @@
             <button class="btn btn-sm btn-danger" type="submit">UPDATE</button>
             <a href="/people/schedules" class="btn btn-sm btn-secondary">CANCEL</a>
         </form>
-    </div>
+    </main>
 @endsection

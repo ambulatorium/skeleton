@@ -4,12 +4,11 @@
 @section('dashboard-schedules', 'active')
 
 @section('menu')
-    @include('partials.master.menu.dashboard')
+    @include('partials.master.menu.users.dashboard')
 @endsection
 
 @section('content')
-    <div class="col-md-8 offset-md-2 mt-3">
-
+    <main class="col-md-8 offset-md-2 my-3 p-3">
         <div class="list-group mt-2">
             @forelse($schedules as $schedule)
                 <a href="/people/schedules/{{$schedule->id}}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
@@ -25,9 +24,11 @@
                     <span class="badge badge-info">{{ $schedule->appointments_count }} appointment</span>
                 </a>
             @empty
-                <div class="list-group-item">
-                    <h5 class="text-muted text-center"><strong>You don't have any schedule yet</strong></h5>
-                    <h6 class="text-muted text-center">when you create schedule, it'll show up here.</h6>
+                <div class="text-muted text-center">
+                    <strong>
+                        You don't have any schedule yet.
+                    </strong>
+                    <p>when you create schedule, it'll show up here.</p>
                 </div>
             @endforelse
         </div>
@@ -36,5 +37,5 @@
             <a href="/people/schedules/create" class="btn btn-outline-secondary btn-sm">CREATE SCHEDULE</a>            
         </div>
 
-    </div>
+    </main>
 @endsection

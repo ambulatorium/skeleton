@@ -4,12 +4,12 @@
 @section('dashboard-schedules', 'active')
 
 @section('menu')
-    @include('partials.master.menu.dashboard')
+    @include('partials.master.menu.users.dashboard')
 @endsection
 
 @section('content')
-    <div class="col-md-8 offset-md-2 mt-4 mb-4">
-        <h4 class="text-secondary mb-4">
+    <main class="col-md-8 offset-md-2 my-3 p-3">
+        <h4 class="text-secondary">
             <strong>{{ $schedule->day }}</strong>
             @if($schedule->is_available)
                 <small class="text-muted">available</small>
@@ -37,7 +37,7 @@
             </small>
         </h4>
 
-        <div class="list-group">
+        <div class="list-group mt-5">
             @forelse($appointments as $appointment)
                 <div class="list-group-item">
                     <h5>
@@ -47,13 +47,11 @@
                     </h5>
                 </div>
             @empty
-                <div class="list-group-item">
-                    <h5 class="text-muted text-center"><strong>This schedule don't have any appointment yet</strong></h5>
-                </div>
+                <h5 class="text-muted text-center"><strong>This schedule don't have any appointment yet</strong></h5>
             @endforelse
         </div>
 
-    </div>
+    </main>
 
     <form id="delete-schedule" action="/people/schedules/{{ $schedule->id }}" method="POST" style="display: none;">
         {{ csrf_field() }}
