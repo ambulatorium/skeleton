@@ -15,21 +15,27 @@ class SettingController extends Controller
 
     public function profile(Group $group)
     {
+        $this->authorize('update', $group);
+
         return view('groups.settings.profile', compact('group'));
     }
 
     public function staff(Group $group)
     {
+        $this->authorize('update', $group);
+
         $staffs = $group->staff()->get();
 
         return view('groups.settings.staff', [
             'group'  => $group,
-            'staffs' => $staffs->load('user.roles'),
+            'staffs' => $staffs->load('user'),
         ]);
     }
 
     public function invitation(Group $group)
     {
+        $this->authorize('update', $group);
+
         $invitations = $group->invitation()->get();
         $roles = Role::whereNotIn('name', ['owner', 'administrator', 'patient'])->get();
 

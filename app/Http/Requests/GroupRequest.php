@@ -18,8 +18,6 @@ class GroupRequest extends FormRequest
             'country'               => 'required|min:3',
             'city'                  => 'required|min:3',
             'address'               => 'required|max:60',
-            'min_day_appointment'   => 'required',
-            'max_day_appointment'   => 'required',
         ];
     }
 
@@ -31,8 +29,6 @@ class GroupRequest extends FormRequest
             'country'               => $this->country,
             'city'                  => $this->city,
             'address'               => $this->address,
-            'min_day_appointment'   => $this->min_day_appointment,
-            'max_day_appointment'   => $this->max_day_appointment,
         ];
     }
 }
