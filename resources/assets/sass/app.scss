@@ -7,9 +7,13 @@
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
+html,
 body {
   color: var(--secondary);
   overflow-x: hidden;
+}
+
+body {
   padding-top: 56px;
 }
 
@@ -39,39 +43,17 @@ body {
   position: relative;
   z-index: 2;
   height: 2.75rem;
-  overflow-y: hidden;
+  overflow: hidden;
+  border-bottom: 1px solid #ddd;
 }
 
 .nav-scroller .nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
-  padding-bottom: 1rem;
-  margin-top: -1px;
   overflow-x: auto;
-  color: rgba(255, 255, 255, .75);
-  text-align: center;
   white-space: nowrap;
+  text-align: center;
   -webkit-overflow-scrolling: touch;
-}
-
-.nav-underline .nav-link {
-  padding-top: .75rem;
-  padding-bottom: .75rem;
-  font-size: 1rem;
-  color: var(--secondary);
-}
-
-.nav-underline .nav-link:focus,
-.nav-underline .nav-link:hover {
-  color: #d71149;
-}
-
-.nav-underline .active {
-  font-weight: bold;
-  color: #d71149;
 }
 
 .box-shadow-nav { 
@@ -85,10 +67,7 @@ body {
 .page-header {
   background-color: #f9f9f9;
   padding-top: 1rem;
-}
-
-.text-primary {
-  color: #424C55 !important;
+  padding-bottom: 1rem;
 }
 
 a.text-primary:focus,
@@ -96,32 +75,7 @@ a.text-primary:hover {
   color: #d71149 !important;
 }
 
-.nav-rills {
-  border-bottom: 1px solid #ddd;
-}
-
-.nav-rills .nav-link {
-  color: #424C55;
-  border-radius: 0rem;
-}
-
-.nav-rills .nav-link.active,
-.nav-rills .show > .nav-link {
-  color: #424C55;
-  font-weight: bold;
-  background-color: #f9f9f9;
-  border-bottom: 1px solid #d71149;
-}
-
-.nav-rills .nav-link:focus,
-.nav-rills .nav-link:hover {
-  background-color: #f9f9f9;
-  border-bottom: 1px solid #d71149;
-}
-
 .nav-pills {
-  border-bottom: 1px solid #ddd;
-  background-color: #f9f9f9;
   min-height: 29px;
 }
 
@@ -135,33 +89,13 @@ a.text-primary:hover {
   color: #424C55;
   font-weight: bold;
   background-color: transparent;
-  border-bottom: 1px solid #d71149;
+  border-bottom: 2px solid #d71149;
 }
 
 .nav-pills .nav-link:focus,
 .nav-pills .nav-link:hover {
   background-color: transparent;
-  border-bottom: 1px solid #d71149;
-}
-
-.nav-sidebar .nav-link {
-  color: #424C55;
-  border-radius: 0rem;
-  padding-left: 1rem;
-}
-
-.nav-sidebar .nav-link.active,
-.nav-sidebar .show > .nav-link {
-  color: #424C55;
-  font-weight: bold;
-  background-color: #f9f9f9;
-  border-left: 2px solid #d71149;
-}
-
-.nav-sidebar .nav-link:focus,
-.nav-sidebar .nav-link:hover {
-  background-color: #f9f9f9;
-  border-left: 2px solid #d71149;
+  border-bottom: 2px solid #d71149;
 }
 
 .dropdown-item.active,
