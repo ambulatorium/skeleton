@@ -4,6 +4,9 @@
 Route::get('/', 'HomeController@home');
 Route::get('/scheduling/physical-appointment', 'Appointments\PhysicalController@index');
 
+// all healthcare provider
+Route::get('/{group}', 'Settings\Group\GroupController@show');
+
 // Authentication default
 Auth::routes();
 
@@ -45,7 +48,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Multiple Health Care Provider
     Route::group(['prefix' => '{group}'], function () {
-        Route::get('/', 'Settings\Group\GroupController@show');
         Route::get('/appointments', 'Groups\GroupController@appointment');
         Route::get('/appointments/{appointment}', 'Groups\GroupController@showAppointment');
         Route::patch('/appointments/{appointment}', 'Groups\GroupController@checkinAppointment');
