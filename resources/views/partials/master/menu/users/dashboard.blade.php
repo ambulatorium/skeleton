@@ -1,6 +1,7 @@
 <div class="page-header">
     <div class="container text-secondary">
         <strong class="text-capitalize">{{ Auth::user()->name }}</strong>
+        <small>{{ Auth::user()->email }}</small>
 
         @role('admin-group|admin-counter')
             <div class="float-right dropdown">
