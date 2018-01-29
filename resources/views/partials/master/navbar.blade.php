@@ -8,9 +8,12 @@
     </form>
 
     <ul class="navbar-nav my-2 my-lg-0">
+        <li class="nav-item">
+            <a href="/explore" class="nav-link @yield('explore')">Explore</a>
+        </li>
         @guest
             <li class="nav-item">
-                <a href="/login" class="nav-link active"><strong>My Account</strong></a>
+                <a href="/login" class="nav-link">My Account</a>
             </li>
         @else
             <li class="nav-item dropdown">

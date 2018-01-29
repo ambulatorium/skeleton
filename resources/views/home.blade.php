@@ -3,8 +3,7 @@
 @section('title', 'An open source outpatients appointments built on Laravel.')
 
 @section('content')
-
-    <div class="container">
+    <main class="container">
         <div class="row">
 
             <div class="col-md-4 col-sm-12">
@@ -58,6 +57,5 @@
             </div>
             
         </div>
-    </div>
-
+    </main>
 @endsection
