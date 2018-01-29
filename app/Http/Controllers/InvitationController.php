@@ -58,7 +58,7 @@ class InvitationController extends Controller
             ]);
         }
 
-        if ($invite->role === 'admin-group' || $invite->role === 'nurse') {
+        if ($invite->role === 'admin-group' || $invite->role === 'admin-counter') {
             $user->staff = Staff::create([
                 'user_id'  => $user->id,
                 'group_id' => $invite->group_id,
