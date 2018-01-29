@@ -4,11 +4,12 @@
 Route::get('/', 'HomeController@home');
 Route::get('/scheduling/physical-appointment', 'Appointments\PhysicalController@index');
 
-// all healthcare provider
-Route::get('/{group}', 'Settings\Group\GroupController@show');
 
 // Authentication default
 Auth::routes();
+
+// all healthcare provider
+Route::get('/{group}', 'Settings\Group\GroupController@show');
 
 // user invitation
 Route::get('/invitations/{token}', 'InvitationController@accept')->middleware('guest')->name('accept');
@@ -33,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/inbox', 'PeopleController@inbox');
         Route::get('/inbox/appointments', 'Appointments\AppointmentController@index');
         Route::get('/inbox/appointments/{appointment}', 'Appointments\AppointmentController@show');
+        Route::delete('/inbox/appointments/{appointment}', 'Appointments\AppointmentController@destroy');
         Route::get('/outpatients', 'Doctors\DoctorController@outpatients');
         Route::get('/outpatients/{appointment}', 'Patients\HealthHistoryController@create');
         Route::post('/outpatients/{appointment}', 'Patients\HealthHistoryController@store');

@@ -28,7 +28,13 @@
         </div>
 
         <div class="mt-5">
-            <a href="/people/inbox" class="btn btn-sm btn-outline-secondary">< back</a>
+            <form action="/people/inbox/appointments/{{$appointment->token}}" method="POST">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                
+                <a href="/people/inbox" class="btn btn-sm btn-outline-secondary">< back</a>
+                <button class="btn btn-sm btn-outline-danger" type="submit">Cancel</button>
+            </form>
         </div>
     </main>
 @endsection

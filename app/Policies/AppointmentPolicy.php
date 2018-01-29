@@ -54,6 +54,6 @@ class AppointmentPolicy
      */
     public function delete(User $user, Appointment $appointment)
     {
-        //
+        return $appointment->user_id === $user->id;
     }
 }

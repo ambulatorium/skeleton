@@ -18,4 +18,15 @@ class AppointmentController extends Controller
 
         return view('people.appointments.show', compact('appointment'));
     }
+
+    public function destroy(Appointment $appointment)
+    {
+        $this->authorize('delete', $appointment);
+
+        $appointment->delete();
+
+        flash('Successful! appointment canceled')->success();
+
+        return redirect('/people/inbox');
+    }
 }
