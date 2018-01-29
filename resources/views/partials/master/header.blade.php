@@ -6,7 +6,7 @@
         @else
             <a href="/people/inbox" class="navbar-brand">
         @endguest
-                <strong>RELIQUI</strong>
+                RELIQUI
             </a>
 
         <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">

@@ -2,6 +2,7 @@
 
 // home
 Route::get('/', 'HomeController@home');
+Route::get('/explore', 'HomeController@explore');
 Route::get('/scheduling/physical-appointment', 'Appointments\PhysicalController@index');
 
 // Authentication default

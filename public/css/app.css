@@ -10047,6 +10047,10 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.77);
+}
+
 .box-shadow-nav {
   -webkit-box-shadow: 0 0.45rem 9rem 0px rgba(0, 0, 0, 0.05);
           box-shadow: 0 0.45rem 9rem 0px rgba(0, 0, 0, 0.05);
