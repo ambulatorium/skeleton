@@ -25,21 +25,21 @@
                         </div>
                         <div class="form-group">
                             <label for="doctor_diagnosis">Doctor diagnosis</label>
-                            <textarea name="doctor_diagnosis" class="form-control" placeholder="Doctor diagnosis..." autofocus required>
+                            <textarea name="doctor_diagnosis" class="form-control" placeholder="..." autofocus required>
                                     {{ old('doctor_diagnosis') }}
                                 </textarea>
                             <span class="help-block text-muted"><small>*max 160 character</small></span>
                         </div>
                         <div class="form-group">
                             <label for="doctor_action">Doctor action</label>
-                            <textarea name="doctor_action" class="form-control" placeholder="Doctor action..." required>
+                            <textarea name="doctor_action" class="form-control" placeholder="..." required>
                                     {{ old('doctor_action') }}
                                 </textarea>
                             <span class="help-block text-muted"><small>*max 160 character</small></span>
                         </div>
                         <div class="form-group">
                             <label for="doctor_note">Note</label>
-                            <textarea name="doctor_note" class="form-control" placeholder="Doctor note...">
+                            <textarea name="doctor_note" class="form-control" placeholder="...">
                                     {{ old('doctor_note') }}
                                 </textarea>
                             <span class="help-block text-muted"><small>*max 160 character</small></span>
