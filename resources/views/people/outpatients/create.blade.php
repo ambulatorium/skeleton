@@ -44,7 +44,7 @@
                                 </textarea>
                             <span class="help-block text-muted"><small>*max 160 character</small></span>
                         </div>
-                        <button type="submit" class="btn btn-sm btn-danger">SUBMIT</button>
+                        <button type="submit" class="btn btn-sm btn-danger">CHECKOUT</button>
                         <a href="/people/outpatients" class="btn btn-sm btn-secondary">CANCEL</a>
                     </form>
                 </div>

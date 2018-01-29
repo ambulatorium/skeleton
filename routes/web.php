@@ -4,7 +4,6 @@
 Route::get('/', 'HomeController@home');
 Route::get('/scheduling/physical-appointment', 'Appointments\PhysicalController@index');
 
-
 // Authentication default
 Auth::routes();
 
