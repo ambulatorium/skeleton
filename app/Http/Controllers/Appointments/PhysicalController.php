@@ -77,7 +77,7 @@ class PhysicalController extends Controller
         }
 
         if ($appointment = Appointment::where('patient_id', $request->patient_id)->first()) {
-            flash('Error! '. $appointment->patient->full_name.' already has an appointment schedule.')->error();
+            flash('Error! '.$appointment->patient->full_name.' already has an appointment schedule.')->error();
 
             return redirect()->back();
         }
