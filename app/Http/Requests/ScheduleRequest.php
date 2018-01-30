@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Doctor\Schedule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -28,6 +29,7 @@ class ScheduleRequest extends FormRequest
     {
         return [
             'doctor_id'               => Auth::user()->doctor->id,
+            'token'                   => $this->generateToken(),
             'day'                     => $this->day,
             'start_time'              => $this->start_time,
             'end_time'                => $this->end_time,
@@ -35,5 +37,16 @@ class ScheduleRequest extends FormRequest
             'estimated_price_service' => $this->estimated_price_service,
             'is_available'            => $this->is_available,
         ];
+    }
+
+    protected function generateToken()
+    {
+        $token = str_random(6);
+
+        if (Schedule::where('token', $token)->first()) {
+            $this->generateToken();
+        }
+
+        return $token;
     }
 }

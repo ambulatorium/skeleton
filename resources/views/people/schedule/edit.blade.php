@@ -7,7 +7,7 @@
         <h4>Edit schedule</h4>
         <hr>
 
-        <form action="/people/schedules/{{$schedule->id}}" method="POST" class="form-horizontal">
+        <form action="/people/schedules/{{$schedule->token}}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
 
