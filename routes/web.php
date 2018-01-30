@@ -18,8 +18,8 @@ Route::post('/invitations/{token}', 'InvitationController@join')->middleware('gu
 Route::group(['middleware' => 'auth'], function () {
 
     // scheduling physical appointment
-    Route::get('/scheduling/physical-appointment/doctor/{doctor}', 'Appointments\PhysicalController@create');
-    Route::post('/scheduling/physical-appointment/doctor/{doctor}', 'Appointments\PhysicalController@store');
+    Route::get('/scheduling/physical-appointment/{schedule}', 'Appointments\PhysicalController@create');
+    Route::post('/scheduling/physical-appointment/{schedule}', 'Appointments\PhysicalController@store');
 
     Route::get('/doctors', 'Doctors\DoctorController@index');
 

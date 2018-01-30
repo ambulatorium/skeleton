@@ -38,9 +38,9 @@ class AppointmentRequest extends FormRequest
         return [
             'user_id'            => $this->user_id,
             'patient_id'         => $this->patient_id,
-            'doctor_id'          => $this->doctor->id,
+            'doctor_id'          => $this->schedule->doctor->id,
             'schedule_id'        => $this->schedule_id,
-            'group_id'           => $this->doctor->group->id,
+            'group_id'           => $this->schedule->doctor->group->id,
             'token'              => $this->generateToken(),
             'date'               => $this->date,
             'preferred_time'     => $this->preferred_time,

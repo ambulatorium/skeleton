@@ -22,9 +22,9 @@
                     Manage
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="manageSchedule">
-                    <a href="/people/schedules/{{$schedule->id}}/edit" class="dropdown-item">Edit</a>
+                    <a href="/people/schedules/{{$schedule->token}}/edit" class="dropdown-item">Edit</a>
                 
-                    <a href="/people/schedules/{{ $schedule->id }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('delete-schedule').submit();">
+                    <a href="/people/schedules/{{$schedule->token}}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('delete-schedule').submit();">
                         Delete
                     </a>
                 </div>
@@ -53,7 +53,7 @@
 
     </main>
 
-    <form id="delete-schedule" action="/people/schedules/{{ $schedule->id }}" method="POST" style="display: none;">
+    <form id="delete-schedule" action="/people/schedules/{{$schedule->token}}" method="POST" style="display: none;">
         {{ csrf_field() }}
         {{ method_field('DELETE') }}
     </form>

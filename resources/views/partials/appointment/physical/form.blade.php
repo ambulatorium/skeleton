@@ -1,21 +1,30 @@
 <div class="col-md-12 mt-3">
     <div class="list-group">
         <div class="list-group-item">
-            <form action="/scheduling/physical-appointment/doctor/{{$doctor->id}}" method="POST">
+            <form action="/scheduling/physical-appointment/{{$schedule->token}}" method="POST">
                 {{ csrf_field() }}
 
                 <input type="hidden" name="schedule_id" value="{{ $schedule->id }}">
                 <input type="hidden" name="date" value="{{ request('date') }}">
 
                 <div class="form-group">
-                    <h5>Preferred Time</h5>
-                    {{--  @further just show available time slot  --}}
+                    <p>Choose preferred time for appointment date {{ request('date') }}</p>
+
                     @for($time=$start_time; $time<=$end_time; $time+=(60*$schedule->estimated_service_time))
                         <label class="btn btn-sm btn-secondary">
-                            <input type="radio" name="preferred_time" value="{{ date('g:i:s', $time) }}" autocomplete="off"> 
-                                {{ date('g:ia', $time) }}
+                            <input type="radio" name="preferred_time" value="{{ date('g:i:s', $time) }}" autocomplete="off" 
+                                @php
+                                    foreach($appointments as $appointment)
+                                        if (date('h:i:s', $time) == $appointment->preferred_time) {
+                                            echo 'disabled';
+                                        }
+                                @endphp
+                            >
+
+                            {{ date('g:ia', $time) }}
                         </label>
                     @endfor
+
                     <hr>
                 </div>
 
