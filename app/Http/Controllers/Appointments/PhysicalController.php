@@ -70,11 +70,15 @@ class PhysicalController extends Controller
 
     public function store(Doctor $doctor, AppointmentRequest $request)
     {
+        if (auth()->id() === $doctor->user->id) {
+            flash('Error! you can not schedule an appointment with yourself.')->error();
+
+            return redirect()->back();
+        }
+        
         auth()->user()->schedulingAppointment(
             new Appointment($request->formAppointment())
         );
-
-        // @further send notification to doctor and patient
 
         flash('Successful! Physcial appointment scheduled')->success();
 
