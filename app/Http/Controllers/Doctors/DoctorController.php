@@ -53,12 +53,14 @@ class DoctorController extends Controller
     {
         $today = today()->format('Y-m-d');
 
-        $appointments = Appointment::where([
+        $appointments = Appointment::with('patient')
+                        ->where([
                             ['date', $today],
                             ['status', 'checked'],
                             ['doctor_id', Auth::user()->doctor->id],
                         ])
-                        ->paginate(1);
+                        ->orderBy('preferred_time', 'asc')
+                        ->paginate(10);
 
         return view('people.outpatients.index', compact('appointments'));
     }
