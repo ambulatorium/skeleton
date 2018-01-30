@@ -50,7 +50,7 @@
         @forelse($schedules as $schedule)
             <div class="col-md-6 mt-4">
                 <div class="list-group">
-                    <a href="/scheduling/physical-appointment/doctor/{{$schedule->doctor->id}}?date={{request('date')}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <a href="/scheduling/physical-appointment/{{$schedule->token}}?date={{request('date')}}" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">
                                 {{ $schedule->doctor->full_name }}
@@ -69,7 +69,7 @@
                                 {{ \Carbon\Carbon::parse($schedule->end_time)->format('g:ia') }}
                             </p>
                         </div>
-                        <small>{{ $schedule->doctor->group->health_care_name }} - {{ $schedule->doctor->group->city }}</small>
+                        <small>A physical appointment is for treatment and consultation.</small>
                     </a>
                 </div>
             </div>
