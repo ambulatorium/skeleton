@@ -75,7 +75,13 @@ class PhysicalController extends Controller
 
             return redirect()->back();
         }
-        
+
+        if ($appointment = Appointment::where('patient_id', $request->patient_id)->first()) {
+            flash('Error! '. $appointment->patient->full_name.' already has an appointment schedule.')->error();
+
+            return redirect()->back();
+        }
+
         auth()->user()->schedulingAppointment(
             new Appointment($request->formAppointment())
         );
