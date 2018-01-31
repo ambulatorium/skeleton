@@ -1,9 +1,8 @@
 <div class="navbar-collapse offcanvas-collapse" id="navbarMenu">
 
-    {{--  @todo search doctor, healthcare provider  --}}
-    <form action="#" method="#" class="form-inline mr-auto">
+    <form action="{{ route('search') }}" method="get" class="form-inline mr-auto">
         <div class="input-group">
-            <input class="search-input" type="search" name="query" placeholder="search...">
+            <input class="search-input" type="search" name="q" placeholder="find a doctor...">
         </div>
     </form>
 

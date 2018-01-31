@@ -24,4 +24,15 @@ class HomeController extends Controller
             'specialities'  => Speciality::all(),
         ]);
     }
+
+    public function search()
+    {
+        $search = request('q');
+
+        $doctors = Doctor::with('group')
+                        ->where('full_name', 'LIKE', "%$search%")
+                        ->paginate(10);
+
+        return view('search.index', compact('doctors'));
+    }
 }
