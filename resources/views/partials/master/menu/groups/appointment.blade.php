@@ -3,12 +3,11 @@
         <a href="/{{ $group->slug }}" class="text-secondary text-uppercase">
             <strong>{{ $group->health_care_name }}</strong>
         </a>
-        <small class="text-muted">appointments</small>
     </div>
 </div>
 
 <div class="nav-scroller box-shadow-nav">
     <nav class="nav nav-pills container justify-content-md-center">
-        <a class="nav-link @yield('appointment-all')" href="/{{ $group->slug }}/appointments">All</a>
+        <a class="nav-link @yield('appointment-all')" href="/{{ $group->slug }}/appointments">All Outpatients Appointment</a>
     </nav>
 </div>
