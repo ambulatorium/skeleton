@@ -19,7 +19,7 @@ class GroupController extends Controller
         $this->authorize('appointment', $group);
 
         $appointments = $this->getAppointments($request, $group);
-        
+
         return view('groups.appointments.index', [
             'group'        => $group,
             'appointments' => $appointments->load('patient'),
