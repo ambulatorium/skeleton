@@ -21,16 +21,6 @@ class InstallReliqui extends Command
     protected $description = 'Simplify installation process';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return mixed
@@ -43,12 +33,14 @@ class InstallReliqui extends Command
 
         $this->generateAppKey();
 
-        $this->updateEnvFile($this->requestDBCredentials());
+        $credentials = $this->requestDBCredentials();
+
+        $this->updateEnvFile($credentials);
 
         if ($this->confirm('Do you want to migrate the database?', false)) {
-            $this->call('migrate');
+            $this->migrateDbWithFreshCredentials($credentials);
 
-            $this->line('~ Database migrated.');
+            $this->line('~ Database successfully migrated.');
         }
 
         $this->call('cache:clear');
@@ -56,20 +48,37 @@ class InstallReliqui extends Command
         $this->thanks();
     }
 
+    /**
+     * Display the completion message.
+     *
+     * @return void
+     */
     protected function thanks()
     {
         $this->info('>> The installation process is complete. Happy coding! <<');
     }
 
+    /**
+     * Request the local database details from the user.
+     *
+     * @return void
+     */
     protected function requestDBCredentials()
     {
         return [
             'DB_DATABASE' => $this->ask('Database name'),
+            'DB_PORT'     => $this->ask('Database port', 3306),
             'DB_USERNAME' => $this->ask('Database user'),
             'DB_PASSWORD' => $this->secret('Database password ("null" for no password)'),
         ];
     }
 
+    /**
+     * Update the .env file.
+     *
+     * @param array $updatedValues
+     * @return void
+     */
     protected function updateEnvFile($updatedValues)
     {
         $envFile = $this->laravel->environmentFilePath();
@@ -83,6 +92,11 @@ class InstallReliqui extends Command
         }
     }
 
+    /**
+     * Generate app key.
+     *
+     * @return void
+     */
     protected function generateAppKey()
     {
         if (strlen(config('app.key')) === 0) {
@@ -92,6 +106,11 @@ class InstallReliqui extends Command
         }
     }
 
+    /**
+     * create initial .env file.
+     *
+     * @return void
+     */
     protected function createEnvFile()
     {
         if (! file_exists('.env')) {
@@ -99,5 +118,28 @@ class InstallReliqui extends Command
 
             $this->line('.env file successfully created');
         }
+    }
+
+    /**
+     * Migrate the db with the new credentials.
+     *
+     * @param array $credentials
+     * @return void
+     */
+    protected function migrateDbWithFreshCredentials($credentials)
+    {
+        foreach ($credentials as $key => $value) {
+            $configKey = strtolower(str_replace('DB_', '', $key));
+
+            if ($configKey === 'password' && $value == 'null') {
+                config(["database.connections.mysql.{$configKey}" => '']);
+
+                continue;
+            }
+
+            config(["database.connections.mysql.{$configKey}" => $value]);
+        }
+
+        $this->call('migrate');
     }
 }
