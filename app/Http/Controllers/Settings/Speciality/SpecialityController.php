@@ -67,7 +67,7 @@ class SpecialityController extends Controller
     public function destroy(Speciality $speciality)
     {
         $relationships = $this->checkRelationships($speciality, [
-            'doctor' => 'doctor',
+            'doctors' => 'doctors',
         ]);
 
         if (empty($relationships)) {

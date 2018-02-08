@@ -10,8 +10,8 @@ class Speciality extends Model
 
     protected $fillable = ['name', 'description'];
 
-    public function doctor()
+    public function doctors()
     {
-        return $this->hasOne('App\Models\Doctor\Doctor');
+        return $this->hasMany('App\Models\Doctor\Doctor');
     }
 }
