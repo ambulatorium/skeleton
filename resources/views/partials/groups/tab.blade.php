@@ -1,6 +1,6 @@
 <div class="page-header">
     <div class="container mt-3">
-        <h4 class="text-uppercase"><strong>{{ $group->health_care_name }}</strong></h4>
+        <h4 class="text-uppercase"><strong>{{ $group->name }}</strong></h4>
         <h6>{{ $group->address }}, {{ $group->city }}, {{ $group->country }}.</h6>
     </div>
 </div>

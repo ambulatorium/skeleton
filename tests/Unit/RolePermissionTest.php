@@ -13,17 +13,6 @@ class RolePermissionTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp()
-    {
-        parent::setUp();
-
-        $permission = Permission::create(['name' => 'edit_groups']);
-        $role = Role::create(['name' => 'owner']);
-        $role->givePermissionTo($permission->name);
-
-        $this->app->make(PermissionRegistrar::class)->registerPermissions();
-    }
-
     /** @test */
     public function it_can_assign_a_role_and_confirm_the_role_is_assigned()
     {
@@ -33,8 +22,8 @@ class RolePermissionTest extends TestCase
         $owner = User::find($user->id);
 
         $this->assertTrue($owner->hasRole('owner'));
-        $this->assertTrue($owner->hasPermissionTo('edit_groups'));
-        $this->assertTrue($owner->can('edit_groups'));
+        $this->assertTrue($owner->hasPermissionTo('edit-groups'));
+        $this->assertTrue($owner->can('edit-groups'));
 
     }
 }

@@ -21,10 +21,10 @@
                 <tbody>
                     @forelse($groups as $group)
                         <tr>
-                            <td><a href="/{{ $group->slug }}">{{ $group->health_care_name }}</a></td>
+                            <td><a href="/{{ $group->slug }}">{{ $group->name }}</a></td>
                             <td>{{ $group->address }}</td>
                             <td>
-                                <form action="{{ $group->path() }}" method="POST">
+                                <form action="{{ $group->appSetting() }}" method="POST">
                                     {{ csrf_field() }} {{ method_field('DELETE') }}
                                     <button class="btn btn-danger btn-sm" type="submit">delete</button>
                                 </form>

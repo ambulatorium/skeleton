@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', $group->health_care_name)
+@section('title', $group->name)
 @section('tab-doctors', 'active')
 
 @section('content')
@@ -21,7 +21,7 @@
             @empty
                 <div class="col-md-12 mt-4 text-center">
                     <h5 class="text-muted">
-                        <strong class="mb-5">{{ $group->health_care_name }} doesn't have any doctors yet</strong>
+                        <strong class="mb-5">{{ $group->name }} doesn't have any doctors yet</strong>
                     </h5>
                 </div>
             @endforelse

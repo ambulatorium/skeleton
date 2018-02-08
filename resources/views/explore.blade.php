@@ -21,7 +21,7 @@
                 @forelse ($groups as $group)
                     <a href="/{{$group->slug}}">
                         <h4 class="font-weight-bold">
-                            {{ $group->health_care_name }}
+                            {{ $group->name }}
                         </h4>
                     </a>
                     <p>{{ $group->address }}, {{ $group->city }}.</p>

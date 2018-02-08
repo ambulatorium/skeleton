@@ -10,7 +10,7 @@ Route::get('/scheduling/physical-appointment', 'Appointments\PhysicalController@
 Auth::routes();
 
 // all healthcare provider
-Route::get('/{group}', 'Settings\Group\GroupController@show');
+Route::get('/{group}', 'Settings\Group\GroupController@show')->name('group');
 
 // user invitation
 Route::get('/invitations/{token}', 'InvitationController@accept')->middleware('guest')->name('accept');

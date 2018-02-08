@@ -9,6 +9,8 @@ class SearchTest extends TestCase
 {
     use DatabaseMigrations;
 
+    protected $speciality, $group, $doctor;
+
     public function setUp()
     {
         parent::setUp();

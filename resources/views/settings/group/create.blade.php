@@ -13,7 +13,7 @@
                     {{ csrf_field() }}
 
                     <div class="form-group">
-                        <input type="text" class="form-control" name="health_care_name" value="{{ old('health_care_name') }}" placeholder="Provider Name"
+                        <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Name"
                             autofocus required>
                     </div>
                     <div class="form-group">

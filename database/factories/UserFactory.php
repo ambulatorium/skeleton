@@ -43,13 +43,25 @@ $factory->define(App\Models\Setting\Speciality\Speciality::class, function (Fake
 
 // health care provider
 $factory->define(App\Models\Setting\Group\Group::class, function (Faker $faker) {
+    $name = $faker->company;
+
     return [
-        'health_care_name'    => $faker->company,
-        'slug'                => $faker->slug,
+        'name'                => $name,
+        'slug'                => str_slug($name),
         'country'             => $faker->country,
         'city'                => $faker->city,
         'address'             => $faker->address,
-        'min_day_appointment' => '1',
-        'max_day_appointment' => '7',
+    ];
+});
+
+// staff
+$factory->define(App\Models\Setting\Staff\Staff::class, function (Faker $faker) {
+    return [
+        'user_id' => function () {
+            return factory('App\User')->create()->id;
+        },
+        'group_id' => function () {
+            return factory('App\Models\Setting\Group\Group')->create()->id;
+        },
     ];
 });
