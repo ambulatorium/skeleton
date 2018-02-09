@@ -65,3 +65,12 @@ $factory->define(App\Models\Setting\Staff\Staff::class, function (Faker $faker) 
         },
     ];
 });
+
+// invitation
+$factory->define(App\Models\Invitation::class, function (Faker $faker) {
+    return [
+        'email' => $faker->unique()->safeEmail,
+        'role'  => 'foobar',
+        'token' => str_random(60),
+    ];
+});
