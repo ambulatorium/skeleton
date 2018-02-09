@@ -3,36 +3,30 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SearchTest extends TestCase
 {
-    use DatabaseMigrations;
-
-    protected $speciality, $group, $doctor;
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->speciality = create('App\Models\Setting\Speciality\Speciality');
-        $this->group = create('App\Models\Setting\Group\Group');
-        $this->doctor = create('App\Models\Doctor\Doctor');
-    }
+    use RefreshDatabase;
     
     /** @test */
     public function a_user_can_view_form_search_doctor_schedule()
     {
+        $speciality = create('App\Models\Setting\Speciality\Speciality');
+        $group = create('App\Models\Setting\Group\Group');
+
         $this->get('/')
-            ->assertSee($this->speciality->name)
-            ->assertSee($this->group->name);
+            ->assertSee($speciality->name)
+            ->assertSee($group->name);
     }
 
     /** @test */
     public function a_user_can_search_a_doctor()
     {
+        $doctor = create('App\Models\Doctor\Doctor');
+
         $this->get('/search')
-            ->assertSee($this->doctor->full_name)
-            ->assertSee($this->doctor->group->name);
+            ->assertSee($doctor->full_name)
+            ->assertSee($doctor->group->name);
     }
 }
