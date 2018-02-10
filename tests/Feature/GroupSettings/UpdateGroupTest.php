@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\GroupSettings;
 
 use Tests\TestCase;
 use App\Models\Setting\Group\Group;

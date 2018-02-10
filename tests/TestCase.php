@@ -51,7 +51,7 @@ abstract class TestCase extends BaseTestCase
 
     protected function signInAdminGroup($adminGroup = null)
     {
-        $adminGroup = $adminGroup ? : create('App\User');
+        $adminGroup = $adminGroup ?: create('App\User');
         $adminGroup->assignRole('admin-group');
 
         $this->actingAs($adminGroup);
@@ -78,13 +78,13 @@ abstract class TestCase extends BaseTestCase
 
             if ($role->name == 'administrator') {
                 $role->givePermissionTo([
-                    'edit-groups', 'view-doctors',
+                    'edit-groups', 'view-doctors', 'view-invitation-groups', 'view-staffs-groups',
                 ]);
             }
 
             if ($role->name == 'admin-group') {
                 $role->givePermissionTo([
-                    'edit-group', 'checkin-appointment-group',
+                    'edit-group', 'checkin-appointment-group', 'view-invitation-group', 'view-staffs-group',
                 ]);
             }
 

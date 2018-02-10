@@ -1,19 +1,21 @@
 @extends('layouts.master')
 
 @section('title', 'Invitation staffs')
+
 @section('group-invitations', 'active')
 
 @section('menu')
     @include('partials.master.menu.groups.setting')
 @endsection
-
+ 
 @section('content')
     <main class="col-md-8 offset-md-2 my-3 p-3">
         <div class="card">
             <div class="card-header">
-                <form action="/invitations" method="POST" class="form-inline float-right">
+
+                <form action="/{{$group->slug}}/settings/invitations" method="POST" class="form-inline float-right">
                     {{ csrf_field() }}
-                
+
                     <input type="hidden" name="group_id" value="{{ $group->id }}" required>
 
                     <div class="form-group pr-1">
@@ -24,13 +26,16 @@
                             @endforeach
                         </select>
                     </div>
+
                     <div class="form-group pr-1">
                         <input class="form-control form-control-sm" type="email" name="email" placeholder="input email address" required>
                     </div>
+
                     <div class="form-group">
                         <button class="btn btn-danger btn-sm" type="submit">Send</button>
                     </div>
                 </form>
+
                 <h5 class="card-text text-capitalize">Invitations</h5>
             </div>
 
@@ -51,16 +56,21 @@
                                 <td>{{ $invitation->role }}</td>
                                 <td>{{ $invitation->created_at->diffForHumans() }}</td>
                                 <td>
-                                    <form action="/invitations/{{ $invitation->id }}" method="POST">
+                                    <form action="/{{$group->slug}}/settings/invitations/{{$invitation->id}}" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-
+                                        
                                         <button class="btn btn-danger btn-sm" type="submit">delete</button>
                                     </form>
                                 </td>
                             </tr>
                         @empty
-                            <tr><td>Empty Invitations</td></tr>
+                            <tr>
+                                <td>...</td>
+                                <td>...</td>
+                                <td>...</td>
+                                <td>...</td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>

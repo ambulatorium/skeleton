@@ -27,9 +27,6 @@ Route::group(['middleware' => 'auth'], function () {
     // appointments
     Route::get('/appointments', 'Appointments\AppointmentController@index');
 
-    Route::post('/invitations', 'InvitationController@send');
-    Route::delete('/invitations/{invitation}', 'InvitationController@destroy');
-
     // people. patient,owner,administrator,admin-group,doctor,nurse
     Route::group(['prefix' => 'people'], function () {
         Route::get('/inbox', 'PeopleController@inbox');
@@ -55,8 +52,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/appointments/{appointment}', 'Groups\GroupController@showAppointment');
         Route::patch('/appointments/{appointment}', 'Groups\GroupController@checkinAppointment');
         Route::get('/settings/profile', 'Groups\SettingController@profile');
-        Route::get('/settings/staffs', 'Groups\SettingController@staff');
-        Route::get('/settings/invitations', 'Groups\SettingController@invitation');
+        Route::get('/settings/staffs', 'Groups\StaffController@index');
+        Route::get('/settings/invitations', 'Groups\InvitationController@index');
+        Route::post('/settings/invitations', 'Groups\InvitationController@store');
+        Route::delete('/settings/invitations/{invitation}', 'Groups\InvitationController@destroy');
     });
 
     // site settings

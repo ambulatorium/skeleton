@@ -4,7 +4,7 @@
 @section('setting-groups', 'active') 
 
 @section('menu')
-    @include('partials.master.menu.users.app-settings')
+    @include('partials.master.menu.users.appSettings')
 @endsection
 
 @section('content')

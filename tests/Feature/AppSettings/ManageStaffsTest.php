@@ -74,7 +74,7 @@ class ManageStaffsTest extends TestCase
             'role'  => 'administrator',
         ]);
 
-        Mail::AssertSent(SendInvitation::class);
+        Mail::assertSent(SendInvitation::class);
     }
 
     /** @test */
@@ -116,7 +116,7 @@ class ManageStaffsTest extends TestCase
     }
 
     /** @test */
-    public function confirming_invalid_token()
+    public function staff_candidate_access_with_their_invalid_invitation_link()
     {
         $this->get(route('accept', ['token' => 'invalid']))
             ->assertStatus(404);

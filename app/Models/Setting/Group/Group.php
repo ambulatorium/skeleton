@@ -26,12 +26,12 @@ class Group extends Model
         return $this->hasMany('App\Models\Doctor\Doctor');
     }
 
-    public function invitation()
+    public function invitations()
     {
         return $this->hasMany('App\Models\Invitation');
     }
 
-    public function staff()
+    public function staffs()
     {
         return $this->hasMany('App\Models\Setting\Staff\Staff');
     }

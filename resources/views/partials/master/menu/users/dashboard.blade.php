@@ -10,7 +10,7 @@
                     <strong>Group</strong>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarMenuGroup">
-                    <h6 class="dropdown-header"><strong>{{ Auth::user()->staff->group->health_care_name }}</strong></h6>
+                    <h6 class="dropdown-header"><strong>{{ Auth::user()->staff->group->name }}</strong></h6>
                     <a href="/{{Auth::user()->staff->group->slug}}/appointments" class="dropdown-item">Appointments</a>
                     
                     @role('admin-group')

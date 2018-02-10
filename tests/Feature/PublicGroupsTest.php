@@ -17,7 +17,7 @@ class PublicGroupsTest extends TestCase
 
         $this->group = create('App\Models\Setting\Group\Group');
     }
-    
+
     /** @test */
     public function guests_can_view_public_group()
     {
