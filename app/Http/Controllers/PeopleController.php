@@ -14,28 +14,4 @@ class PeopleController extends Controller
 
         return view('people.inbox', compact('appointments'));
     }
-
-    public function settingAccount()
-    {
-        return view('people.settings.account');
-    }
-
-    public function updateAccount(Request $request, User $user)
-    {
-        $this->validate($request, ['name' => 'required|string|max:255']);
-
-        $user->fill($request->except('password'));
-
-        if ($request->get('password')) {
-            $this->validate($request, ['password' => 'required|string|min:6|confirmed']);
-
-            $user->password = bcrypt($request->get('password'));
-        }
-
-        $user->save();
-
-        flash('Successful! Your account updated.')->success();
-
-        return redirect('/people/settings/account');
-    }
 }

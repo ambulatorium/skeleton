@@ -4,7 +4,7 @@
 @section('setting-account', 'active')
 
 @section('menu')
-    @include('partials.master.menu.users.settings')
+    @include('partials.master.menu.users.setting')
 @endsection
 
 @section('content')
@@ -15,7 +15,7 @@
             </div>
             <div class="card-body">
 
-                <form action="/people/settings/account/{{ Auth::user()->id }}" method="POST">
+                <form action="/user/settings/account/{{ Auth::user()->id }}" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
                     

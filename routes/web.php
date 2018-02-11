@@ -27,8 +27,8 @@ Route::group(['middleware' => 'auth'], function () {
     // appointments
     Route::get('/appointments', 'Appointments\AppointmentController@index');
 
-    // people. patient,owner,administrator,admin-group,doctor,nurse
-    Route::group(['prefix' => 'people'], function () {
+    // users
+    Route::group(['prefix' => 'user'], function () {
         Route::get('/inbox', 'PeopleController@inbox');
         Route::get('/inbox/appointments', 'Appointments\AppointmentController@index');
         Route::get('/inbox/appointments/{appointment}', 'Appointments\AppointmentController@show');
@@ -40,8 +40,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/health-history', 'Patients\HealthHistoryController@index');
         Route::get('/health-history/{id}', 'Patients\HealthHistoryController@show');
         Route::resource('settings/patient-form', 'Patients\PatientController');
-        Route::get('/settings/account', 'PeopleController@settingAccount');
-        Route::patch('/settings/account/{user}', 'PeopleController@updateAccount');
+        Route::get('/settings/account', 'Users\AccountController@edit');
+        Route::patch('/settings/account/{user}', 'Users\AccountController@update');
         Route::get('/settings/profile/doctor', 'Doctors\DoctorController@edit');
         Route::patch('/settings/profile/doctor/{doctor}', 'Doctors\DoctorController@update');
     });
