@@ -50,7 +50,7 @@ class DeleteInvitationStaffsTest extends TestCase
     {
         $group = create(Group::class);
         $staff = create(Invitation::class, ['group_id' => $group->id]);
-        
+
         $this->signInOwner();
         $this->signInAdministrator();
 

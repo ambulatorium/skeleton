@@ -152,7 +152,7 @@ class ManageSpecialityTest extends TestCase
         $speciality = create(Speciality::class);
 
         $this->delete(route('specialities.destroy', $speciality->id));
-        
+
         $this->assertDatabaseMissing('specialities', ['id' => $speciality->id]);
     }
 

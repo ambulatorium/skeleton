@@ -19,7 +19,7 @@ class InvitationTest extends TestCase
             'role' => 'admin-group',
             'group_id' => $group->id,
         ]);
-        
+
         $this->assertInstanceOf('App\Models\Setting\Group\Group', $invitation->group);
     }
 }
