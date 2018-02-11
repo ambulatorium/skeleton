@@ -13,7 +13,7 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
         
