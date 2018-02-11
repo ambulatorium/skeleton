@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Groups;
 
 use App\Models\Invitation;
 use App\Mail\SendInvitation;
-use Illuminate\Http\Request;
 use App\Models\Setting\Staff\Role;
 use App\Models\Setting\Group\Group;
 use App\Http\Controllers\Controller;
@@ -17,7 +16,7 @@ class InvitationController extends Controller
     {
         $this->middleware(['role:owner|administrator|admin-group']);
     }
-    
+
     /**
      * Display a listing of the resource.
      *

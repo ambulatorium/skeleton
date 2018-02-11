@@ -108,7 +108,7 @@ class InviteStaffsTest extends TestCase
         $invitation = create(Invitation::class, [
             'email'    => 'john@example.com',
             'role'     => 'admin-group',
-            'group_id' => $group->id
+            'group_id' => $group->id,
         ]);
 
         $this->post(route('join', ['token' => $invitation->token]), [

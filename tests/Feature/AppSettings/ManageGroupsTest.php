@@ -42,7 +42,7 @@ class ManageGroupsTest extends TestCase
             ->post('/settings/groups')
             ->assertStatus(403);
     }
-    
+
     /** @test */
     public function authorized_users_can_access_groups_on_app_settings_section()
     {
@@ -97,7 +97,7 @@ class ManageGroupsTest extends TestCase
         $this->createGroup(['address' => null])
             ->assertSessionHasErrors('address');
     }
-    
+
     /** @test */
     public function a_group_requires_a_unique_slug()
     {

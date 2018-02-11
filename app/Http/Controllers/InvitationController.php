@@ -7,7 +7,6 @@ use App\Models\Invitation;
 use Illuminate\Http\Request;
 use App\Models\Doctor\Doctor;
 use App\Models\Setting\Staff\Staff;
-use App\Http\Requests\InvitationRequest;
 
 class InvitationController extends Controller
 {

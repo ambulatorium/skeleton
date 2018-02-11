@@ -101,7 +101,7 @@ class ManageStaffsTest extends TestCase
             'email' => 'john@example.com',
             'role'  => 'administrator',
         ]);
-        
+
         $this->post(route('join', ['token' => $invitation->token]), [
             'name'                  => 'john',
             'email'                 => $invitation->email,

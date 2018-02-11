@@ -11,7 +11,7 @@ class UpdateGroupTest extends TestCase
     use RefreshDatabase;
 
     protected $group;
-    
+
     public function setUp()
     {
         parent::setUp();
@@ -43,7 +43,7 @@ class UpdateGroupTest extends TestCase
         $this->signInAdministrator();
 
         $group = create(Group::class);
-        
+
         $this->patch($group->appSetting(), [
             'name'    => 'Changed',
             'country' => 'Changed country.',
@@ -52,10 +52,10 @@ class UpdateGroupTest extends TestCase
         ]);
 
         tap($group->fresh(), function ($group) {
-           $this->assertEquals('Changed', $group->name);
-           $this->assertEquals('Changed country.', $group->country);
-           $this->assertEquals('Changed city.', $group->city);
-           $this->assertEquals('Changed address.', $group->address);
+            $this->assertEquals('Changed', $group->name);
+            $this->assertEquals('Changed country.', $group->country);
+            $this->assertEquals('Changed city.', $group->city);
+            $this->assertEquals('Changed address.', $group->address);
         });
     }
 }

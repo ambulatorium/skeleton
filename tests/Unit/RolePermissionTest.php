@@ -4,9 +4,6 @@ namespace Tests\Unit;
 
 use App\User;
 use Tests\TestCase;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\PermissionRegistrar;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RolePermissionTest extends TestCase
@@ -24,6 +21,5 @@ class RolePermissionTest extends TestCase
         $this->assertTrue($owner->hasRole('owner'));
         $this->assertTrue($owner->hasPermissionTo('edit-groups'));
         $this->assertTrue($owner->can('edit-groups'));
-
     }
 }
