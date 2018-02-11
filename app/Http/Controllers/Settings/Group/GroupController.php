@@ -67,7 +67,7 @@ class GroupController extends Controller
 
             flash('Successful! The group deleted')->success();
         } else {
-            flash('Warning! Deletion of '.$group->health_care_name.' not allowed!')->warning();
+            flash('Warning! Deletion of '.$group->name.' not allowed!')->warning();
         }
 
         return redirect('/settings/groups');

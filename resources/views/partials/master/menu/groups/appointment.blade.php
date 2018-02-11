@@ -1,7 +1,7 @@
 <div class="page-header">
     <div class="container text-center">
         <a href="/{{ $group->slug }}" class="text-secondary text-uppercase">
-            <strong>{{ $group->health_care_name }}</strong>
+            <strong>{{ $group->name }}</strong>
         </a>
     </div>
 </div>

@@ -19,7 +19,7 @@
                     <a href="#" class="d-block font-weight-bold text-secondary">
                         {{ $doctor->full_name }}
                     </a>
-                    <a href="{{ $doctor->group->slug }}">{{ $doctor->group->health_care_name }}.</a>
+                    <a href="{{ $doctor->group->slug }}">{{ $doctor->group->name }}.</a>
                     {{ $doctor->group->city }}, {{ $doctor->group->address }}.
                 </p>
             </div>

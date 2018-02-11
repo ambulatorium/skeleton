@@ -4,26 +4,13 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Models\Invitation;
-use App\Mail\SendInvitation;
 use Illuminate\Http\Request;
 use App\Models\Doctor\Doctor;
 use App\Models\Setting\Staff\Staff;
-use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\InvitationRequest;
 
 class InvitationController extends Controller
 {
-    public function send(InvitationRequest $request)
-    {
-        $invite = Invitation::create($request->formInvitation());
-
-        Mail::to($request->get('email'))->send(new SendInvitation($invite));
-
-        flash('Successful! Invitation sent.')->success();
-
-        return redirect()->back();
-    }
-
     public function accept($token)
     {
         if (! $invite = Invitation::where('token', $token)->first()) {
@@ -33,7 +20,6 @@ class InvitationController extends Controller
         return view('auth.invitation', compact('invite'));
     }
 
-    // @todo refactoring soon
     public function join($token)
     {
         $this->validate(request(), [
@@ -70,14 +56,5 @@ class InvitationController extends Controller
         flash('Successful! Invitation Accepted. Now you can login with your credentials.')->success();
 
         return redirect('/login');
-    }
-
-    public function destroy(Invitation $invitation)
-    {
-        $invitation->delete();
-
-        flash('Successful! Invitation deleted.')->success();
-
-        return redirect()->back();
     }
 }

@@ -14,7 +14,7 @@ class GroupRequest extends FormRequest
     public function rules()
     {
         return [
-            'health_care_name'      => 'required|min:5|unique:groups',
+            'name'                  => 'required|min:5',
             'country'               => 'required|min:3',
             'city'                  => 'required|min:3',
             'address'               => 'required|max:60',
@@ -24,8 +24,8 @@ class GroupRequest extends FormRequest
     public function formGroup()
     {
         return [
-            'health_care_name'      => $this->health_care_name,
-            'slug'                  => str_slug($this->health_care_name, '-'),
+            'name'                  => $this->name,
+            'slug'                  => str_slug($this->name, '-'),
             'country'               => $this->country,
             'city'                  => $this->city,
             'address'               => $this->address,

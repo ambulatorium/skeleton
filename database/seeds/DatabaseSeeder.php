@@ -46,13 +46,13 @@ class DatabaseSeeder extends Seeder
 
                 if ($role->name == 'administrator') {
                     $role->givePermissionTo([
-                        'edit-groups', 'view-doctors',
+                        'edit-groups', 'view-doctors', 'view-staffs-groups', 'view-invitation-groups',
                     ]);
                 }
 
                 if ($role->name == 'admin-group') {
                     $role->givePermissionTo([
-                        'edit-group', 'checkin-appointment-group',
+                        'edit-group', 'checkin-appointment-group', 'view-staffs-group', 'view-invitation-group',
                     ]);
                 }
 

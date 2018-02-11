@@ -14,14 +14,14 @@
                 <h5 class="card-text text-capitalize">setting group profile</h5>
             </div>
             <div class="card-body">
-                <form action="/settings/groups/{{ $group->slug }}" method="POST">
+                <form action="{{ $group->appSetting() }}" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
                     
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="health_care_name">Name</label>
-                            <input type="text" class="form-control" name="health_care_name"  value="{{ old('health_care_name', $group->health_care_name) }}" required>
+                            <input type="text" class="form-control" name="name"  value="{{ old('name', $group->name) }}" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="country">Country</label>

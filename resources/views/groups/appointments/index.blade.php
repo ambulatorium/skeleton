@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', $group->health_care_name)
+@section('title', $group->name)
 @section('appointment-all', 'active') 
 
 @section('menu')

@@ -9,7 +9,7 @@ class Group extends Model
     protected $table = 'groups';
 
     protected $fillable = [
-        'health_care_name',
+        'name',
         'slug',
         'country',
         'city',
@@ -26,12 +26,12 @@ class Group extends Model
         return $this->hasMany('App\Models\Doctor\Doctor');
     }
 
-    public function invitation()
+    public function invitations()
     {
         return $this->hasMany('App\Models\Invitation');
     }
 
-    public function staff()
+    public function staffs()
     {
         return $this->hasMany('App\Models\Setting\Staff\Staff');
     }
@@ -46,13 +46,8 @@ class Group extends Model
         return $this->hasMany('App\Models\Patient\HealthHistory');
     }
 
-    public function path()
+    public function appSetting()
     {
         return "/settings/groups/{$this->slug}";
-    }
-
-    public function editGroup()
-    {
-        return "/settings/groups/{$this->slug}/edit";
     }
 }

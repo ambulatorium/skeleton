@@ -10,7 +10,7 @@ Route::get('/scheduling/physical-appointment', 'Appointments\PhysicalController@
 Auth::routes();
 
 // all healthcare provider
-Route::get('/{group}', 'Settings\Group\GroupController@show');
+Route::get('/{group}', 'Settings\Group\GroupController@show')->name('group');
 
 // user invitation
 Route::get('/invitations/{token}', 'InvitationController@accept')->middleware('guest')->name('accept');
@@ -26,9 +26,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     // appointments
     Route::get('/appointments', 'Appointments\AppointmentController@index');
-
-    Route::post('/invitations', 'InvitationController@send');
-    Route::delete('/invitations/{invitation}', 'InvitationController@destroy');
 
     // people. patient,owner,administrator,admin-group,doctor,nurse
     Route::group(['prefix' => 'people'], function () {
@@ -55,8 +52,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/appointments/{appointment}', 'Groups\GroupController@showAppointment');
         Route::patch('/appointments/{appointment}', 'Groups\GroupController@checkinAppointment');
         Route::get('/settings/profile', 'Groups\SettingController@profile');
-        Route::get('/settings/staffs', 'Groups\SettingController@staff');
-        Route::get('/settings/invitations', 'Groups\SettingController@invitation');
+        Route::get('/settings/staffs', 'Groups\StaffController@index');
+        Route::get('/settings/invitations', 'Groups\InvitationController@index');
+        Route::post('/settings/invitations', 'Groups\InvitationController@store');
+        Route::delete('/settings/invitations/{invitation}', 'Groups\InvitationController@destroy');
     });
 
     // site settings
