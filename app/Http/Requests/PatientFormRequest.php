@@ -24,16 +24,16 @@ class PatientFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'form_name'       => 'required|string|min:5',
+            'form_name'       => 'required|string|min:5|max:255',
             'full_name'       => 'required|string|max:255',
             'dob'             => 'required|date',
             'gender'          => 'required|string|max:7',
             'address'         => 'required|string|max:255',
             'city'            => 'required|string|max:255',
             'state'           => 'required|string|max:255',
-            'zip_code'        => 'required|string|min:4|max:15',
-            'home_phone'      => 'nullable|string|min:10|max:15',
-            'cell_phone'      => 'required|string|min:7|max:15',
+            'zip_code'        => 'required|string',
+            'home_phone'      => 'nullable|string',
+            'cell_phone'      => 'required|string',
             'marital_status'  => 'required|string|max:8',
         ];
     }

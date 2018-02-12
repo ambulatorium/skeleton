@@ -1,16 +1,16 @@
 @extends('layouts.master')
 
-@section('title', 'Your Profile')
-@section('setting-patients', 'active')
+@section('title', 'Patient forms')
+@section('setting-patient-forms', 'active')
 
 @section('menu')
-    @include('partials.master.menu.users.settings')
+    @include('partials.master.menu.users.setting')
 @endsection
 
 @section('content')
     <main class="col-md-8 offset-md-2 my-3 p-3">
-
         <div class="table-responsive">
+
             <table class="table table-hover table-rq box-shadow-table">
                 <thead class="thead-rq">
                     <tr>
@@ -27,23 +27,29 @@
                             <td>{{ $patient->full_name }}</td>
                             <td>{{ $patient->gender }}</td>                                        
                             <td>
-                                <form action="{{ route('patient-form.destroy', $patient->id) }}" method="POST">
+                                <form action="{{ route('patient-forms.destroy', $patient->id) }}" method="POST">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
 
-                                    <a href="{{ route('patient-form.edit', $patient->id) }}" class="btn btn-secondary btn-sm">edit</a>
+                                    <a href="{{ route('patient-forms.edit', $patient->id) }}" class="btn btn-secondary btn-sm">edit</a>
                                     <button class="btn btn-danger btn-sm" type="submit">delete</button>
                                 </form>
                             </td>
                         </tr>
                     @empty
-                        <tr><td>You don't have any patient form</td></tr>
+                        <tr>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>...</td>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>
+
         </div>
 
-        <a href="{{ route('patient-form.create') }}" class="btn btn-sm btn-light float-right active">Add New</a>
+        <a href="{{ route('patient-forms.create') }}" class="btn btn-sm btn-light float-right active">Add New</a>
     
     </main>
 @endsection

@@ -74,3 +74,26 @@ $factory->define(App\Models\Invitation::class, function (Faker $faker) {
         'token' => str_random(60),
     ];
 });
+
+// patient
+$factory->define(App\Models\Patient\Patient::class, function (Faker $faker) {
+    $gender = $faker->randomElement($array = ['male', 'female']);
+
+    return [
+        'user_id' => function () {
+            return factory('App\User')->create()->id;
+        },
+        'form_name'      => 'my_parent',
+        'full_name'      => $faker->name($gender),
+        'dob'            => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'gender'         => $gender,
+        'address'        => 'address',
+        'city'           => $faker->city,
+        'state'          => $faker->state,
+        'zip_code'       => $faker->postcode,
+        'home_phone'     => $faker->phoneNumber,
+        'cell_phone'     => $faker->phoneNumber,
+        'marital_status' => $faker->randomElement($array = ['married', 'single', 'divorced']),
+        'is_verified'    => false,
+    ];
+});

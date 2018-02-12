@@ -24,7 +24,7 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Doctor\Doctor');
     }
 
-    public function patient()
+    public function patientForms()
     {
         return $this->hasMany('App\Models\Patient\Patient');
     }

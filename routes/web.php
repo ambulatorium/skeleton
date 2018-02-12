@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('schedules', 'Doctors\ScheduleController');
         Route::get('/health-history', 'Patients\HealthHistoryController@index');
         Route::get('/health-history/{id}', 'Patients\HealthHistoryController@show');
-        Route::resource('settings/patient-form', 'Patients\PatientController');
+        Route::resource('settings/patient-forms', 'Patients\PatientController');
         Route::get('/settings/account', 'Users\AccountController@edit');
         Route::patch('/settings/account/{user}', 'Users\AccountController@update');
         Route::get('/settings/profile/doctor', 'Doctors\DoctorController@edit');

@@ -12,10 +12,11 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Models\Appointment\Appointment' =>'App\Policies\AppointmentPolicy',
-        'App\Models\Doctor\Doctor'           =>'App\Policies\DoctorPolicy',
-        'App\Models\Doctor\Schedule'         =>'App\Policies\SchedulePolicy',
-        'App\Models\Setting\Group\Group'     =>'App\Policies\GroupPolicy',
+        'App\Models\Appointment\Appointment' => 'App\Policies\AppointmentPolicy',
+        'App\Models\Doctor\Doctor'           => 'App\Policies\DoctorPolicy',
+        'App\Models\Doctor\Schedule'         => 'App\Policies\SchedulePolicy',
+        'App\Models\Setting\Group\Group'     => 'App\Policies\GroupPolicy',
+        'App\Models\Patient\Patient'         => 'App\Policies\PatientPolicy',
     ];
 
     /**

@@ -4,21 +4,20 @@ namespace App\Http\Controllers\Patients;
 
 use App\Models\Patient\Patient;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PatientFormRequest;
 
 class PatientController extends Controller
 {
     public function index()
     {
-        $patients = Patient::where('user_id', Auth::user()->id)->get();
+        $patients = Patient::where('user_id', auth()->id())->get();
 
-        return view('people.settings.patient.index', compact('patients'));
+        return view('users.settings.patient_forms.index', compact('patients'));
     }
 
     public function create()
     {
-        return view('people.settings.patient.create');
+        return view('users.settings.patient_forms.create');
     }
 
     public function store(PatientFormRequest $request)
@@ -27,36 +26,36 @@ class PatientController extends Controller
 
         flash('Successful! your patient form submitted')->success();
 
-        return redirect('/people/inbox');
+        return redirect(route('patient-forms.index'));
     }
 
     public function show()
     {
-        return redirect('/people/settings/patient-form');
+        return redirect(route('patient-forms.index'));
     }
 
     public function edit(Patient $patient_form)
     {
-        $patient = $patient_form->where([
-                                ['user_id', auth()->id()],
-                                ['id', $patient_form->id],
-                            ])
-                            ->firstOrFail();
+        $this->authorize('update', $patient_form);
 
-        return view('people.settings.patient.edit', compact('patient'));
+        return view('users.settings.patient_forms.edit', compact('patient_form'));
     }
 
     public function update(PatientFormRequest $request, Patient $patient_form)
     {
+        $this->authorize('update', $patient_form);
+
         $patient_form->update($request->patientRegistrationForm());
 
         flash('Successful! your patient form updated')->success();
 
-        return redirect('/people/settings/patient-form');
+        return redirect(route('patient-forms.index'));
     }
 
     public function destroy(Patient $patient_form)
     {
+        $this->authorize('update', $patient_form);
+
         $relationships = $this->checkRelationships($patient_form, [
             'appointment'   => 'appointment',
             'healthhistory' => 'healthHistory',
@@ -70,6 +69,6 @@ class PatientController extends Controller
             flash('Warning! deletion '.$patient_form->form_name.' not allowed.')->warning();
         }
 
-        return redirect('/people/settings/patient-form');
+        return redirect(route('patient-forms.index'));
     }
 }
