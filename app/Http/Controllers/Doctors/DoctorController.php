@@ -16,22 +16,13 @@ class DoctorController extends Controller
         $this->middleware(['role:doctor'])->except('index');
     }
 
-    public function index()
-    {
-        $this->authorize('view-doctors');
-
-        $doctors = Doctor::with('speciality', 'group')->paginate(10);
-
-        return view('doctors.index', compact('doctors'));
-    }
-
     public function edit()
     {
         if (! $user = Auth::user()->doctor()->first()) {
             abort(404);
         }
 
-        return view('people.settings.doctor', [
+        return view('users.settings.doctor_profile', [
             'doctorProfile' => $user,
             'specialities' => Speciality::all(),
         ]);

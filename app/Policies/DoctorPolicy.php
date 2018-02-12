@@ -11,17 +11,6 @@ class DoctorPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view the doctor.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
-    public function view(User $user)
-    {
-        return $user->can('view-doctors');
-    }
-
-    /**
      * Determine whether the user can update the doctor.
      *
      * @param  \App\User  $user

@@ -59,6 +59,16 @@ abstract class TestCase extends BaseTestCase
         return $this;
     }
 
+    protected function signInDoctor($doctor = null)
+    {
+        $doctor = $doctor ?: create('App\User');
+        $doctor->assignRole('doctor');
+
+        $this->actingAs($doctor);
+
+        return $this;
+    }
+
     protected function CreateRolesAndPermission()
     {
         $permissions = DefaultPermission::defaultPermissions();
@@ -78,7 +88,7 @@ abstract class TestCase extends BaseTestCase
 
             if ($role->name == 'administrator') {
                 $role->givePermissionTo([
-                    'edit-groups', 'view-doctors', 'view-invitation-groups', 'view-staffs-groups',
+                    'edit-groups', 'view-invitation-groups', 'view-staffs-groups',
                 ]);
             }
 
