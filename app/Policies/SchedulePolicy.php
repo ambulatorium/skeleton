@@ -19,6 +19,6 @@ class SchedulePolicy
      */
     public function update(User $user, Schedule $schedule)
     {
-        return $user->doctor->id == $schedule->doctor_id;
+        return $schedule->doctor_id == $user->doctor->id;
     }
 }

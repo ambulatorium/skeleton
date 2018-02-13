@@ -11,6 +11,7 @@
     <main class="col-md-8 offset-md-2 my-3 p-3">
         <h4 class="text-secondary">
             <strong>{{ $schedule->day }}</strong>
+
             @if($schedule->is_available)
                 <small class="text-muted">available</small>
             @else
@@ -22,9 +23,9 @@
                     Manage
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="manageSchedule">
-                    <a href="/people/schedules/{{$schedule->token}}/edit" class="dropdown-item">Edit</a>
+                    <a href="{{ route('schedules.edit', $schedule->token) }}" class="dropdown-item">Edit</a>
                 
-                    <a href="/people/schedules/{{$schedule->token}}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('delete-schedule').submit();">
+                    <a href="{{ route('schedules.destroy', $schedule->token) }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('delete-schedule').submit();">
                         Delete
                     </a>
                 </div>
@@ -53,7 +54,7 @@
 
     </main>
 
-    <form id="delete-schedule" action="/people/schedules/{{$schedule->token}}" method="POST" style="display: none;">
+    <form id="delete-schedule" action="{{ route('schedules.destroy', $schedule->token) }}" method="POST" style="display: none;">
         {{ csrf_field() }}
         {{ method_field('DELETE') }}
     </form>

@@ -33,6 +33,27 @@ $factory->define(App\Models\Doctor\Doctor::class, function (Faker $faker) {
     ];
 });
 
+$factory->state(App\Models\Doctor\Doctor::class, 'notactive', function () {
+    return [
+        'is_active' => false,
+    ];
+});
+
+$factory->define(App\Models\Doctor\Schedule::class, function (Faker $faker) {
+    return [
+        'doctor_id' => function () {
+            return factory('App\Models\Doctor\Doctor')->create()->id;
+        },
+        'token'                   => str_random(6),
+        'day'                     => 'Monday',
+        'start_time'              => '09:00:00',
+        'end_time'                => '17:00:00',
+        'estimated_service_time'  => '35',
+        'estimated_price_service' => '500',
+        'is_available'            => true,
+    ];
+});
+
 // specialities
 $factory->define(App\Models\Setting\Speciality\Speciality::class, function (Faker $faker) {
     return [

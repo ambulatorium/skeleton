@@ -13,18 +13,20 @@ class ScheduleController extends Controller
     public function __construct()
     {
         $this->middleware(['role:doctor']);
+
+        $this->middleware('doctor.active')->only(['create', 'store']);
     }
 
     public function index()
     {
         $schedules = Schedule::withCount('appointments')->where('doctor_id', Auth::user()->doctor->id)->get();
 
-        return view('people.schedule.index', compact('schedules'));
+        return view('users.schedules.index', compact('schedules'));
     }
 
     public function create()
     {
-        return view('people.schedule.create');
+        return view('users.schedules.create');
     }
 
     public function store(ScheduleRequest $request)
@@ -44,7 +46,7 @@ class ScheduleController extends Controller
 
         flash('Successful! New schedule created')->success();
 
-        return redirect('/people/schedules');
+        return redirect(route('schedules.index'));
     }
 
     public function show(Schedule $schedule)
@@ -53,14 +55,14 @@ class ScheduleController extends Controller
 
         $appointments = Appointment::with('patient')->where('schedule_id', $schedule->id)->get();
 
-        return view('people.schedule.show', compact('schedule', 'appointments'));
+        return view('users.schedules.show', compact('schedule', 'appointments'));
     }
 
     public function edit(Schedule $schedule)
     {
         $this->authorize('update', $schedule);
 
-        return view('people.schedule.edit', compact('schedule'));
+        return view('users.schedules.edit', compact('schedule'));
     }
 
     public function update(ScheduleRequest $request, Schedule $schedule)
@@ -72,7 +74,7 @@ class ScheduleController extends Controller
 
         flash('Successful! Schedule updated.')->success();
 
-        return redirect('/people/schedules');
+        return redirect(route('schedules.index'));
     }
 
     public function destroy(Schedule $schedule)
@@ -91,6 +93,6 @@ class ScheduleController extends Controller
             flash('Warning! Deletion '.$schedule->day.' not allowed!')->warning();
         }
 
-        return redirect('/people/schedules');
+        return redirect(route('schedules.index'));
     }
 }

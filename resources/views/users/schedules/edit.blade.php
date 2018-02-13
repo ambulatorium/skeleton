@@ -7,7 +7,7 @@
         <h4>Edit schedule</h4>
         <hr>
 
-        <form action="/people/schedules/{{$schedule->token}}" method="POST" class="form-horizontal">
+        <form action="{{ route('schedules.destroy', $schedule->token) }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
 
@@ -61,7 +61,7 @@
             <hr>
 
             <button class="btn btn-sm btn-danger" type="submit">UPDATE</button>
-            <a href="/people/schedules" class="btn btn-sm btn-secondary">CANCEL</a>
+            <a href="{{ route('schedules.index') }}" class="btn btn-sm btn-secondary">CANCEL</a>
         </form>
     </main>
 @endsection
