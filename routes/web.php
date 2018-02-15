@@ -4,7 +4,7 @@
 Route::get('/', 'HomeController@home');
 Route::get('/search', 'HomeController@search')->name('search');
 Route::get('/explore', 'HomeController@explore');
-Route::get('/scheduling/physical-appointment', 'Appointments\PhysicalController@index');
+Route::get('/scheduling/physical-appointment', 'Schedulings\PhysicalAppointmentController@index');
 
 // Authentication default
 Auth::routes();
@@ -19,16 +19,12 @@ Route::post('/invitations/{token}', 'InvitationController@join')->middleware('gu
 Route::group(['middleware' => 'auth'], function () {
 
     // scheduling physical appointment
-    Route::get('/scheduling/physical-appointment/{schedule}', 'Appointments\PhysicalController@create');
-    Route::post('/scheduling/physical-appointment/{schedule}', 'Appointments\PhysicalController@store');
-
-    // appointments
-    Route::get('/appointments', 'Appointments\AppointmentController@index');
+    Route::get('/scheduling/physical-appointment/{schedule}', 'Schedulings\PhysicalAppointmentController@create');
+    Route::post('/scheduling/physical-appointment/{schedule}', 'Schedulings\PhysicalAppointmentController@store');
 
     // users
     Route::group(['prefix' => 'user'], function () {
         Route::get('/inbox', 'PeopleController@inbox');
-        Route::get('/inbox/appointments', 'Appointments\AppointmentController@index');
         Route::get('/inbox/appointments/{appointment}', 'Appointments\AppointmentController@show');
         Route::delete('/inbox/appointments/{appointment}', 'Appointments\AppointmentController@destroy');
         Route::get('/outpatients', 'Doctors\DoctorController@outpatients');

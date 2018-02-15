@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Models\Appointment\Appointment;
 use Illuminate\Foundation\Http\FormRequest;
 
-class AppointmentRequest extends FormRequest
+class PhysicalAppointmentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,6 @@ class AppointmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'schedule_id'       => 'required|exists:schedules,id',
             'patient_id'        => 'required|exists:patients,id',
             'date'              => 'required|date',
             'preferred_time'    => 'required',
@@ -33,13 +32,13 @@ class AppointmentRequest extends FormRequest
         ];
     }
 
-    public function formAppointment()
+    public function formPhysicalAppointment()
     {
         return [
-            'user_id'            => $this->user_id,
+            'user_id'            => auth()->id(),
             'patient_id'         => $this->patient_id,
             'doctor_id'          => $this->schedule->doctor->id,
-            'schedule_id'        => $this->schedule_id,
+            'schedule_id'        => $this->schedule->id,
             'group_id'           => $this->schedule->doctor->group->id,
             'token'              => $this->generateToken(),
             'date'               => $this->date,

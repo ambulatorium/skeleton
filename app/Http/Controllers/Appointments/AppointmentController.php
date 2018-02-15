@@ -7,11 +7,6 @@ use App\Models\Appointment\Appointment;
 
 class AppointmentController extends Controller
 {
-    public function index()
-    {
-        return redirect('/people/inbox');
-    }
-
     public function show(Appointment $appointment)
     {
         $this->authorize('view', $appointment);

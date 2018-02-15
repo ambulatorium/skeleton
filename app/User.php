@@ -34,14 +34,9 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Setting\Staff\Staff');
     }
 
-    public function appointment()
+    public function appointments()
     {
         return $this->hasMany('App\Models\Appointment\Appointment');
-    }
-
-    public function schedulingAppointment(Models\Appointment\Appointment $appointment)
-    {
-        $this->appointment()->save($appointment);
     }
 
     public function healthHistory()

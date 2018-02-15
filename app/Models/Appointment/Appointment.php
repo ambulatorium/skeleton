@@ -9,8 +9,16 @@ class Appointment extends Model
     protected $table = 'appointments';
 
     protected $fillable = [
-        'user_id', 'patient_id', 'doctor_id', 'schedule_id', 'group_id', 'token',
-        'date', 'queue_number', 'preferred_time', 'patient_condition', 'status',
+        'user_id',
+        'patient_id',
+        'doctor_id',
+        'schedule_id',
+        'group_id',
+        'token',
+        'date',
+        'preferred_time',
+        'patient_condition',
+        'status',
     ];
 
     public function getRouteKeyName()

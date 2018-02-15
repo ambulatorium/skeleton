@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Appointments;
+namespace App\Http\Controllers\Schedulings;
 
 use Illuminate\Http\Request;
-use App\Models\Doctor\Doctor;
 use Illuminate\Support\Carbon;
 use App\Models\Doctor\Schedule;
 use App\Models\Patient\Patient;
 use App\Models\Setting\Group\Group;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment\Appointment;
-use App\Http\Requests\AppointmentRequest;
 use App\Models\Setting\Speciality\Speciality;
+use App\Http\Requests\PhysicalAppointmentRequest;
 
-class PhysicalController extends Controller
+class PhysicalAppointmentController extends Controller
 {
     public function index()
     {
@@ -23,10 +22,10 @@ class PhysicalController extends Controller
             'date'       => 'required|date',
         ]);
 
-        $this->requestDate();
+        $this->confirmDate();
 
-        return view('appointments.physical.index', [
-            'schedules'    => $this->getSchedules(),
+        return view('schedulings.physical_appointment.index', [
+            'schedules'    => $this->getDoctorsSchedule(),
             'locations'    => Group::all(),
             'specialities' => Speciality::all(),
         ]);
@@ -34,13 +33,13 @@ class PhysicalController extends Controller
 
     public function create(Schedule $schedule)
     {
-        $this->requestDate();
+        $this->confirmDate();
 
         if ($schedule->day !== \Carbon\Carbon::parse(request('date'))->format('l')) {
             abort(404);
         }
 
-        return view('appointments.physical.create', [
+        return view('schedulings.physical_appointment.create', [
             'schedule'     => $schedule,
             'patients'     => Patient::where('user_id', auth()->id())->get(),
             'appointments' => Appointment::where('date', request('date'))->get(),
@@ -49,7 +48,7 @@ class PhysicalController extends Controller
         ]);
     }
 
-    public function store(Schedule $schedule, AppointmentRequest $request)
+    public function store(Schedule $schedule, PhysicalAppointmentRequest $request)
     {
         if (auth()->id() === $schedule->doctor->user_id) {
             flash('Error! you can not schedule an appointment with yourself.')->error();
@@ -57,41 +56,33 @@ class PhysicalController extends Controller
             return redirect()->back();
         }
 
-        if ($appointment = Appointment::where('patient_id', $request->patient_id)->first()) {
-            flash('Error! '.$appointment->patient->full_name.' already has an appointment schedule.')->error();
+        Appointment::create($request->formPhysicalAppointment());
 
-            return redirect()->back();
-        }
+        flash('Successful! Physical appointment scheduled')->success();
 
-        auth()->user()->schedulingAppointment(
-            new Appointment($request->formAppointment())
-        );
-
-        flash('Successful! Physcial appointment scheduled')->success();
-
-        return redirect('/people/inbox');
+        return redirect('/user/inbox');
     }
 
-    protected function getSchedules()
+    private function getDoctorsSchedule()
     {
         return Schedule::whereHas('doctor.speciality', function ($q) {
             $q->where('name', request('speciality'));
         })
         ->whereHas('doctor.group', function ($q) {
-            $q->where('health_care_name', request('location'));
+            $q->where('name', request('location'));
         })
         ->with('doctor')->where('day', \Carbon\Carbon::parse(request('date'))->format('l'))
         ->get();
     }
 
-    protected function requestDate()
+    private function confirmDate()
     {
         $this->validate(request(), ['date' => 'required|date']);
 
         $request_date = Carbon::parse(request('date'));
         $min_date = today()->addDays(1);
 
-        if ($request_date < $min_date || $request_date > $min_date->addDays(7)) {
+        if ($request_date < $min_date || $request_date > $min_date->addDays(6)) {
             abort(404);
         }
     }

@@ -24,7 +24,7 @@ class CreateAppointmentsTable extends Migration
             $table->date('date');
             $table->time('preferred_time');
             $table->string('patient_condition');
-            $table->string('status');
+            $table->string('status'); // scheduled, checkin, expired.
             $table->timestamps();
         });
     }

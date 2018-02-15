@@ -39,6 +39,7 @@ $factory->state(App\Models\Doctor\Doctor::class, 'notactive', function () {
     ];
 });
 
+// schedule
 $factory->define(App\Models\Doctor\Schedule::class, function (Faker $faker) {
     return [
         'doctor_id' => function () {
@@ -116,5 +117,32 @@ $factory->define(App\Models\Patient\Patient::class, function (Faker $faker) {
         'cell_phone'     => $faker->phoneNumber,
         'marital_status' => $faker->randomElement($array = ['married', 'single', 'divorced']),
         'is_verified'    => false,
+    ];
+});
+
+// appointment
+$factory->define(App\Models\Appointment\Appointment::class, function (Faker $faker) {
+    return [
+        'patient_id' => function () {
+            return factory('App\Models\Patient\Patient')->create()->id;
+        },
+        'user_id' => function (array $appointment) {
+            return App\Models\Patient\Patient::find($appointment['patient_id'])->user_id;
+        },
+        'schedule_id' => function () {
+            return factory('App\Models\Doctor\Schedule')->create()->id;
+        },
+        'doctor_id' => function(array $appointment) {
+            return App\Models\Doctor\Schedule::find($appointment['schedule_id'])->doctor_id;
+        },
+        'group_id' => function(array $appointment) {
+            return App\Models\Doctor\Doctor::find($appointment['doctor_id'])->group_id;
+        },
+
+        'token' => str_random(6),
+        'date' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'preferred_time' => '09:00:00',
+        'patient_condition' => $faker->text($maxNbChars = 160),
+        'status' => 'scheduled',
     ];
 });
