@@ -42,9 +42,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Multiple Health Care Provider
     Route::group(['prefix' => '{group}'], function () {
-        Route::get('/appointments', 'Groups\GroupController@appointment');
-        Route::get('/appointments/{appointment}', 'Groups\GroupController@showAppointment');
-        Route::patch('/appointments/{appointment}', 'Groups\GroupController@checkinAppointment');
+        Route::get('/appointments', 'Groups\AppointmentController@index');
+        Route::get('/appointments/{appointment}', 'Groups\AppointmentController@show');
+        Route::patch('/appointments/{appointment}', 'Groups\AppointmentController@update');
         Route::get('/settings/profile', 'Groups\SettingController@profile');
         Route::get('/settings/staffs', 'Groups\StaffController@index');
         Route::get('/settings/invitations', 'Groups\InvitationController@index');

@@ -7,14 +7,14 @@ use App\Models\Setting\Group\Group;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment\Appointment;
 
-class GroupController extends Controller
+class AppointmentController extends Controller
 {
     public function __construct()
     {
         $this->middleware(['role:admin-group|admin-counter']);
     }
 
-    public function appointment(Request $request, Group $group)
+    public function index(Request $request, Group $group)
     {
         $this->authorize('appointment', $group);
 
@@ -26,14 +26,14 @@ class GroupController extends Controller
         ]);
     }
 
-    public function showAppointment(Group $group, Appointment $appointment)
+    public function show(Group $group, Appointment $appointment)
     {
         $this->authorize('appointment', $group);
 
         return view('groups.appointments.show', compact('group', 'appointment'));
     }
 
-    public function checkinAppointment(Group $group, Appointment $appointment)
+    public function update(Group $group, Appointment $appointment)
     {
         $this->authorize('appointment', $group);
 
@@ -47,7 +47,6 @@ class GroupController extends Controller
 
     protected function getAppointments(Request $request, Group $group)
     {
-        // maybe this can using vue.js
         $requestToken = $request->get('token');
 
         if ($requestToken) {

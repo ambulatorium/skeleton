@@ -69,6 +69,16 @@ abstract class TestCase extends BaseTestCase
         return $this;
     }
 
+    protected function signInAdminCounter($adminCounter = null)
+    {
+        $adminCounter = $adminCounter ?: create('App\User');
+        $adminCounter->assignRole('admin-counter');
+
+        $this->actingAs($adminCounter);
+
+        return $this;
+    }
+
     protected function CreateRolesAndPermission()
     {
         $permissions = DefaultPermission::defaultPermissions();

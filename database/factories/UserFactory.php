@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use Carbon\Carbon;
 
 $factory->define(App\User::class, function (Faker $faker) {
     static $password;
@@ -41,12 +42,14 @@ $factory->state(App\Models\Doctor\Doctor::class, 'notactive', function () {
 
 // schedule
 $factory->define(App\Models\Doctor\Schedule::class, function (Faker $faker) {
+    $day = today()->addDays(1);
+
     return [
         'doctor_id' => function () {
             return factory('App\Models\Doctor\Doctor')->create()->id;
         },
         'token'                   => str_random(6),
-        'day'                     => 'Monday',
+        'day'                     => Carbon::parse($day)->format('l'),
         'start_time'              => '09:00:00',
         'end_time'                => '17:00:00',
         'estimated_service_time'  => '35',
@@ -139,10 +142,10 @@ $factory->define(App\Models\Appointment\Appointment::class, function (Faker $fak
             return App\Models\Doctor\Doctor::find($appointment['doctor_id'])->group_id;
         },
 
-        'token' => str_random(6),
-        'date' => $faker->date($format = 'Y-m-d', $max = 'now'),
-        'preferred_time' => '09:00:00',
+        'token'             => str_random(6),
+        'date'              => today()->addDays(1),
+        'preferred_time'    => '09:00:00',
         'patient_condition' => $faker->text($maxNbChars = 160),
-        'status' => 'scheduled',
+        'status'            => 'scheduled',
     ];
 });

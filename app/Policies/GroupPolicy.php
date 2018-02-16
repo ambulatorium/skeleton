@@ -66,8 +66,6 @@ class GroupPolicy
      */
     public function appointment(User $user, Group $group)
     {
-        // if ($user->can('checkin-appointment-group')) {
-        return $group->id === $user->staff->group_id;
-        // }
+        return $group->id == $user->staff->group_id;
     }
 }
