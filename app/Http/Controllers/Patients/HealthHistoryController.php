@@ -7,25 +7,17 @@ use App\Models\Patient\HealthHistory;
 
 class HealthHistoryController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['role:doctor'])->except('index', 'show');
-    }
-
     public function index()
     {
-        $health_histories = HealthHistory::with('patient')->where('user_id', auth()->id())->get();
+        $healthHistories = HealthHistory::with('patient')->where('user_id', auth()->id())->get();
 
-        return view('people.health_history.index', compact('health_histories'));
+        return view('users.health_history.index', compact('healthHistories'));
     }
 
-    public function show($id)
+    public function show(HealthHistory $healthHistory)
     {
-        $health_history = HealthHistory::where([
-                                            ['id', $id],
-                                            ['user_id', auth()->id()],
-                                        ])->firstOrFail();
+        $this->authorize('view', $healthHistory);
 
-        return view('people.health_history.show', compact('health_history'));
+        return view('users.health_history.show', compact('healthHistory'));
     }
 }

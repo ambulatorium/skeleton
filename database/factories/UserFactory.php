@@ -162,6 +162,9 @@ $factory->define(App\Models\Patient\HealthHistory::class, function (Faker $faker
         'doctor_id' => function () {
             return factory('App\Models\Doctor\Doctor')->create()->id;
         },
+        'group_id' => function (array $healtHistory) {
+            return App\Models\Doctor\Doctor::find($healtHistory['doctor_id'])->group_id;
+        },
         'appointment_date' => today(),
         'appointment_time' => '09:00:00',
         'appointment_patient_condition' => $faker->text($maxNbChars = 160),

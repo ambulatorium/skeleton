@@ -32,7 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/outpatients/{appointment}', 'Doctors\OutpatientController@store');
         Route::resource('schedules', 'Doctors\ScheduleController');
         Route::get('/health-history', 'Patients\HealthHistoryController@index');
-        Route::get('/health-history/{id}', 'Patients\HealthHistoryController@show');
+        Route::get('/health-history/{healthHistory}', 'Patients\HealthHistoryController@show');
         Route::resource('settings/patient-forms', 'Patients\PatientController');
         Route::get('/settings/account', 'Users\AccountController@edit');
         Route::patch('/settings/account/{user}', 'Users\AccountController@update');

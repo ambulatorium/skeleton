@@ -17,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\Doctor\Schedule'         => 'App\Policies\SchedulePolicy',
         'App\Models\Setting\Group\Group'     => 'App\Policies\GroupPolicy',
         'App\Models\Patient\Patient'         => 'App\Policies\PatientPolicy',
+        'App\Models\Patient\HealthHistory'   => 'App\Policies\HealthHistoryPolicy',
     ];
 
     /**

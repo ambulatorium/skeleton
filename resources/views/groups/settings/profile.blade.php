@@ -20,7 +20,7 @@
                     
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="health_care_name">Name</label>
+                            <label for="name">Name</label>
                             <input type="text" class="form-control" name="name"  value="{{ old('name', $group->name) }}" required>
                         </div>
                         <div class="form-group col-md-6">
