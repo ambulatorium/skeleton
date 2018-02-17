@@ -149,3 +149,28 @@ $factory->define(App\Models\Appointment\Appointment::class, function (Faker $fak
         'status'            => 'scheduled',
     ];
 });
+
+// health history
+$factory->define(App\Models\Patient\HealthHistory::class, function (Faker $faker) {
+    return [
+        'patient_id' => function () {
+            return factory('App\Models\Patient\Patient')->create()->id;
+        },
+        'user_id' => function (array $healtHistory) {
+            return App\Models\Patient\Patient::find($healtHistory['patient_id'])->user_id;
+        },
+        'doctor_id' => function () {
+            return factory('App\Models\Doctor\Doctor')->create()->id;
+        },
+        'appointment_date' => today(),
+        'appointment_time' => '09:00:00',
+        'appointment_patient_condition' => $faker->text($maxNbChars = 160),
+        'schedule_start_time' => '09:00:00',
+        'schedule_end_time' => '17:00:00',
+        'schedule_estimated_service_time' => '35',
+        'schedule_estimated_price_service' => '350',
+        'doctor_diagnosis' => $faker->text($maxNbChars = 160),
+        'doctor_action' => $faker->text($maxNbChars = 160),
+        'doctor_note' => $faker->text($maxNbChars = 160),
+    ];
+});

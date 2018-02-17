@@ -6,14 +6,13 @@ use App\Models\Doctor\Doctor;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DoctorRequest;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Appointment\Appointment;
 use App\Models\Setting\Speciality\Speciality;
 
 class DoctorController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:doctor'])->except('index');
+        $this->middleware(['role:doctor']);
     }
 
     public function edit()
@@ -38,21 +37,5 @@ class DoctorController extends Controller
         flash('Successful! Doctor Profile Updated.')->success();
 
         return redirect()->back();
-    }
-
-    public function outpatients()
-    {
-        $today = today()->format('Y-m-d');
-
-        $appointments = Appointment::with('patient')
-                        ->where([
-                            ['date', $today],
-                            ['status', 'checked'],
-                            ['doctor_id', Auth::user()->doctor->id],
-                        ])
-                        ->orderBy('preferred_time', 'asc')
-                        ->paginate(10);
-
-        return view('people.outpatients.index', compact('appointments'));
     }
 }

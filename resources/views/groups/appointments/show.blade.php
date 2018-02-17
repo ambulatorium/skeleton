@@ -7,7 +7,7 @@
         <div class="row">
 
             <div class="col-md-12">
-                @include('partials.people.profile.patient')
+                @include('partials.users.profile.patient')
             </div>
 
             <div class="col-md-4 offset-md-4 mt-3">

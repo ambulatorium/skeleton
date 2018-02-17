@@ -27,9 +27,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/inbox', 'Users\InboxController@index');
         Route::get('/inbox/{appointment}', 'Users\InboxController@show');
         Route::delete('/inbox/{appointment}', 'Users\InboxController@destroy');
-        Route::get('/outpatients', 'Doctors\DoctorController@outpatients');
-        Route::get('/outpatients/{appointment}', 'Patients\HealthHistoryController@create');
-        Route::post('/outpatients/{appointment}', 'Patients\HealthHistoryController@store');
+        Route::get('/outpatients', 'Doctors\OutpatientController@index');
+        Route::get('/outpatients/{appointment}', 'Doctors\OutpatientController@create');
+        Route::post('/outpatients/{appointment}', 'Doctors\OutpatientController@store');
         Route::resource('schedules', 'Doctors\ScheduleController');
         Route::get('/health-history', 'Patients\HealthHistoryController@index');
         Route::get('/health-history/{id}', 'Patients\HealthHistoryController@show');

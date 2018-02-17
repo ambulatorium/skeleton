@@ -26,10 +26,10 @@
 <div class="nav-scroller box-shadow-nav">
     <nav class="nav nav-pills container">
         <a class="nav-link @yield('dashboard-inbox')" href="/user/inbox">Inbox</a>
-        <a class="nav-link @yield('dashboard-health-history')" href="/people/health-history">Health history</a>
+        <a class="nav-link @yield('dashboard-health-history')" href="/user/health-history">Health history</a>
 
         @role('doctor')
-            <a class="nav-link @yield('dashboard-outpatients')" href="/people/outpatients">Outpatients</a>
+            <a class="nav-link @yield('dashboard-outpatients')" href="/user/outpatients">Outpatients</a>
             <a class="nav-link @yield('dashboard-schedules')" href="/user/schedules">Schedules</a> 
         @endrole
 

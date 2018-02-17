@@ -14,7 +14,7 @@
             <h5 class="text-center mb-4">You have <strong>{{ $appointments->total() }}</strong> outpatients check-in today.</h5>
 
             @foreach ($appointments as $appointment)
-                <a href="/people/outpatients/{{$appointment->token}}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center text-uppercase">
+                <a href="/user/outpatients/{{$appointment->token}}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center text-uppercase">
                     <strong>#{{ $appointment->token }}</strong>
                     
                     {{ $appointment->patient->full_name }}

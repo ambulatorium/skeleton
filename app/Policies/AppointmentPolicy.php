@@ -21,4 +21,9 @@ class AppointmentPolicy
     {
         return $appointment->user_id == $user->id;
     }
+
+    public function checkout(User $user, Appointment $appointment)
+    {
+        return $appointment->doctor_id == $user->doctor->id;
+    }
 }
