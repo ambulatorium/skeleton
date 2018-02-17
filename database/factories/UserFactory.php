@@ -1,7 +1,7 @@
 <?php
 
-use Faker\Generator as Faker;
 use Carbon\Carbon;
+use Faker\Generator as Faker;
 
 $factory->define(App\User::class, function (Faker $faker) {
     static $password;
@@ -135,10 +135,10 @@ $factory->define(App\Models\Appointment\Appointment::class, function (Faker $fak
         'schedule_id' => function () {
             return factory('App\Models\Doctor\Schedule')->create()->id;
         },
-        'doctor_id' => function(array $appointment) {
+        'doctor_id' => function (array $appointment) {
             return App\Models\Doctor\Schedule::find($appointment['schedule_id'])->doctor_id;
         },
-        'group_id' => function(array $appointment) {
+        'group_id' => function (array $appointment) {
             return App\Models\Doctor\Doctor::find($appointment['doctor_id'])->group_id;
         },
 

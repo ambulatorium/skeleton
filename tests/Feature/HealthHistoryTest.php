@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class HealthHistoryTest extends TestCase
 {
     use RefreshDatabase;
-    
+
     /** @test */
     public function unauthorized_users_should_be_login_before_access_to_health_history()
     {

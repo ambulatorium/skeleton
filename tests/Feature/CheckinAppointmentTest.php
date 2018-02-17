@@ -9,8 +9,10 @@ class CheckinAppointmentTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $group, $adminGroup, $adminCounter;
-    
+    protected $group;
+    protected $adminGroup;
+    protected $adminCounter;
+
     public function setUp()
     {
         parent::setUp();
@@ -71,12 +73,12 @@ class CheckinAppointmentTest extends TestCase
     public function authorized_users_should_be_able_to_checkin_their_group_appointments()
     {
         $appointment = create('App\Models\Appointment\Appointment');
-        
+
         $this->signInAdminGroup($this->adminGroup->user);
         $this->signInAdminCounter($this->adminCounter->user);
 
         $this->patch('/'.$this->group->slug.'/appointments/'.$appointment->token, ['status' => 'checked']);
-        
+
         $this->assertDatabaseHas('appointments', ['status' => 'checked']);
     }
 }

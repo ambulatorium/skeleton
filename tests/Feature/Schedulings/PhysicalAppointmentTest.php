@@ -10,7 +10,8 @@ class PhysicalAppointmentTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $speciality, $doctor;
+    protected $speciality;
+    protected $doctor;
 
     public function setUp()
     {
@@ -69,7 +70,7 @@ class PhysicalAppointmentTest extends TestCase
         $minDate = today();
 
         $this->get('/scheduling/physical-appointment?location='.$this->doctor->group->name.'&speciality='.$this->speciality->name.'&date='.$minDate)
-            ->assertStatus(404);        
+            ->assertStatus(404);
     }
 
     /** @test */
@@ -78,6 +79,6 @@ class PhysicalAppointmentTest extends TestCase
         $tomorrow = today()->addDays(1);
 
         $this->get('/scheduling/physical-appointment?location='.$this->doctor->group->name.'&speciality='.$this->speciality->name.'&date='.$tomorrow->addDays(7))
-            ->assertStatus(404);        
+            ->assertStatus(404);
     }
 }

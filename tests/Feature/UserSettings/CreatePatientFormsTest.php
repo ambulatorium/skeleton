@@ -21,7 +21,7 @@ class CreatePatientFormsTest extends TestCase
     {
         $this->get(route('patient-forms.create'))
             ->assertRedirect(route('login'));
-            
+
         $this->post(route('patient-forms.store'))
             ->assertRedirect(route('login'));
     }

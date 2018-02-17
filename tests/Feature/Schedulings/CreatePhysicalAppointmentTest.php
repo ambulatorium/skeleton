@@ -14,7 +14,7 @@ class CreatePhysicalAppointmentTest extends TestCase
     public function guests_should_be_login_before_scheduling_a_physical_appointment()
     {
         $requestDate = today()->addDays(1);
-        
+
         $this->withExceptionHandling()
             ->post('/scheduling/physical-appointment/some-token?date='.$requestDate, [])
             ->assertRedirect('/login');
@@ -69,7 +69,7 @@ class CreatePhysicalAppointmentTest extends TestCase
         $doctorSchedule = create('App\Models\Doctor\Schedule', [
             'day'       => $requestDate->format('l'),
         ]);
-            
+
         $appointment = make('App\Models\Appointment\Appointment', [
             'schedule_id' => $doctorSchedule->id,
             'user_id'     => $doctorSchedule->doctor->user->id,

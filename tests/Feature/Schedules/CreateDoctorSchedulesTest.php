@@ -43,7 +43,7 @@ class CreateDoctorSchedulesTest extends TestCase
     public function authorized_users_has_a_profile_doctor_must_be_active_before_create_schedules()
     {
         $doctor = factory('App\Models\Doctor\Doctor')->states('notactive')->create();
-        
+
         $this->signInDoctor($doctor->user);
 
         $schedule = make('App\Models\Doctor\Schedule');
@@ -130,7 +130,7 @@ class CreateDoctorSchedulesTest extends TestCase
         $this->signInDoctor($doctor->user);
 
         $schedule = create('App\Models\Doctor\Schedule', ['doctor_id' => Auth::user()->doctor->id]);
-        
+
         $this->delete(route('schedules.destroy', $schedule->token))
             ->assertRedirect(route('schedules.index'));
 
