@@ -22,7 +22,7 @@ class DoctorTest extends TestCase
     {
         $doctor = create('App\Models\Doctor\Doctor');
 
-        $this->assertInstanceOf('App\Models\Setting\Group\Group', $doctor->group);        
+        $this->assertInstanceOf('App\Models\Setting\Group\Group', $doctor->group);
     }
 
     /** @test */
@@ -30,6 +30,6 @@ class DoctorTest extends TestCase
     {
         $doctor = create('App\Models\Doctor\Doctor');
 
-        $this->assertInstanceOf('App\Models\Setting\Speciality\Speciality', $doctor->speciality);   
+        $this->assertInstanceOf('App\Models\Setting\Speciality\Speciality', $doctor->speciality);
     }
 }

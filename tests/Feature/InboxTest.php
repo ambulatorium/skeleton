@@ -22,7 +22,7 @@ class InboxTest extends TestCase
     public function authorized_user_can_see_its_appointments()
     {
         $this->signIn();
-        
+
         $patient_form = create('App\Models\Patient\Patient', ['user_id' => auth()->id()]);
         $appointment = create('App\Models\Appointment\Appointment', ['patient_id' => $patient_form->id]);
 
@@ -37,7 +37,7 @@ class InboxTest extends TestCase
     public function authorized_user_cannot_see_all_details_appointment()
     {
         $this->signIn();
-        
+
         $appointment = create('App\Models\Appointment\Appointment');
 
         $this->get('/user/inbox/'.$appointment->token)
@@ -48,7 +48,7 @@ class InboxTest extends TestCase
     public function authorized_user_can_see_details_its_appointment()
     {
         $this->signIn();
-        
+
         $patient_form = create('App\Models\Patient\Patient', ['user_id' => auth()->id()]);
         $appointment = create('App\Models\Appointment\Appointment', ['patient_id' => $patient_form->id]);
 
@@ -61,19 +61,19 @@ class InboxTest extends TestCase
     public function authorized_users_can_not_cancel_an_appointment_that_is_not_their_own()
     {
         $this->signIn();
-        
+
         $appointment = create('App\Models\Appointment\Appointment');
 
         $this->delete('/user/inbox/'.$appointment->token)->assertStatus(403);
 
-        $this->assertDatabaseHas('appointments', ['id' => $appointment->id]);        
+        $this->assertDatabaseHas('appointments', ['id' => $appointment->id]);
     }
 
     /** @test */
     public function authorized_users_should_be_able_to_cancel_their_appointment()
     {
         $this->signIn();
-        
+
         $patient_form = create('App\Models\Patient\Patient', ['user_id' => auth()->id()]);
         $appointment = create('App\Models\Appointment\Appointment', ['patient_id' => $patient_form->id]);
 

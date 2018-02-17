@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Doctors;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Patient\HealthHistory;
@@ -13,7 +12,7 @@ class OutpatientController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:doctor']);   
+        $this->middleware(['role:doctor']);
     }
 
     public function index()

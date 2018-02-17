@@ -21,7 +21,7 @@ class UpdateProfileDoctorTest extends TestCase
     public function unauthorized_users_may_not_update_profile_doctors()
     {
         $this->signIn();
-        
+
         $doctor = create(Doctor::class, ['user_id' => create('App\User')->id]);
 
         $this->patch(route('profileDoctor.update', $doctor->id), $this->validParams())
@@ -32,7 +32,7 @@ class UpdateProfileDoctorTest extends TestCase
     public function an_authorized_user_can_update_their_profile_doctor()
     {
         $this->signInDoctor();
-        
+
         $doctor = create(Doctor::class, ['user_id' => auth()->id()]);
 
         $this->patch(route('profileDoctor.update', $doctor->id), $this->validParams([

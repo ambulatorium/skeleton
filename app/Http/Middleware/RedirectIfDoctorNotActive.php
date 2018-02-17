@@ -18,7 +18,7 @@ class RedirectIfDoctorNotActive
         $user = $request->user();
 
         if ($user->doctor->is_active) {
-            return $next($request);            
+            return $next($request);
         }
 
         flash('Sorry, you do not have permission to create schedule yet.

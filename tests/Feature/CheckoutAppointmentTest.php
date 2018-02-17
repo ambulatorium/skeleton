@@ -9,7 +9,8 @@ class CheckoutAppointmentTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $appointment, $doctor;
+    protected $appointment;
+    protected $doctor;
 
     public function setUp()
     {
