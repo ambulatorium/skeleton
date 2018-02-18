@@ -4,9 +4,9 @@ namespace Tests\Feature\UserSettings;
 
 use Tests\TestCase;
 use App\Models\Patient\Patient;
+use App\Models\Patient\HealthHistory;
 use App\Models\Appointment\Appointment;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Models\Patient\HealthHistory;
 
 class DeletePatientFormsTest extends TestCase
 {
