@@ -49,7 +49,7 @@ class DeletePatientFormsTest extends TestCase
         $healthHistory = create(HealthHistory::class, ['patient_id' => $patient_form->id]);
 
         $this->delete(route('patient-forms.destroy', $patient_form->id));
-        
+
         $this->assertDatabaseHas('patients', ['user_id' => auth()->id()]);
         $this->assertDatabaseHas('patients', ['id' => $patient_form->id]);
         $this->assertDatabaseHas('health_histories', ['patient_id' => $patient_form->id]);
