@@ -123,9 +123,26 @@ class CreateDoctorSchedulesTest extends TestCase
     }
 
     /** @test */
-    public function authorized_users_can_delete_schedules()
+    public function authorized_users_cannot_delete_their_own_schedule_that_have_appointment()
     {
-        $doctor = factory('App\Models\Doctor\Doctor')->create();
+        $doctor = create('App\Models\Doctor\Doctor');
+
+        $this->signInDoctor($doctor->user);
+
+        $schedule = create('App\Models\Doctor\Schedule', ['doctor_id' => Auth::user()->doctor->id]);
+        $appointment = create('App\Models\Appointment\Appointment', ['schedule_id' => $schedule->id]);
+
+        $this->delete(route('schedules.destroy', $schedule->token))
+            ->assertRedirect(route('schedules.index'));
+
+        $this->assertDatabaseHas('schedules', ['id' => $schedule->id]);
+        $this->assertDatabaseHas('appointments', ['id' => $appointment->id]);
+    }
+
+    /** @test */
+    public function authorized_users_can_delete_their_own_schedule()
+    {
+        $doctor = create('App\Models\Doctor\Doctor');
 
         $this->signInDoctor($doctor->user);
 
