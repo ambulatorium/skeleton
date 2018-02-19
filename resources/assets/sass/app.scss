@@ -56,8 +56,33 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-.navbar-dark .navbar-nav .nav-link {
-    color: rgba(255, 255, 255, 0.77);
+.navbar-form {
+  border-top: 7px solid var(--red);
+  border-bottom: 0;
+}
+
+form .row {
+  margin-bottom: 15px;
+}
+
+form .form-section {
+  border-top: 1px solid #e3eaf1;
+  margin-top: 30px;
+  padding-top: 30px;
+}
+
+.form-control {
+  margin-top: 16px;
+}
+
+@media (min-width: 576px) {
+  .form-control {
+    margin-top: inherit;
+  }
+}
+
+.mw-60 {
+  max-width: 60% !important;
 }
 
 .box-shadow-nav { 
