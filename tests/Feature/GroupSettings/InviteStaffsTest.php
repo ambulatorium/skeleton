@@ -39,7 +39,7 @@ class InviteStaffsTest extends TestCase
         $this->signInAdministrator();
 
         $this->get('/'.$group->slug.'/settings/invitations')
-            ->assertStatus(201);
+            ->assertStatus(200);
     }
 
     /** @test */
@@ -97,7 +97,7 @@ class InviteStaffsTest extends TestCase
         $this->assertNotNull($invitation->group_id);
 
         $this->get(route('accept', ['token' => $invitation->token]))
-            ->assertStatus(201);
+            ->assertStatus(200);
     }
 
     /** @test */

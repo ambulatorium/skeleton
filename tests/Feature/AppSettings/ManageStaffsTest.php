@@ -91,7 +91,7 @@ class ManageStaffsTest extends TestCase
         $this->assertNotNull($invitation->email);
 
         $this->get(route('accept', ['token' => $invitation->token]))
-            ->assertStatus(201);
+            ->assertStatus(200);
     }
 
     /** @test */

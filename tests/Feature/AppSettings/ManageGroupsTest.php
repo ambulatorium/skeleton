@@ -48,11 +48,11 @@ class ManageGroupsTest extends TestCase
     {
         $this->signInOwner()
             ->get('/settings/groups')
-            ->assertStatus(201);
+            ->assertStatus(200);
 
         $this->signInAdministrator()
             ->get('/settings/groups')
-            ->assertStatus(201);
+            ->assertStatus(200);
     }
 
     /** @test */
