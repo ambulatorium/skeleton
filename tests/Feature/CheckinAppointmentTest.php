@@ -41,11 +41,11 @@ class CheckinAppointmentTest extends TestCase
     {
         $this->signInAdminGroup($this->adminGroup->user)
             ->get('/'.$this->group->slug.'/appointments')
-            ->assertStatus(200);
+            ->assertStatus(201);
 
         $this->signInAdminCounter($this->adminCounter->user)
             ->get('/'.$this->group->slug.'/appointments')
-            ->assertStatus(200);
+            ->assertStatus(201);
     }
 
     /** @test */

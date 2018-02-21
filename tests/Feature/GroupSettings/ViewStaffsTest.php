@@ -36,6 +36,6 @@ class ViewStaffsTest extends TestCase
         $this->signInAdministrator();
 
         $this->get('/'.$group->slug.'/settings/staffs')
-            ->assertStatus(200);
+            ->assertStatus(201);
     }
 }
