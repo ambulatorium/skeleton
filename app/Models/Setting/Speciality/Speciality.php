@@ -16,14 +16,14 @@ class Speciality extends Model
 
     public function getRouteKeyName()
     {
-    	return 'slug';
+        return 'slug';
     }
 
     public function doctors()
     {
         return $this->hasMany('App\Models\Doctor\Doctor');
     }
-    
+
     public function setNameAttribute($name)
     {
         $this->attributes['name'] = $name;
