@@ -14,6 +14,7 @@
                 <thead class="thead-rq">
                     <tr>
                         <th>Name</th>
+                        <th>Slug</th>
                         <th>Description</th>
                         <th>Manage</th>
                     </tr>
@@ -22,27 +23,28 @@
                     @forelse($specialities as $speciality)
                         <tr>
                             <td>{{ $speciality->name }}</td>
+                            <td>{{ $speciality->slug }}</td>
                             <td>{{ $speciality->description }}</td>
                             <td>
-                                <form action="/settings/specialities/{{ $speciality->id }}" method="POST">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
+                                <form action="{{ route('specialities.destroy', $speciality) }}" method="POST">
+                                    @method('delete')
+                                    @csrf
 
-                                    <a href="/settings/specialities/{{ $speciality->id }}/edit" class="btn btn-secondary btn-sm">edit</a>
+                                    <a href="{{ route('specialities.edit', $speciality) }}" class="btn btn-secondary btn-sm">edit</a>
                                     <button class="btn btn-danger btn-sm" type="submit">delete</button>
                                 </form>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td>Empty</td>
+                            <td>Empty.</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
 
-        <a href="/settings/specialities/create" class="btn btn-sm btn-light float-right active">Add new</a>
+        <a href="{{ route('specialities.create') }}" class="btn btn-sm btn-light float-right active">New Speciality</a>
 
         {{ $specialities->links('vendor.pagination.bootstrap-4') }}
 
