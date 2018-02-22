@@ -10,7 +10,7 @@ Route::get('/scheduling/physical-appointment', 'Schedulings\PhysicalAppointmentC
 Auth::routes();
 
 // all healthcare provider
-Route::get('/{group}', 'Settings\Group\GroupController@show')->name('group');
+Route::get('/{group}', 'Groups\ProfileController@show')->name('group');
 
 // user invitation
 Route::get('/invitations/{token}', 'InvitationController@accept')->middleware('guest')->name('accept');
@@ -45,7 +45,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/appointments', 'Groups\AppointmentController@index');
         Route::get('/appointments/{appointment}', 'Groups\AppointmentController@show');
         Route::patch('/appointments/{appointment}', 'Groups\AppointmentController@update');
-        Route::get('/settings/profile', 'Groups\SettingController@profile');
+        Route::get('/settings/profile', 'Groups\ProfileController@edit');
+        Route::patch('/settings/profile', 'Groups\ProfileController@update');
         Route::get('/settings/staffs', 'Groups\StaffController@index');
         Route::get('/settings/invitations', 'Groups\InvitationController@index');
         Route::post('/settings/invitations', 'Groups\InvitationController@store');
@@ -57,7 +58,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('groups', 'Settings\Group\GroupController@index');
         Route::get('groups/create', 'Settings\Group\GroupController@create');
         Route::post('groups', 'Settings\Group\GroupController@store');
-        Route::patch('groups/{group}', 'Settings\Group\GroupController@update');
         Route::delete('groups/{group}', 'Settings\Group\GroupController@destroy');
         Route::resource('specialities', 'Settings\Speciality\SpecialityController');
         Route::resource('staffs', 'Settings\Staffs\StaffController');

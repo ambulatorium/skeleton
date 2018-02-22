@@ -14,7 +14,7 @@
                 <h5 class="card-text text-capitalize">setting group profile</h5>
             </div>
             <div class="card-body">
-                <form action="{{ $group->appSetting() }}" method="POST">
+                <form action="/{{$group->slug}}/settings/profile" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
                     

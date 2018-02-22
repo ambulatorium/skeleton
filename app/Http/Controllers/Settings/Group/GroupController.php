@@ -10,7 +10,7 @@ class GroupController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:owner|administrator'])->except(['show', 'update']);
+        $this->middleware(['role:owner|administrator']);
     }
 
     public function index()
@@ -34,32 +34,10 @@ class GroupController extends Controller
         return redirect('/settings/groups');
     }
 
-    public function show(Group $group)
-    {
-        $doctors = $group->doctor()->where('is_active', true)->get();
-
-        return view('groups.show', [
-            'group'   => $group,
-            'doctors' => $doctors->load('speciality'),
-        ]);
-    }
-
-    public function update(GroupRequest $request, Group $group)
-    {
-        $this->authorize('update', $group);
-
-        $group->fill($request->formGroup());
-        $group->save();
-
-        flash('Successful! group Updated')->success();
-
-        return redirect('/'.$group->slug.'/settings/profile');
-    }
-
     public function destroy(Group $group)
     {
         $relationships = $this->checkRelationships($group, [
-            'doctor' => 'doctor',
+            'doctor' => 'doctors',
         ]);
 
         if (empty($relationships)) {
