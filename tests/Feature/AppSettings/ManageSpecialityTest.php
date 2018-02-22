@@ -70,7 +70,7 @@ class ManageSpecialityTest extends TestCase
     }
 
     /** @test */
-    public function a_gspeciality_requires_name()
+    public function a_speciality_requires_name()
     {
         $this->createSpeciality(['name' => null])
             ->assertSessionHasErrors('name');
@@ -103,7 +103,7 @@ class ManageSpecialityTest extends TestCase
         $this->signInAdministrator();
 
         $this->patch(
-            route('specialities.update', ['speciality' => create(Speciality::class)]),
+            route('specialities.update', ['speciality' => create(Speciality::class)->slug]),
             $updatedSpeciality = [
                 'name'        => 'speciality name',
                 'description' => 'speciality description',
@@ -151,7 +151,7 @@ class ManageSpecialityTest extends TestCase
 
         $speciality = create(Speciality::class);
 
-        $this->delete(route('specialities.destroy', $speciality->id));
+        $this->delete(route('specialities.destroy', $speciality->slug));
 
         $this->assertDatabaseMissing('specialities', ['id' => $speciality->id]);
     }
