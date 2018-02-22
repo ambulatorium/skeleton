@@ -8,10 +8,25 @@ class Speciality extends Model
 {
     protected $table = 'specialities';
 
-    protected $fillable = ['name', 'description'];
+    protected $fillable = [
+        'name',
+        'slug',
+        'description',
+    ];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function doctors()
     {
         return $this->hasMany('App\Models\Doctor\Doctor');
+    }
+
+    public function setNameAttribute($name)
+    {
+        $this->attributes['name'] = $name;
+        $this->attributes['slug'] = str_slug($name);
     }
 }

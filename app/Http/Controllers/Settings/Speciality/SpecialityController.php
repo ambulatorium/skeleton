@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Settings\Speciality;
 
-use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use App\Models\Setting\Speciality\Speciality;
 
@@ -15,33 +15,33 @@ class SpecialityController extends Controller
 
     public function index()
     {
-        return view('settings.speciality.index', [
-            'specialities' => Speciality::paginate(10),
-        ]);
+        $specialities = Speciality::paginate(10);
+
+        return view('settings.speciality.index', compact('specialities'));
     }
 
     public function create()
     {
-        return view('settings.speciality.create');
+        return view('settings.speciality.create', ['speciality' => new Speciality]);
     }
 
-    public function store(Request $request)
+    public function store()
     {
-        $this->validate(request(), [
-            'name'        => 'required|string|min:3',
-            'description' => 'required|string|max:60',
-        ]);
-
-        Speciality::create($request->all());
+        Speciality::create(
+            request()->validate([
+                'name' => 'required|unique:specialities',
+                'description' => 'required',
+            ])
+        );
 
         flash('Successful! The new speciality created')->success();
 
-        return redirect('/settings/specialities');
+        return redirect(route('specialities.index'));
     }
 
-    public function show($id)
+    public function show(Speciality $speciality)
     {
-        //
+        return redirect(route('specialities.index'));
     }
 
     public function edit(Speciality $speciality)
@@ -49,19 +49,18 @@ class SpecialityController extends Controller
         return view('settings.speciality.edit', compact('speciality'));
     }
 
-    public function update(Request $request, Speciality $speciality)
+    public function update(Speciality $speciality)
     {
-        $this->validate(request(), [
-            'name'        => 'required|string|min:3',
-            'description' => 'required|string|max:60',
-        ]);
-
-        $speciality->fill($request->all());
-        $speciality->save();
+        $speciality->update(
+            request()->validate([
+                'name' => ['required', Rule::unique('specialities')->ignore($speciality->id)],
+                'description' => 'required',
+            ])
+        );
 
         flash('Successful! The speciality updated')->success();
 
-        return redirect('/settings/specialities');
+        return redirect(route('specialities.index'));
     }
 
     public function destroy(Speciality $speciality)
@@ -78,6 +77,6 @@ class SpecialityController extends Controller
             flash('Warning! Deletion of '.$speciality->name.' not allowed.')->warning();
         }
 
-        return redirect('/settings/specialities');
+        return redirect(route('specialities.index'));
     }
 }
