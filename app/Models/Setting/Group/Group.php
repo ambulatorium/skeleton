@@ -21,7 +21,7 @@ class Group extends Model
         return 'slug';
     }
 
-    public function doctor()
+    public function doctors()
     {
         return $this->hasMany('App\Models\Doctor\Doctor');
     }

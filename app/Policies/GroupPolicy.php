@@ -24,7 +24,7 @@ class GroupPolicy
         }
 
         if ($user->can('edit-group')) {
-            return $group->id === $user->staff->group_id;
+            return $group->id == $user->staff->group_id;
         }
     }
 
@@ -35,7 +35,7 @@ class GroupPolicy
         }
 
         if ($user->can('view-staffs-group')) {
-            return $group->id === $user->staff->group_id;
+            return $group->id == $user->staff->group_id;
         }
     }
 
@@ -53,7 +53,7 @@ class GroupPolicy
         }
 
         if ($user->can('view-invitation-group')) {
-            return $group->id === $user->staff->group_id;
+            return $group->id == $user->staff->group_id;
         }
     }
 
