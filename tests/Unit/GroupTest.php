@@ -15,7 +15,7 @@ class GroupTest extends TestCase
         $group = create('App\Models\Setting\Group\Group');
         $doctor = create('App\Models\Doctor\Doctor', ['group_id' => $group->id]);
 
-        $this->assertTrue($group->doctor->contains($doctor));
+        $this->assertTrue($group->doctors->contains($doctor));
     }
 
     /** @test */
