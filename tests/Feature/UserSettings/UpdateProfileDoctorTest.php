@@ -24,7 +24,7 @@ class UpdateProfileDoctorTest extends TestCase
 
         $doctor = create(Doctor::class, ['user_id' => create('App\User')->id]);
 
-        $this->patch(route('profileDoctor.update', $doctor->id), $this->validParams())
+        $this->patch(route('profileDoctor.update', $doctor->slug), $this->validParams())
             ->assertStatus(403);
     }
 
@@ -35,7 +35,7 @@ class UpdateProfileDoctorTest extends TestCase
 
         $doctor = create(Doctor::class, ['user_id' => auth()->id()]);
 
-        $this->patch(route('profileDoctor.update', $doctor->id), $this->validParams([
+        $this->patch(route('profileDoctor.update', $doctor->slug), $this->validParams([
             'full_name' => 'Changed',
             'bio'       => 'Changed',
         ]));

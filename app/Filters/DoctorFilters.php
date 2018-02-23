@@ -4,12 +4,10 @@ namespace App\Filters;
 
 class DoctorFilters extends Filters
 {
-    protected $filters = ['polyclinic'];
+    protected $filters = ['name'];
 
-    protected function polyclinic($polyclinic)
+    protected function name($full_name)
     {
-        return $this->builder->whereHas('polyclinic', function ($query) use ($polyclinic) {
-            $query->where('name', $polyclinic);
-        });
+        return $this->builder->where('full_name', 'LIKE', "%$full_name%");
     }
 }

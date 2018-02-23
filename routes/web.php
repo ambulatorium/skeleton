@@ -2,8 +2,13 @@
 
 // home
 Route::get('/', 'HomeController@home');
-Route::get('/search', 'HomeController@search')->name('search');
-Route::get('/explore', 'HomeController@explore');
+
+// doctor's profile
+Route::get('/doctors', 'Doctors\DoctorController@index');
+Route::get('/doctors/{speciality}', 'Doctors\DoctorController@index');
+Route::get('/doctors/{speciality}/{doctor}', 'Doctors\DoctorController@show');
+
+// schedule an appointment
 Route::get('/scheduling/physical-appointment', 'Schedulings\PhysicalAppointmentController@index');
 
 // Authentication default

@@ -19,6 +19,7 @@ class CreateDoctorsTable extends Migration
             $table->unsignedInteger('group_id');
             $table->unsignedInteger('speciality_id')->nullable();
             $table->string('full_name')->nullable();
+            $table->string('slug')->unique()->nullable();
             $table->smallInteger('years_of_experience')->nullable();
             $table->string('qualification')->nullable();
             $table->string('bio')->nullable();

@@ -13,16 +13,17 @@ class Doctor extends Model
         'group_id',
         'speciality_id',
         'full_name',
+        'slug',
         'years_of_experience',
         'qualification',
         'bio',
         'is_active',
     ];
 
-    // public function getRouteKeyName()
-    // {
-    //   return 'name';
-    // }
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function user()
     {
@@ -54,8 +55,17 @@ class Doctor extends Model
         return $this->hasMany('App\Models\Patient\HealthHistory');
     }
 
-    // public function scopeFilter($query, $filters)
-    // {
-    //     return $filters->apply($query);
-    // }
+    public function setSlugAttribute($value)
+    {
+        if (static::whereSlug($slug = str_slug($value))->exists()) {
+            $slug = "{$slug}-{$this->id}";
+        }
+
+        $this->attributes['slug'] = $slug;
+    }
+
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
 }
