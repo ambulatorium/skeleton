@@ -1,15 +1,12 @@
 <div class="navbar-collapse offcanvas-collapse" id="navbarMenu">
 
-    <form action="{{ route('search') }}" method="get" class="form-inline mr-auto">
+    <form action="/doctors" method="get" class="form-inline mr-auto">
         <div class="input-group">
-            <input class="search-input" type="search" name="q" placeholder="find a doctor...">
+            <input class="search-input" type="search" name="name" placeholder="find a doctor...">
         </div>
     </form>
 
     <ul class="navbar-nav my-2 my-lg-0">
-        <li class="nav-item">
-            <a href="/explore" class="nav-link @yield('explore')">Explore</a>
-        </li>
         @guest
             <li class="nav-item">
                 <a href="/login" class="nav-link">My Account</a>

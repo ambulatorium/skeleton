@@ -14,7 +14,7 @@ class DoctorRequest extends FormRequest
     public function rules()
     {
         return [
-            'speciality_id'       => 'required',
+            'speciality_id'       => 'required|exists:specialities,id',
             'full_name'           => 'required|string|max:255',
             'years_of_experience' => 'required|numeric',
             'qualification'       => 'required|string|max:25',
