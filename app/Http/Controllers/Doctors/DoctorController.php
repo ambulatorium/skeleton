@@ -23,9 +23,11 @@ class DoctorController extends Controller
         return view('doctors.index', compact('doctors'));
     }
 
-    public function show(Speciality $speciality, Doctor $doctor)
+    public function show($speciality, Doctor $doctor)
     {
-        return view('doctors.show', compact('doctor'));
+        $schedules = $doctor->schedules()->get();
+
+        return view('doctors.show', compact('doctor', 'schedules'));
     }
 
     public function edit()

@@ -45,7 +45,7 @@ class Doctor extends Model
         return $this->belongsTo('App\Models\Setting\Speciality\Speciality');
     }
 
-    public function schedule()
+    public function schedules()
     {
         return $this->hasMany('App\Models\Doctor\Schedule');
     }
