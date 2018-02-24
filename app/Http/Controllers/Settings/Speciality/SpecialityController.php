@@ -15,9 +15,7 @@ class SpecialityController extends Controller
 
     public function index()
     {
-        $specialities = Speciality::paginate(10);
-
-        return view('settings.speciality.index', compact('specialities'));
+        return view('settings.speciality.index');
     }
 
     public function create()
@@ -33,6 +31,8 @@ class SpecialityController extends Controller
                 'description' => 'required',
             ])
         );
+
+        cache()->forget('specialities');
 
         flash('Successful! The new speciality created')->success();
 
@@ -58,6 +58,8 @@ class SpecialityController extends Controller
             ])
         );
 
+        cache()->forget('specialities');
+
         flash('Successful! The speciality updated')->success();
 
         return redirect(route('specialities.index'));
@@ -71,6 +73,8 @@ class SpecialityController extends Controller
 
         if (empty($relationships)) {
             $speciality->delete();
+
+            cache()->forget('specialities');
 
             flash('Successful! The speciality deleted')->success();
         } else {

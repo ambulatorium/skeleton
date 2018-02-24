@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\Setting\Speciality\Speciality;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \View::composer('*', function ($view) {
+            $specialities = \Cache::rememberForever('specialities', function () {
+                return Speciality::all();
+            });
+
+            $view->with('specialities', $specialities);
+        });
     }
 
     /**

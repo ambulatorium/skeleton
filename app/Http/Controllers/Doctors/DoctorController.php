@@ -20,9 +20,7 @@ class DoctorController extends Controller
     {
         $doctors = $this->getDoctors($speciality, $filters);
 
-        $specialities = Speciality::all();
-
-        return view('doctors.index', compact('doctors', 'specialities'));
+        return view('doctors.index', compact('doctors'));
     }
 
     public function show(Speciality $speciality, Doctor $doctor)
@@ -38,7 +36,6 @@ class DoctorController extends Controller
 
         return view('users.settings.doctor_profile', [
             'doctorProfile' => $user,
-            'specialities' => Speciality::all(),
         ]);
     }
 
