@@ -45,8 +45,5 @@
         </div>
 
         <a href="{{ route('specialities.create') }}" class="btn btn-sm btn-light float-right active">New Speciality</a>
-
-        {{ $specialities->links('vendor.pagination.bootstrap-4') }}
-
     </main>
 @endsection

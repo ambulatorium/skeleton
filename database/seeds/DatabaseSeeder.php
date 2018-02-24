@@ -70,6 +70,7 @@ class DatabaseSeeder extends Seeder
             $this->command->info('Here is your owner details to login:');
             $this->command->warn($user->email);
             $this->command->warn('Password is "secret"');
+            $this->command->call('cache:clear');
         }
     }
 }

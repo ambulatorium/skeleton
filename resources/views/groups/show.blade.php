@@ -14,8 +14,12 @@
                 <div class="media my-3 p-3 col-md-4">
                     <img src="{{ asset('img/example-avatar.png') }}" alt="avatar" class="img-responsive mr-2" width="50" height="50">                    
                     <p class="media-body pb-3 mb-0 border-bottom">
-                        <a href="#" class="d-block"><strong>{{ $doctor->full_name }}</strong></a>
-                        {{ $doctor->speciality->name }}
+                        <a href="/doctors/{{$doctor->speciality->slug}}/{{$doctor->slug}}" class="d-block font-weight-bold">
+                            {{ $doctor->full_name }}
+                        </a>
+                        <a href="/doctors/{{$doctor->speciality->slug}}" class="text-secondary font-weight-light">
+                            {{ $doctor->speciality->name }}
+                        </a>
                     </p>
                 </div>
             @empty

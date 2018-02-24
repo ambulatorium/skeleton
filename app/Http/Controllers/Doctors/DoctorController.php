@@ -20,14 +20,14 @@ class DoctorController extends Controller
     {
         $doctors = $this->getDoctors($speciality, $filters);
 
-        $specialities = Speciality::all();
-
-        return view('doctors.index', compact('doctors', 'specialities'));
+        return view('doctors.index', compact('doctors'));
     }
 
-    public function show(Speciality $speciality, Doctor $doctor)
+    public function show($speciality, Doctor $doctor)
     {
-        return view('doctors.show', compact('doctor'));
+        $schedules = $doctor->schedules()->get();
+
+        return view('doctors.show', compact('doctor', 'schedules'));
     }
 
     public function edit()
@@ -38,7 +38,6 @@ class DoctorController extends Controller
 
         return view('users.settings.doctor_profile', [
             'doctorProfile' => $user,
-            'specialities' => Speciality::all(),
         ]);
     }
 
