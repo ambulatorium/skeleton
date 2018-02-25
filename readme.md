@@ -3,7 +3,7 @@
 [![Laravel Version](https://shield.with.social/cc/github/reliqui/reliqui/master.svg?style=flat-square)](https://packagist.org/packages/laravel/framework)
 [![StyleCI](https://styleci.io/repos/110965973/shield?branch=master)](https://styleci.io/repos/110965973)
 [![Latest Stable Version](https://img.shields.io/github/release/reliqui/reliqui.svg?style=flat-square)](https://github.com/reliqui/reliqui/releases)
-![Total Downloads](https://img.shields.io/github/downloads/reliqui/reliqui/total.svg)
+
  
 Reliqui is open source scheduling system for outpatients appointments to provide the easiest service for hospital patients or clinics.
 
