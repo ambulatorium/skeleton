@@ -15,7 +15,7 @@
             </div>
             <div class="card-body">
 
-                <form action="{{ route('profileDoctor.update', $doctorProfile->id) }}" method="POST">
+                <form action="{{ route('profileDoctor.update', $doctorProfile->slug) }}" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
                     
