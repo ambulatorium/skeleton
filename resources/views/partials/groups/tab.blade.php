@@ -10,11 +10,5 @@
         <div class="nav-item">
             <a class="nav-link @yield('tab-doctors')" href="/{{ $group->slug }}">Doctors</a>
         </div>
-
-        @can('update', $group)
-            <div class="nav-item">
-                <a class="nav-link @yield('tab-settings')" href="/{{ $group->slug }}/settings/profile">Settings</a>
-            </div>
-        @endcan
     </nav>
 </div>

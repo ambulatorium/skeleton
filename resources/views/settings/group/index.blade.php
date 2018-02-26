@@ -26,6 +26,8 @@
                             <td>
                                 <form action="{{ $group->appSetting() }}" method="POST">
                                     {{ csrf_field() }} {{ method_field('DELETE') }}
+
+                                    <a href="/{{$group->slug}}/settings/profile" class="btn btn-secondary btn-sm">settings</a>
                                     <button class="btn btn-danger btn-sm" type="submit">delete</button>
                                 </form>
                             </td>
