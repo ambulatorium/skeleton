@@ -14,7 +14,7 @@
         @else
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle active" id="navbarMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="{{ asset('img/example-avatar.png') }}" alt="{{ Auth::user()->name }}" class="img-responsive rounded" height="25" width="25">
+                    <img src="/img/{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="img-responsive rounded" height="25" width="25">
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarMenu">
                     <h6 class="dropdown-header"><strong>{{ Auth::user()->name }}</strong></h6>
