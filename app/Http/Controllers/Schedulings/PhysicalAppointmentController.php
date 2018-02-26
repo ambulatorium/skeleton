@@ -9,7 +9,6 @@ use App\Models\Patient\Patient;
 use App\Models\Setting\Group\Group;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment\Appointment;
-use App\Models\Setting\Speciality\Speciality;
 use App\Http\Requests\PhysicalAppointmentRequest;
 
 class PhysicalAppointmentController extends Controller
@@ -27,7 +26,6 @@ class PhysicalAppointmentController extends Controller
         return view('schedulings.physical_appointment.index', [
             'schedules'    => $this->getDoctorsSchedule(),
             'locations'    => Group::all(),
-            'specialities' => Speciality::all(),
         ]);
     }
 
