@@ -55,15 +55,6 @@ class Doctor extends Model
         return $this->hasMany('App\Models\Patient\HealthHistory');
     }
 
-    public function setSlugAttribute($value)
-    {
-        if (static::whereSlug($slug = str_slug($value))->exists()) {
-            $slug = "{$slug}-{$this->id}";
-        }
-
-        $this->attributes['slug'] = $slug;
-    }
-
     public function scopeFilter($query, $filters)
     {
         return $filters->apply($query);

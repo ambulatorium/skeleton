@@ -21,6 +21,7 @@ class InvitationController extends Controller
 
     public function join($token)
     {
+        // refactoring soon
         $this->validate(request(), [
             'name'     => 'required|string|max:255',
             'password' => 'required|string|min:6|confirmed',
@@ -40,6 +41,7 @@ class InvitationController extends Controller
             $user->doctor = Doctor::create([
                 'user_id'  => $user->id,
                 'group_id' => $invite->group_id,
+                'slug'     => str_slug(request('name')),
             ]);
         }
 
