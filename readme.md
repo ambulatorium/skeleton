@@ -16,10 +16,6 @@ Reliqui is open source scheduling system for outpatients appointments to provide
 * Doctor's Schedule
 * Doctor & Staff Management
 
-## General Discussion
-
-If you have any questions, ideas, feedback or thoughts on this project please make a comment on the [general discussion](https://github.com/orgs/reliqui/teams/hooray-team) instead of using the issue tracker.
-
 ## Installation
 
 ### Prerequisites
