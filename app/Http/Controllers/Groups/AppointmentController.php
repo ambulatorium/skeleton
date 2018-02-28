@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Groups;
 
-use Illuminate\Http\Request;
+use App\Filters\AppointmentFilters;
 use App\Models\Setting\Group\Group;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment\Appointment;
@@ -14,15 +14,15 @@ class AppointmentController extends Controller
         $this->middleware(['role:admin-group|admin-counter']);
     }
 
-    public function index(Request $request, Group $group)
+    public function index(Group $group, AppointmentFilters $filters)
     {
         $this->authorize('appointment', $group);
 
-        $appointments = $this->getAppointments($request, $group);
+        $appointments = $group->appointments()->where('status', 'scheduled')->filter($filters)->get();
 
         return view('groups.appointments.index', [
             'group'        => $group,
-            'appointments' => $appointments->load('patient'),
+            'appointments' => $appointments,
         ]);
     }
 
@@ -43,23 +43,5 @@ class AppointmentController extends Controller
         flash('Successful! outpatients checked.')->success();
 
         return redirect('/'.$group->slug.'/appointments');
-    }
-
-    protected function getAppointments(Request $request, Group $group)
-    {
-        $requestToken = $request->get('token');
-
-        if ($requestToken) {
-            $appointments = $group->appointments()
-                              ->where([
-                                  ['status', 'scheduled'],
-                                  ['token', 'LIKE', "%$requestToken%"],
-                                ])
-                              ->get();
-        } else {
-            $appointments = $group->appointments()->where('status', 'scheduled')->get();
-        }
-
-        return $appointments;
     }
 }

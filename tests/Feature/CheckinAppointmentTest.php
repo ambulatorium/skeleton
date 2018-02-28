@@ -49,6 +49,43 @@ class CheckinAppointmentTest extends TestCase
     }
 
     /** @test */
+    public function authorized_users_should_be_able_to_filter_by_token_their_group_appointments()
+    {
+        $doctor = create('App\Models\Doctor\Doctor', ['group_id' => $this->group->id]);
+        $schedule = create('App\Models\Doctor\Schedule', ['doctor_id' => $doctor->id]);
+
+        $filterAppointment = create('App\Models\Appointment\Appointment', ['group_id' => $doctor->group_id]);
+        $dontFilterAppointment = create('App\Models\Appointment\Appointment');
+
+        $this->signInAdminGroup($this->adminGroup->user)
+            ->get('/'.$this->group->slug.'/appointments'.'?token='.$filterAppointment->token)
+            ->assertSee($filterAppointment->token)
+            ->assertDontSee($dontFilterAppointment->token);
+    }
+
+    /** @test */
+    public function authorized_users_should_be_able_to_filter_by_date_their_group_appointments()
+    {
+        $date = today()->addDays(1)->format('Y-m-d');
+
+        $doctor = create('App\Models\Doctor\Doctor', ['group_id' => $this->group->id]);
+        $schedule = create('App\Models\Doctor\Schedule', ['doctor_id' => $doctor->id]);
+
+        $filterAppointment = create('App\Models\Appointment\Appointment', [
+            'group_id' => $doctor->group_id,
+            'date' => today()->addDays(1)->format('Y-m-d'),
+        ]);
+
+        $dontFilterAppointment = create('App\Models\Appointment\Appointment');
+
+        $this->signInAdminGroup($this->adminGroup->user)
+            ->get('/'.$this->group->slug.'/appointments'.'?date='.$date)
+            ->assertSee($filterAppointment->token)
+            ->assertSee($filterAppointment->date)
+            ->assertDontSee($dontFilterAppointment->token);
+    }
+
+    /** @test */
     public function unauthorized_users_should_be_not_able_to_checkin_group_appointments()
     {
         $appointment = create('App\Models\Appointment\Appointment');

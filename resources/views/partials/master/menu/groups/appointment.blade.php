@@ -8,6 +8,6 @@
 
 <div class="nav-scroller box-shadow-nav">
     <nav class="nav nav-pills container justify-content-md-center">
-        <a class="nav-link @yield('appointment-all')" href="/{{ $group->slug }}/appointments">All Outpatients Appointment</a>
+        <a class="nav-link @yield('appointments')" href="/{{ $group->slug }}/appointments">Outpatients Appointments</a>
     </nav>
 </div>
