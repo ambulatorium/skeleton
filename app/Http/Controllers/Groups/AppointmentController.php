@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Groups;
 
-use Illuminate\Http\Request;
-use App\Models\Setting\Group\Group;
 use App\Filters\AppointmentFilters;
+use App\Models\Setting\Group\Group;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment\Appointment;
 
