@@ -56,7 +56,7 @@ class CheckinAppointmentTest extends TestCase
 
         $filterAppointment = create('App\Models\Appointment\Appointment', ['group_id' => $doctor->group_id]);
         $dontFilterAppointment = create('App\Models\Appointment\Appointment');
-        
+
         $this->signInAdminGroup($this->adminGroup->user)
             ->get('/'.$this->group->slug.'/appointments'.'?token='.$filterAppointment->token)
             ->assertSee($filterAppointment->token)
@@ -77,7 +77,7 @@ class CheckinAppointmentTest extends TestCase
         ]);
 
         $dontFilterAppointment = create('App\Models\Appointment\Appointment');
-        
+
         $this->signInAdminGroup($this->adminGroup->user)
             ->get('/'.$this->group->slug.'/appointments'.'?date='.$date)
             ->assertSee($filterAppointment->token)
