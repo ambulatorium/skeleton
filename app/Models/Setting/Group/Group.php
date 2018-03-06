@@ -50,4 +50,11 @@ class Group extends Model
     {
         return "/settings/groups/{$this->slug}";
     }
+
+    public function allAppointments()
+    {
+        return $this->appointments()
+            ->whereStatus('scheduled')
+            ->oldest('preferred_time');
+    }
 }

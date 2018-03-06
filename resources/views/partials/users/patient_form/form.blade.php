@@ -91,10 +91,10 @@
     </div>
     <div class="col-sm-8">
         <p>
-            Once you have a patient form, you can select the patient's form when making an appointment.
+            {{ $textInfo ?? 'Once you have a patient form, you can select the patient form when making an appointment.' }}
         </p>
 
         <button type="submit" class="btn btn-info mt-4">{{ $buttonText ?? 'SUBMIT' }}</button>
-        <a href="{{ route('patient-forms.index') }}" class="btn btn-secondary mt-4">CANCEL</a>                    
+        <a href="{{ $buttonLink ?? route('patient-forms.index') }}" class="btn btn-secondary mt-4">CANCEL</a>                    
     </div>
 </div>

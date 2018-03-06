@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Groups;
 
+use App\Models\Patient\Patient;
 use App\Filters\AppointmentFilters;
 use App\Models\Setting\Group\Group;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment\Appointment;
+use App\Http\Requests\VerifyPatientRequest;
 
 class AppointmentController extends Controller
 {
@@ -18,17 +20,17 @@ class AppointmentController extends Controller
     {
         $this->authorize('appointment', $group);
 
-        $appointments = $group->appointments()->where('status', 'scheduled')->filter($filters)->get();
-
         return view('groups.appointments.index', [
             'group'        => $group,
-            'appointments' => $appointments,
+            'appointments' => $group->allAppointments()->filter($filters)->get(),
         ]);
     }
 
-    public function show(Group $group, Appointment $appointment)
+    public function show(Group $group, $appointment)
     {
         $this->authorize('appointment', $group);
+
+        $appointment = $group->appointments()->whereToken($appointment)->firstOrFail();
 
         return view('groups.appointments.show', compact('group', 'appointment'));
     }
@@ -43,5 +45,16 @@ class AppointmentController extends Controller
         flash('Successful! outpatients checked.')->success();
 
         return redirect('/'.$group->slug.'/appointments');
+    }
+
+    public function verifyPatient(Group $group, Appointment $appointment, Patient $patient, VerifyPatientRequest $request)
+    {
+        $this->authorize('appointment', $group);
+
+        $patient->update($request->verifiedPatient());
+
+        flash()->success('Patient Verified');
+
+        return redirect('/'.$group->slug.'/appointments/'.$appointment->token);
     }
 }
