@@ -46,6 +46,7 @@ class UpdatePatientFormsTest extends TestCase
             $this->assertEquals('Changed', $patient_form->address);
             $this->assertEquals('Changed', $patient_form->city);
             $this->assertEquals('Changed', $patient_form->state);
+            $this->assertEquals(0, $patient_form->is_verified);
         });
     }
 
