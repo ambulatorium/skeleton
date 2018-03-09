@@ -41,7 +41,9 @@ class AppointmentController extends Controller
 
         $appointment = $group->appointments()->whereToken($appointment)->firstOrFail();
 
-        if (!$appointment->patient->is_verified) { abort(500); }
+        if (! $appointment->patient->is_verified) {
+            abort(500);
+        }
 
         $appointment->update(['status' => 'checked']);
 

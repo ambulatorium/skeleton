@@ -109,7 +109,7 @@ class CheckinAppointmentTest extends TestCase
 
         $this->signInAdminCounter($this->adminCounter->user)
             ->patch('/'.$appointment->group->slug.'/appointments/'.$appointment->token, [])
-            ->assertStatus(403);       
+            ->assertStatus(403);
     }
 
     /** @test */
@@ -165,7 +165,7 @@ class CheckinAppointmentTest extends TestCase
         $this->signInAdminCounter($this->adminCounter->user);
 
         $this->patch('/'.$this->group->slug.'/appointments/'.$appointment->token, ['status' => 'checked']);
-            
-        $this->assertDatabaseHas('appointments', ['status' => 'checked']);   
+
+        $this->assertDatabaseHas('appointments', ['status' => 'checked']);
     }
 }
