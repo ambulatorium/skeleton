@@ -51,14 +51,13 @@ class CheckinAppointmentTest extends TestCase
     /** @test */
     public function authorized_users_should_be_able_to_filter_by_token_their_group_appointments()
     {
-        $doctor = create('App\Models\Doctor\Doctor', ['group_id' => $this->group->id]);
-        $schedule = create('App\Models\Doctor\Schedule', ['doctor_id' => $doctor->id]);
-
-        $filterAppointment = create('App\Models\Appointment\Appointment', ['group_id' => $doctor->group_id]);
+        $filterAppointment = create('App\Models\Appointment\Appointment', ['group_id' => $this->group->id]);
         $dontFilterAppointment = create('App\Models\Appointment\Appointment');
 
-        $this->signInAdminGroup($this->adminGroup->user)
-            ->get('/'.$this->group->slug.'/appointments'.'?token='.$filterAppointment->token)
+        $this->signInAdminGroup($this->adminGroup->user);
+        $this->signInAdminCounter($this->adminCounter->user);
+
+        $this->get('/'.$this->group->slug.'/appointments'.'?token='.$filterAppointment->token)
             ->assertSee($filterAppointment->token)
             ->assertDontSee($dontFilterAppointment->token);
     }
@@ -68,18 +67,17 @@ class CheckinAppointmentTest extends TestCase
     {
         $date = today()->addDays(1)->format('Y-m-d');
 
-        $doctor = create('App\Models\Doctor\Doctor', ['group_id' => $this->group->id]);
-        $schedule = create('App\Models\Doctor\Schedule', ['doctor_id' => $doctor->id]);
-
         $filterAppointment = create('App\Models\Appointment\Appointment', [
-            'group_id' => $doctor->group_id,
+            'group_id' => $this->group->id,
             'date' => today()->addDays(1)->format('Y-m-d'),
         ]);
 
-        $dontFilterAppointment = create('App\Models\Appointment\Appointment');
+        $dontFilterAppointment = create('App\Models\Appointment\Appointment', ['group_id' => $this->group->id]);
 
-        $this->signInAdminGroup($this->adminGroup->user)
-            ->get('/'.$this->group->slug.'/appointments'.'?date='.$date)
+        $this->signInAdminGroup($this->adminGroup->user);
+        $this->signInAdminCounter($this->adminCounter->user);
+
+        $this->get('/'.$this->group->slug.'/appointments'.'?date='.$date)
             ->assertSee($filterAppointment->token)
             ->assertSee($filterAppointment->date)
             ->assertDontSee($dontFilterAppointment->token);
@@ -90,32 +88,84 @@ class CheckinAppointmentTest extends TestCase
     {
         $appointment = create('App\Models\Appointment\Appointment');
 
-        $this->get('/'.$this->group->slug.'/appointments/'.$appointment->token)
+        $this->get('/'.$appointment->group->slug.'/appointments/'.$appointment->token)
             ->assertRedirect('/login');
 
         $this->signIn()
-            ->patch('/'.$this->group->slug.'/appointments/'.$appointment->token, [])
+            ->patch('/'.$appointment->group->slug.'/appointments/'.$appointment->token, [])
             ->assertStatus(403);
 
         $this->signInOwner()
-            ->patch('/'.$this->group->slug.'/appointments/'.$appointment->token, [])
+            ->patch('/'.$appointment->group->slug.'/appointments/'.$appointment->token, [])
             ->assertStatus(403);
 
         $this->signInAdministrator()
-        ->patch('/'.$this->group->slug.'/appointments/'.$appointment->token, [])
-        ->assertStatus(403);
+            ->patch('/'.$appointment->group->slug.'/appointments/'.$appointment->token, [])
+            ->assertStatus(403);
+
+        $this->signInAdminGroup($this->adminGroup->user)
+            ->patch('/'.$appointment->group->slug.'/appointments/'.$appointment->token, [])
+            ->assertStatus(403);
+
+        $this->signInAdminCounter($this->adminCounter->user)
+            ->patch('/'.$appointment->group->slug.'/appointments/'.$appointment->token, [])
+            ->assertStatus(403);       
+    }
+
+    /** @test */
+    public function patient_should_be_verified_before_checkin_appointment()
+    {
+        $appointment = create('App\Models\Appointment\Appointment', ['group_id' => $this->group->id]);
+
+        $this->signInAdminGroup($this->adminGroup->user);
+        $this->signInAdminCounter($this->adminCounter->user);
+
+        $this->patch('/'.$this->group->slug.'/appointments/'.$appointment->token, ['status' => 'checked'])
+            ->assertStatus(500);
+
+        $this->assertDatabaseHas('appointments', ['status' => 'scheduled']);
+    }
+
+    /** @test */
+    public function authorized_users_should_be_able_to_verified_patient()
+    {
+        $appointment = create('App\Models\Appointment\Appointment', ['group_id' => $this->group->id]);
+
+        $this->signInAdminGroup($this->adminGroup->user);
+        $this->signInAdminCounter($this->adminCounter->user);
+
+        $this->patch('/'.$this->group->slug.'/appointments/'.$appointment->token.'/'.$appointment->patient->id, [
+            'form_name'       => 'Changed',
+            'full_name'       => 'Changed',
+            'dob'             => '1993-09-13',
+            'gender'          => 'male',
+            'address'         => 'Changed',
+            'city'            => 'Changed',
+            'state'           => 'Changed',
+            'zip_code'        => '17510',
+            'home_phone'      => '0000000000000',
+            'cell_phone'      => '0000000000000',
+            'marital_status'  => 'single',
+            'is_verified'     => true,
+        ]);
+
+        $this->assertDatabaseHas('patients', ['is_verified' => true]);
     }
 
     /** @test */
     public function authorized_users_should_be_able_to_checkin_their_group_appointments()
     {
-        $appointment = create('App\Models\Appointment\Appointment');
+        $patient = create('App\Models\Patient\Patient', ['is_verified' => true]);
+        $appointment = create('App\Models\Appointment\Appointment', [
+            'patient_id' => $patient->id,
+            'group_id' => $this->group->id,
+        ]);
 
         $this->signInAdminGroup($this->adminGroup->user);
         $this->signInAdminCounter($this->adminCounter->user);
 
         $this->patch('/'.$this->group->slug.'/appointments/'.$appointment->token, ['status' => 'checked']);
-
-        $this->assertDatabaseHas('appointments', ['status' => 'checked']);
+            
+        $this->assertDatabaseHas('appointments', ['status' => 'checked']);   
     }
 }
