@@ -1,9 +1,9 @@
 <div class="col-md-12">
     <div class="list-group">
         <div class="list-group-item">
-            <div class="alert alert-info text-center bg-white text-dark">
+            <div class="alert alert-info text-center bg-white text-dark mt-3">
                 <strong class="text-uppercase">
-                    please verify outpatients data
+                    please verify outpatients
                 </strong>
             </div>
 
