@@ -26,4 +26,13 @@ class GroupTest extends TestCase
 
         $this->assertTrue($group->staffs->contains($staff));
     }
+
+    /** @test */
+    public function a_group_consists_of_appointments()
+    {
+        $group = create('App\Models\Setting\Group\Group');
+        $appointment = create('App\Models\Appointment\Appointment', ['group_id' => $group->id]);
+
+        $this->assertTrue($group->appointments->contains($appointment));
+    }
 }
