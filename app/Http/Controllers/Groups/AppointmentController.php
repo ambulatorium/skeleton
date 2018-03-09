@@ -7,7 +7,7 @@ use App\Filters\AppointmentFilters;
 use App\Models\Setting\Group\Group;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment\Appointment;
-use App\Http\Requests\VerifyPatientRequest;
+use App\Http\Requests\PatientFormRequest;
 
 class AppointmentController extends Controller
 {
@@ -22,7 +22,7 @@ class AppointmentController extends Controller
 
         return view('groups.appointments.index', [
             'group'        => $group,
-            'appointments' => $group->allAppointments()->filter($filters)->get(),
+            'appointments' => $group->appointments()->filter($filters)->oldest('preferred_time')->get(),
         ]);
     }
 
@@ -35,23 +35,27 @@ class AppointmentController extends Controller
         return view('groups.appointments.show', compact('group', 'appointment'));
     }
 
-    public function update(Group $group, Appointment $appointment)
+    public function update(Group $group, $appointment)
     {
         $this->authorize('appointment', $group);
 
-        $appointment->fill(['status' => 'checked']);
-        $appointment->save();
+        $appointment = $group->appointments()->whereToken($appointment)->firstOrFail();
+
+        if (!$appointment->patient->is_verified) { abort(500); }
+
+        $appointment->update(['status' => 'checked']);
 
         flash('Successful! outpatients checked.')->success();
 
         return redirect('/'.$group->slug.'/appointments');
     }
 
-    public function verifyPatient(Group $group, Appointment $appointment, Patient $patient, VerifyPatientRequest $request)
+    public function verifyPatient(Group $group, Appointment $appointment, PatientFormRequest $request, $patient)
     {
         $this->authorize('appointment', $group);
 
-        $patient->update($request->verifiedPatient());
+        $patient_form = $appointment->patient()->whereId($patient);
+        $patient_form->update(array_merge($request->all(), ['is_verified' => true]));
 
         flash()->success('Patient Verified');
 

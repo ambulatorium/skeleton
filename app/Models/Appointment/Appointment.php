@@ -48,7 +48,7 @@ class Appointment extends Model
 
     public function group()
     {
-        return $this->belongsTo('App\Models\Appointment\Appointment');
+        return $this->belongsTo('App\Models\Setting\Group\Group');
     }
 
     public function scopeFilter($query, $filters)

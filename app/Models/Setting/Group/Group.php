@@ -38,7 +38,7 @@ class Group extends Model
 
     public function appointments()
     {
-        return $this->hasMany('App\Models\Appointment\Appointment');
+        return $this->hasMany('App\Models\Appointment\Appointment')->whereStatus('scheduled');
     }
 
     public function healthHistory()
@@ -49,12 +49,5 @@ class Group extends Model
     public function appSetting()
     {
         return "/settings/groups/{$this->slug}";
-    }
-
-    public function allAppointments()
-    {
-        return $this->appointments()
-            ->whereStatus('scheduled')
-            ->oldest('preferred_time');
     }
 }
