@@ -22,7 +22,7 @@ class PatientController extends Controller
 
     public function store(PatientFormRequest $request)
     {
-        Patient::create($request->patientRegistrationForm());
+        Patient::create(array_merge($request->all(), ['user_id' => auth()->id()]));
 
         flash('Successful! your patient form submitted')->success();
 
@@ -45,7 +45,7 @@ class PatientController extends Controller
     {
         $this->authorize('update', $patient_form);
 
-        $patient_form->update($request->patientRegistrationForm());
+        $patient_form->update(array_merge($request->all(), ['is_verified' => false]));
 
         flash('Successful! your patient form updated')->success();
 

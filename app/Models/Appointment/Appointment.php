@@ -46,6 +46,11 @@ class Appointment extends Model
         return $this->belongsTo('App\Models\Patient\Patient');
     }
 
+    public function group()
+    {
+        return $this->belongsTo('App\Models\Setting\Group\Group');
+    }
+
     public function scopeFilter($query, $filters)
     {
         return $filters->apply($query);

@@ -50,6 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/appointments', 'Groups\AppointmentController@index');
         Route::get('/appointments/{appointment}', 'Groups\AppointmentController@show');
         Route::patch('/appointments/{appointment}', 'Groups\AppointmentController@update');
+        Route::patch('/appointments/{appointment}/{patient}', 'Groups\AppointmentController@verifyPatient');
         Route::get('/settings/profile', 'Groups\ProfileController@edit');
         Route::patch('/settings/profile', 'Groups\ProfileController@update');
         Route::get('/settings/staffs', 'Groups\StaffController@index');

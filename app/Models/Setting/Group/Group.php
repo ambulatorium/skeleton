@@ -38,7 +38,7 @@ class Group extends Model
 
     public function appointments()
     {
-        return $this->hasMany('App\Models\Appointment\Appointment');
+        return $this->hasMany('App\Models\Appointment\Appointment')->whereStatus('scheduled');
     }
 
     public function healthHistory()

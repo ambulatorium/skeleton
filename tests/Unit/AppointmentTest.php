@@ -40,4 +40,12 @@ class AppointmentTest extends TestCase
 
         $this->assertInstanceOf('App\Models\Patient\Patient', $appointment->patient);
     }
+
+    /** @test */
+    public function it_belongs_to_a_group()
+    {
+        $appointment = create('App\Models\Appointment\Appointment');
+
+        $this->assertInstanceOf('App\Models\Setting\Group\Group', $appointment->group);
+    }
 }
