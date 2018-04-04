@@ -36,6 +36,10 @@
                             <label for="password_confirmation">Confirm Password</label>
                             <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="******">
                         </div>
+                        <div class="form-group col-md-12">
+                            <label for="avatar">Avatar</label>
+                            <input id="avatar" type="file" class="form-control" name="avatar">
+                        </div>
                     </div>
 
                     <hr>

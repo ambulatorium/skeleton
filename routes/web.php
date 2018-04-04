@@ -14,7 +14,7 @@ Route::get('/scheduling/physical-appointment', 'Schedulings\PhysicalAppointmentC
 // Authentication default
 Auth::routes();
 
-// all healthcare provider
+// all healthcare provideruser/settings/account/
 Route::get('/{group}', 'Groups\ProfileController@show')->name('group');
 
 // user invitation

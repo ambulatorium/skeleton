@@ -25,6 +25,10 @@ class AccountController extends Controller
             $user->password = bcrypt($request->get('password'));
         }
 
+        if ($request->get('avatar')) {
+            $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+        }
+
         $user->save();
 
         flash('Successful! Your account updated.')->success();

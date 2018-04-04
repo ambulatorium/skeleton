@@ -4,10 +4,13 @@ namespace App;
 
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+//use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+//use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable //implements HasMedia
 {
+    //use HasMediaTrait;
     use Notifiable;
     use HasRoles;
 
@@ -43,4 +46,11 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Patient\HealthHistory');
     }
+
+    // public function registerMediaConversions(Media $media = null)
+    // {
+    //     $this->addMediaConversion('thumb')
+    //         ->width(50)
+    //         ->height(50);
+    // }
 }
