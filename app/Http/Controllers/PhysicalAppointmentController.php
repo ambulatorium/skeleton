@@ -10,7 +10,7 @@ class PhysicalAppointmentController extends Controller
 {
     public function index()
     {
-        $date      = Carbon::parse(request('date'))->format('Y-m-d H:i:s');
+        $date = Carbon::parse(request('date'))->format('Y-m-d H:i:s');
         $locations = ReliquiHealthcareLocation::all();
         $schedules = ReliquiWorkingHours::with('doctor.user', 'doctor.specialties')
             ->whereLocationId(request('location'))
