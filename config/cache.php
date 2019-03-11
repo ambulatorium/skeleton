@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Str;
+
 return [
 
     /*
@@ -39,38 +41,38 @@ return [
         ],
 
         'database' => [
-            'driver'     => 'database',
-            'table'      => 'cache',
+            'driver' => 'database',
+            'table' => 'cache',
             'connection' => null,
         ],
 
         'file' => [
             'driver' => 'file',
-            'path'   => storage_path('framework/cache/data'),
+            'path' => storage_path('framework/cache/data'),
         ],
 
         'memcached' => [
-            'driver'        => 'memcached',
+            'driver' => 'memcached',
             'persistent_id' => env('MEMCACHED_PERSISTENT_ID'),
-            'sasl'          => [
+            'sasl' => [
                 env('MEMCACHED_USERNAME'),
                 env('MEMCACHED_PASSWORD'),
             ],
             'options' => [
-                // Memcached::OPT_CONNECT_TIMEOUT  => 2000,
+                // Memcached::OPT_CONNECT_TIMEOUT => 2000,
             ],
             'servers' => [
                 [
-                    'host'   => env('MEMCACHED_HOST', '127.0.0.1'),
-                    'port'   => env('MEMCACHED_PORT', 11211),
+                    'host' => env('MEMCACHED_HOST', '127.0.0.1'),
+                    'port' => env('MEMCACHED_PORT', 11211),
                     'weight' => 100,
                 ],
             ],
         ],
 
         'redis' => [
-            'driver'     => 'redis',
-            'connection' => 'default',
+            'driver' => 'redis',
+            'connection' => 'cache',
         ],
 
     ],
@@ -86,9 +88,6 @@ return [
     |
     */
 
-    'prefix' => env(
-        'CACHE_PREFIX',
-        str_slug(env('APP_NAME', 'reliqui'), '_').'_cache'
-    ),
+    'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache'),
 
 ];

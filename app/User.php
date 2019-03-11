@@ -2,45 +2,38 @@
 
 namespace App;
 
-use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use Notifiable;
-    use HasRoles;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'name', 'email', 'password',
     ];
 
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
     protected $hidden = [
         'password', 'remember_token',
     ];
 
-    public function doctor()
-    {
-        return $this->hasOne('App\Models\Doctor\Doctor');
-    }
-
-    public function patientForms()
-    {
-        return $this->hasMany('App\Models\Patient\Patient');
-    }
-
-    public function staff()
-    {
-        return $this->hasOne('App\Models\Setting\Staff\Staff');
-    }
-
-    public function appointments()
-    {
-        return $this->hasMany('App\Models\Appointment\Appointment');
-    }
-
-    public function healthHistory()
-    {
-        return $this->hasMany('App\Models\Patient\HealthHistory');
-    }
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }

@@ -10,17 +10,4 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-    public function checkRelationships($model, $relationships)
-    {
-        $counts = [];
-
-        foreach ($relationships as $relationship) {
-            if ($y = $model->$relationship()->count()) {
-                $counts[] = $y;
-            }
-        }
-
-        return $counts;
-    }
 }
