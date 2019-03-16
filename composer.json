@@ -1,6 +1,6 @@
 {
     "name": "reliqui/reliqui",
-    "description": "Free and open source web-based ambulatory care services.",
+    "description": "Reliqui ambulatory demo",
     "keywords": ["laravel", "outpatient care", "ambulatory care"],
     "license": "MIT",
     "require": {
