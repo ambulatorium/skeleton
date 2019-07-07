@@ -1,40 +1,36 @@
-> **Note:** ❗️this is a demo project don't use it in the production environment ❗️
+## Introduction
 
-<p align="center">
-<img src="https://res.cloudinary.com/dave24hwj8/image/upload/v1552329535/Screen_Shot_2019-03-12_at_01.22.27.png">
-</p>
+**Ambulatory is outpatient care platform for your website.** Carefully designed to be consistent, fast, easy to use, and meet the needs of outpatient services in health facilities. [Learn more about ambulatory care >>>](https://www.rasmussen.edu/degrees/nursing/blog/what-is-ambulatory-care/)
 
 ## Installation
 
-### Prerequisites
+This repository only holds the skeleton application as a fresh start to build your ambulatory project.
 
-* To run this project, you must have PHP 7 installed.
-* You should setup a host on your web server for your local domain. For this you could also configure [Laravel Homestead](https://laravel.com/docs/5.6/homestead) or [Valet](https://laravel.com/docs/5.6/valet).
+Create new Ambulatory project via Composer:
 
-### Install
+```
+composer create-project --prefer-dist ambulatory/skeleton myclinic
+```
 
-Begin by cloning this repository to your machine, and installing all Composer & dependencies.
+Once Composer is done, migrate the database table.
 
-1. `git clone git@github.com:reliqui/reliqui.git`
-2. `cd reliqui && composer install && yarn install`
-3. `php artisan reliqui:install`
-4. `php artisan reliqui:migrate`
-5. Visit: `http://reliqui.test
+```
+php artisan ambulatory:migrate
+```
 
-## Contributing
+Create a symbolic link to ensure file uploads are publicly accessible from the web:
 
-Fork the repository, make the code changes then submit a pull request.
+```
+php artisan storage:link
+```
 
-Please, be very clear on your commit messages and pull requests, empty pull request messages may be rejected without reason.
+Head to `yourproject.test/myclinic` and use the provided email and password to log in.
 
-## Code of Conduct
-
-Please read our [Code of Conduct](code_of_conduct.md) before contributing or engaging in discussions.
 
 ## Security Vulnerabilities
 
-If you discover any security related issues, please email davidhsianturi@gmail.com instead of using the issue tracker.
+If you discover a security vulnerability within Ambulatory, please send an e-mail to [davidhsianturi@gmail.com](mailto:davidhsianturi@gmail.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
-The [MIT license](LICENSE).
+Ambulatory is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
