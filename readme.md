@@ -1,6 +1,6 @@
 ## Introduction
 
-**Ambulatory is outpatient care platform for your website.** Carefully designed to be consistent, fast, easy to use, and meet the needs of outpatient services in health facilities. [Learn more about ambulatory care >>>](https://www.rasmussen.edu/degrees/nursing/blog/what-is-ambulatory-care/)
+Ambulatory is An experiment project for an outpatient basis, including diagnosis, observation, consultation, treatment, intervention, and rehabilitation services [Learn more about ambulatory care >>>](https://www.rasmussen.edu/degrees/nursing/blog/what-is-ambulatory-care/)
 
 ## Installation
 
